@@ -53,10 +53,11 @@ scan with {:
 	return s;
 :}
 
-terminal PROG, BREAK, CLASS, ENUM, ELSE, CONST, IF, DO, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal THIS, FOREACH, IDENT, NUMBER, CHARCONST, BOOLCONST, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
-terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LANGLE;
+terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
+terminal FOREACH, IDENT, NUMBER, CHARCONST, BOOLCONST, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
+terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
 terminal RANGLE, LBRACE, RBRACE, LAMBDAOP;
+terminal  DO, ENUM, COLON, THIS;
 
 nonterminal Program Program;
 nonterminal DeclsList DeclsList;
@@ -73,7 +74,8 @@ nonterminal ClassDecl ClassDecl;
 nonterminal ClassConstrMethodDecl ClassConstrMethodDecl;
 nonterminal ExtendsOptional ExtendsOptional;
 nonterminal VarDeclList VarDeclList;
-nonterminal ConstructorDeclList ConstructorDeclList;
+nonterminal ConstMethodSecondPart ConstMethodSecondPart;
+nonterminal MethodRest MethodRest;
 nonterminal ConstructorDecl ConstructorDecl;
 nonterminal FormParsOptional FormParsOptional;
 nonterminal StatementList StatementList;
@@ -108,24 +110,18 @@ nonterminal ActParsParen ActParsParen;
 nonterminal ActParsParenOptional ActParsParenOptional;
 nonterminal ExprOrActPars ExprOrActPars;
 nonterminal Designator Designator;
-nonterminal DesignatorList DesignatorList;
-nonterminal DesignatorElem DesignatorElem;
 nonterminal Label Label;
 nonterminal AssignOp AssignOp;
 nonterminal RelOp RelOp;
 nonterminal AddOp AddOp;
 nonterminal MulOp MulOp;
 nonterminal ConstrMethodBothOptional ConstrMethodBothOptional;
-nonterminal ConstrMethodModif ConstrMethodModif;
-nonterminal MethodDeclModif MethodDeclModif;
-nonterminal MethodDeclListV2 MethodDeclListV2;
-nonterminal ConstrDeclModif ConstrDeclModif;
-nonterminal ConstrDeclListV2 ConstrDeclListV2;
-nonterminal ConstrMethodBothOptional ConstrMethodBothOptional;
-nonterminal ConstMethodSecondPart ConstMethodSecondPart;
-nonterminal MethodRest MethodRest;
+
+/*nonterminal DesignatorElem, DesignatorList*/
+
 
 precedence left ELSE;
+
 
 Program ::= (Program) PROG IDENT DeclsList:D1 LBRACE MethodDeclList:M2 RBRACE {: RESULT=new Program(D1, M2); RESULT.setLine(D1left); :};
 
@@ -190,15 +186,6 @@ MethodRest ::= IDENT IDENT ConstMethodSecondPart:C1 MethodRest:M2 {: RESULT=new 
 			| VOID IDENT ConstMethodSecondPart:C1 MethodRest:M2 {: RESULT=new MethodRestDerived2(C1, M2); RESULT.setLine(C1left); :}
 			| {: RESULT=new MethodRestDerived3(); :}
 			;
-
-
-ConstrMethodModif ::= ConstrDeclModif:C1 MethodDeclModif:M2 {: RESULT=new ConstrMethodModifDerived1(C1, M2); RESULT.setLine(C1left); :}
-					|  MethodDeclModif:M1 {: RESULT=new ConstrMethodModifDerived2(M1); RESULT.setLine(M1left); :};
-
-				
-ConstrDeclModif ::= LPAREN FormParsOptional:F1 RPAREN VarDeclList:V2 LBRACE StatementList:S3 RBRACE {: RESULT=new ConstrDeclModifDerived1(F1, V2, S3); RESULT.setLine(F1left); :};
-
-MethodDeclModif ::= IDENT LPAREN FormParsOptional:F1 RPAREN VarDeclList:V2 LBRACE StatementList:S3 RBRACE {: RESULT=new MethodDeclModifDerived1(F1, V2, S3); RESULT.setLine(F1left); :};
 
 ConstructorDecl ::= IDENT LPAREN FormParsOptional:F1 RPAREN VarDeclList:V2 LBRACE StatementList:S3 RBRACE {: RESULT=new ConstructorDeclDerived1(F1, V2, S3); RESULT.setLine(F1left); :};
 
@@ -340,6 +327,7 @@ Designator ::= IDENT {: RESULT=new DesignatorDerived1(); :}
 			| Designator:D1 DOT IDENT {: RESULT=new DesignatorDerived2(D1); RESULT.setLine(D1left); :}
 			| Designator:D1 LANGLE Expr:E2 RANGLE {: RESULT=new DesignatorDerived3(D1, E2); RESULT.setLine(D1left); :}
 			;
+
 /*
 DesignatorList ::= DesignatorList DesignatorElem;
 

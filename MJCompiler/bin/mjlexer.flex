@@ -52,7 +52,7 @@ import java_cup.runtime.Symbol;
 "void" 		{ return new_symbol(sym.VOID, yytext()); }
 "extends"	{ return new_symbol(sym.EXTENDS, yytext()); }
 "continue"	{ return new_symbol(sym.CONTINUE, yytext()); }
-"this"		{ return new_symbol(sym.THIS, yytext()); }
+//"this"		{ return new_symbol(sym.THIS, yytext()); }
 "foreach"	{ return new_symbol(sym.FOREACH, yytext()); }
 
 '([a-z]|[A-Z])'		{ return new_symbol(sym.CHARCONST, Character.valueOf(yytext().charAt(1))); }

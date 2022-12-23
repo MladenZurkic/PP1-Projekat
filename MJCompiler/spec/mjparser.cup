@@ -53,14 +53,15 @@ scan with {:
 	return s;
 :}
 
-terminal PROG, BREAK, CLASS, ENUM, ELSE, CONST, IF, DO, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal THIS, FOREACH, IDENT, NUMBER, CHARCONST, BOOLCONST, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
-terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COLON, COMMA, DOT, LPAREN, RPAREN, LANGLE;
+terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
+terminal FOREACH, IDENT, NUMBER, CHARCONST, BOOLCONST, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
+terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
 terminal RANGLE, LBRACE, RBRACE, LAMBDAOP;
+terminal  DO, ENUM, COLON;
 
 nonterminal Program, DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
 nonterminal Type, VarDecl, AngleBrackets, MoreVarDecls, ClassDecl, ClassConstrMethodDecl;
-nonterminal ExtendsOptional, VarDeclList, ConstructorDeclList;
+nonterminal ExtendsOptional, VarDeclList, ConstMethodSecondPart, MethodRest;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
 nonterminal FormParsList, MethodDecl, TypeOrVoid, Statement, DesignatorStatement;
 nonterminal ElseStatementOptional, ExprOptional, NumConstOptional, DesignatorStatementOptional;
@@ -68,12 +69,13 @@ nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
 nonterminal RelOpExprOptional, Expr, MinusOptional, AddOpTermList, Term, MulOpFactorList;
 nonterminal Factor, ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
-nonterminal DesignatorList, DesignatorElem, Label, AssignOp, RelOp, AddOp, MulOp;
-nonterminal ConstrMethodBothOptional, ConstrMethodModif, MethodDeclModif, MethodDeclListV2;
-nonterminal ConstrDeclModif, ConstrDeclListV2, ConstMethodSecondPart, MethodRest;
+nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstrMethodBothOptional;
+
+/*nonterminal DesignatorElem, DesignatorList*/
 
 
 precedence left ELSE;
+
 
 Program ::= (Program) PROG IDENT DeclsList LBRACE MethodDeclList RBRACE;
 
@@ -138,15 +140,6 @@ MethodRest ::= IDENT IDENT ConstMethodSecondPart MethodRest
 			| VOID IDENT ConstMethodSecondPart MethodRest
 			|
 			;
-
-
-ConstrMethodModif ::= ConstrDeclModif MethodDeclModif
-					|  MethodDeclModif;
-
-				
-ConstrDeclModif ::= LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
-
-MethodDeclModif ::= IDENT LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
 
 ConstructorDecl ::= IDENT LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
 
@@ -288,6 +281,7 @@ Designator ::= IDENT
 			| Designator DOT IDENT
 			| Designator LANGLE Expr RANGLE
 			;
+
 /*
 DesignatorList ::= DesignatorList DesignatorElem;
 

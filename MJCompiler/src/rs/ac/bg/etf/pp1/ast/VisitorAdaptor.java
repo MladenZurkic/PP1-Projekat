@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/11/2022 3:33:9
+// 23/11/2022 15:42:6
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -12,10 +12,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(MethodDecl MethodDecl) { }
     public void visit(ConstructorDecl ConstructorDecl) { }
     public void visit(ExprCommaList ExprCommaList) { }
-    public void visit(DesignatorElem DesignatorElem) { }
     public void visit(CondTermList CondTermList) { }
     public void visit(ActParsParenOptional ActParsParenOptional) { }
-    public void visit(ConstrDeclListV2 ConstrDeclListV2) { }
     public void visit(StatementList StatementList) { }
     public void visit(ActParsParen ActParsParen) { }
     public void visit(ClassConstrMethodDecl ClassConstrMethodDecl) { }
@@ -28,29 +26,24 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Designator Designator) { }
     public void visit(Term Term) { }
     public void visit(FormParsList FormParsList) { }
-    public void visit(ConstMethodSecondPart ConstMethodSecondPart) { }
     public void visit(Condition Condition) { }
+    public void visit(ConstMethodSecondPart ConstMethodSecondPart) { }
     public void visit(FormParsOptional FormParsOptional) { }
-    public void visit(MethodRest MethodRest) { }
     public void visit(MulOp MulOp) { }
+    public void visit(MethodRest MethodRest) { }
     public void visit(MinusOptional MinusOptional) { }
     public void visit(DesignatorOptional DesignatorOptional) { }
     public void visit(RelOp RelOp) { }
     public void visit(AssignOp AssignOp) { }
-    public void visit(MethodDeclListV2 MethodDeclListV2) { }
     public void visit(Label Label) { }
-    public void visit(ConstructorDeclList ConstructorDeclList) { }
     public void visit(VarDeclList VarDeclList) { }
     public void visit(Expr Expr) { }
     public void visit(DeclsList DeclsList) { }
     public void visit(ActPars ActPars) { }
     public void visit(AddOp AddOp) { }
-    public void visit(DesignatorList DesignatorList) { }
     public void visit(TypeOrVoid TypeOrVoid) { }
     public void visit(DesignatorStatement DesignatorStatement) { }
     public void visit(NumConstOptional NumConstOptional) { }
-    public void visit(ConstrDeclModif ConstrDeclModif) { }
-    public void visit(MethodDeclModif MethodDeclModif) { }
     public void visit(ConstsList ConstsList) { }
     public void visit(Statement Statement) { }
     public void visit(VarDecl VarDecl) { }
@@ -70,7 +63,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Decls Decls) { }
     public void visit(Consts Consts) { }
     public void visit(FormPars FormPars) { }
-    public void visit(ConstrMethodModif ConstrMethodModif) { }
     public void visit(MulOpDerived3 MulOpDerived3) { visit(); }
     public void visit(MulOpDerived2 MulOpDerived2) { visit(); }
     public void visit(MulOpDerived1 MulOpDerived1) { visit(); }
@@ -157,10 +149,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(FormParsOptionalDerived2 FormParsOptionalDerived2) { visit(); }
     public void visit(FormParsOptionalDerived1 FormParsOptionalDerived1) { visit(); }
     public void visit(ConstructorDeclDerived1 ConstructorDeclDerived1) { visit(); }
-    public void visit(MethodDeclModifDerived1 MethodDeclModifDerived1) { visit(); }
-    public void visit(ConstrDeclModifDerived1 ConstrDeclModifDerived1) { visit(); }
-    public void visit(ConstrMethodModifDerived2 ConstrMethodModifDerived2) { visit(); }
-    public void visit(ConstrMethodModifDerived1 ConstrMethodModifDerived1) { visit(); }
     public void visit(MethodRestDerived3 MethodRestDerived3) { visit(); }
     public void visit(MethodRestDerived2 MethodRestDerived2) { visit(); }
     public void visit(MethodRestDerived1 MethodRestDerived1) { visit(); }

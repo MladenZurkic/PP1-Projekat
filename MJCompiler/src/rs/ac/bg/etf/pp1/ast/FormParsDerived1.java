@@ -1,39 +1,20 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/11/2022 15:42:6
+// 25/11/2022 1:1:56
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FormParsDerived1 extends FormPars {
 
-    private Type Type;
-    private AngleBrackets AngleBrackets;
     private FormParsList FormParsList;
+    private FormPars FormPars;
 
-    public FormParsDerived1 (Type Type, AngleBrackets AngleBrackets, FormParsList FormParsList) {
-        this.Type=Type;
-        if(Type!=null) Type.setParent(this);
-        this.AngleBrackets=AngleBrackets;
-        if(AngleBrackets!=null) AngleBrackets.setParent(this);
+    public FormParsDerived1 (FormParsList FormParsList, FormPars FormPars) {
         this.FormParsList=FormParsList;
         if(FormParsList!=null) FormParsList.setParent(this);
-    }
-
-    public Type getType() {
-        return Type;
-    }
-
-    public void setType(Type Type) {
-        this.Type=Type;
-    }
-
-    public AngleBrackets getAngleBrackets() {
-        return AngleBrackets;
-    }
-
-    public void setAngleBrackets(AngleBrackets AngleBrackets) {
-        this.AngleBrackets=AngleBrackets;
+        this.FormPars=FormPars;
+        if(FormPars!=null) FormPars.setParent(this);
     }
 
     public FormParsList getFormParsList() {
@@ -44,27 +25,32 @@ public class FormParsDerived1 extends FormPars {
         this.FormParsList=FormParsList;
     }
 
+    public FormPars getFormPars() {
+        return FormPars;
+    }
+
+    public void setFormPars(FormPars FormPars) {
+        this.FormPars=FormPars;
+    }
+
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Type!=null) Type.accept(visitor);
-        if(AngleBrackets!=null) AngleBrackets.accept(visitor);
         if(FormParsList!=null) FormParsList.accept(visitor);
+        if(FormPars!=null) FormPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Type!=null) Type.traverseTopDown(visitor);
-        if(AngleBrackets!=null) AngleBrackets.traverseTopDown(visitor);
         if(FormParsList!=null) FormParsList.traverseTopDown(visitor);
+        if(FormPars!=null) FormPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Type!=null) Type.traverseBottomUp(visitor);
-        if(AngleBrackets!=null) AngleBrackets.traverseBottomUp(visitor);
         if(FormParsList!=null) FormParsList.traverseBottomUp(visitor);
+        if(FormPars!=null) FormPars.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -73,20 +59,14 @@ public class FormParsDerived1 extends FormPars {
         buffer.append(tab);
         buffer.append("FormParsDerived1(\n");
 
-        if(Type!=null)
-            buffer.append(Type.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        if(AngleBrackets!=null)
-            buffer.append(AngleBrackets.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
         if(FormParsList!=null)
             buffer.append(FormParsList.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(FormPars!=null)
+            buffer.append(FormPars.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -54,10 +54,13 @@ scan with {:
 :}
 
 terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal FOREACH, IDENT, NUMBER, CHARCONST, BOOLCONST, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
+terminal FOREACH, IDENT, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
 terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
 terminal RANGLE, LBRACE, RBRACE, LAMBDAOP;
 terminal  DO, ENUM, COLON;
+terminal Integer NUMBER;
+terminal Character CHARCONST;
+terminal Boolean BOOLCONST;
 
 nonterminal Program, DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
 nonterminal Type, VarDecl, AngleBrackets, MoreVarDecls, ClassDecl, ClassConstrMethodDecl;
@@ -69,13 +72,14 @@ nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
 nonterminal RelOpExprOptional, Expr, MinusOptional, AddOpTermList, Term, MulOpFactorList;
 nonterminal Factor, ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
-nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstrMethodBothOptional;
+nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstrMethodBothOptional, ConstsListElem;
+nonterminal VarDeclErrorPossible, FormParsEnd, FormParsIdent;
 
 /*nonterminal DesignatorElem, DesignatorList*/
 
+nonterminal VarDeclListBasic, VarDeclComma, VarDeclEnd, VarDeclIdent;
 
 precedence left ELSE;
-
 
 Program ::= (Program) PROG IDENT DeclsList LBRACE MethodDeclList RBRACE;
 
@@ -85,43 +89,67 @@ DeclsList ::= (Declarations) DeclsList Decls
 			;
 
 Decls ::= (DeclsConstDecl) ConstDecl
-		| (DeclsVarDecl) VarDecl
+		| (DeclsVarDecl) VarDeclErrorPossible
 		| (DeclsClassDecl) ClassDecl;
 
+
+
 MethodDeclList ::= MethodDeclList MethodDecl  
-				|
+				| (NoMethodDeclList) /* epsilon */
 				;
 
-ConstDecl ::= CONST Type IDENT EQUAL Consts ConstsList SEMI;
+ConstDecl ::= (ConstDeclDef) CONST Type ConstsList SEMI;
+			
 
-Consts ::= NUMBER
-		| CHARCONST
-		| BOOLCONST;
+Consts ::= (ConstsNumber) NUMBER
+		| (ConstsCharConst) CHARCONST
+		| (ConstsBoolConst) BOOLCONST;
 		
-ConstsList ::= ConstsList COMMA IDENT EQUAL Consts
-			|
+ConstsList ::= (ConstsListDef) ConstsList COMMA ConstsListElem
+			| (ConstsListElemInList) ConstsListElem
+			;
+			
+ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:value;
+
+Type ::= (Type) IDENT;
+
+VarDecl ::= (DefVarDecl) Type VarDeclIdent MoreVarDecls SEMI;
+
+VarDeclErrorPossible ::= (VarDeclErrorPossible) Type VarDeclListBasic;
+
+VarDeclListBasic ::= VarDeclComma VarDeclListBasic
+				| VarDeclEnd;
+
+
+VarDeclComma ::= (VarDeclCommaDef) VarDeclIdent COMMA
+				| (ErrorVarDeclListBasic) error:err COMMA
+				{: parser.report_error("Izvrsen oporavak do , (VarDeclComma) u liniji " + errleft, null);  :}
+				;
+
+VarDeclEnd ::= (VarDeclEndDef) VarDeclIdent SEMI
+			| (ErrorVarDecl) error:err SEMI
+			{: parser.report_error("Izvrsen oporavak do ; (VarDeclEnd) u liniji " + errleft, null);  :}
 			;
 
-Type ::= IDENT;
+VarDeclIdent ::= (VarDeclIdent) IDENT AngleBrackets;
 
-VarDecl ::= Type IDENT AngleBrackets MoreVarDecls SEMI;
 
-AngleBrackets ::= LANGLE RANGLE
-				|
+AngleBrackets ::= (AngleBrackets) LANGLE RANGLE
+				| (NoAngleBrackets)
 				;
 
-MoreVarDecls ::= MoreVarDecls COMMA IDENT AngleBrackets
+MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls COMMA VarDeclIdent
 			|
 			;
 			
-ClassDecl ::= CLASS IDENT ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
+ClassDecl ::= (ClassDecl) CLASS IDENT ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
 
-ExtendsOptional ::= EXTENDS Type
-			|
+ExtendsOptional ::= (ExtendsOptionalDef) EXTENDS Type
+			| (ExtendsOptionalEpsilon)
 			;
 
-VarDeclList ::= VarDeclList VarDecl
-			|
+VarDeclList ::= (VarDeclsList) VarDeclList VarDecl
+			| (VarDeclsListEpsilon)
 			;
 			
 ClassConstrMethodDecl ::= LBRACE ConstrMethodBothOptional RBRACE
@@ -134,47 +162,63 @@ ConstrMethodBothOptional ::= IDENT ConstMethodSecondPart ConstrMethodBothOptiona
 							|
 							;
 
-ConstMethodSecondPart ::= LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
+ConstMethodSecondPart ::= LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
 MethodRest ::= IDENT IDENT ConstMethodSecondPart MethodRest
 			| VOID IDENT ConstMethodSecondPart MethodRest
 			|
 			;
 
-ConstructorDecl ::= IDENT LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
+ConstructorDecl ::= IDENT LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
 FormParsOptional ::= FormPars
-					|
+					| RPAREN
 					;
 					
 StatementList ::= StatementList Statement
 				|
 				;
 
-FormPars ::= Type IDENT AngleBrackets FormParsList;
+FormPars ::= FormParsList FormPars
+			| FormParsEnd
+			;
 
-FormParsList ::= FormParsList COMMA Type IDENT AngleBrackets
-				|
+FormParsList ::= FormParsIdent COMMA
+				| error:err COMMA
+				{: parser.report_error("Izvrsen oporavak do , (FormParsList) u liniji " + errleft, null);  :}
 				;
 				
-MethodDecl ::= TypeOrVoid IDENT LPAREN FormParsOptional RPAREN VarDeclList LBRACE StatementList RBRACE;
+FormParsEnd ::= FormParsIdent RPAREN
+			| error:err RPAREN
+			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :}
+			;
+			
+FormParsIdent ::= Type IDENT AngleBrackets;
+				
+MethodDecl ::= TypeOrVoid IDENT LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
 TypeOrVoid ::= Type
 			| VOID;
 
-Statement ::= DesignatorStatement SEMI
+Statement ::= DesignatorStatement
 			| IF LPAREN Condition RPAREN Statement ElseStatementOptional
 			| WHILE LPAREN Condition RPAREN Statement
 			| BREAK SEMI
 			| CONTINUE SEMI
 			| RETURN ExprOptional SEMI
 			| READ LPAREN Designator RPAREN SEMI
-			| PRINT LPAREN Expr NumConstOptional RPAREN SEMI
+			| (PrintStmt) PRINT LPAREN Expr NumConstOptional RPAREN SEMI
 			| Designator DOT FOREACH LPAREN IDENT LAMBDAOP Statement RPAREN SEMI
-			| LBRACE StatementList RBRACE;
+			| LBRACE StatementList RBRACE
+			| IF LPAREN error:err RPAREN
+			{: parser.report_error("Izvrsen oporavak do ) (IF condition) u liniji " + errleft, null);  :}
+			;
 
-DesignatorStatement ::= Designator DesignatorStatementOptional
-					| LANGLE DesignatorOptional DesignatorCommaList RANGLE EQUAL Designator;
+DesignatorStatement ::= Designator DesignatorStatementOptional SEMI
+					| LANGLE DesignatorOptional DesignatorCommaList RANGLE EQUAL Designator SEMI
+					| error:err SEMI
+					{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :}
+					;
 
 ElseStatementOptional ::= ELSE Statement
 						|
@@ -281,14 +325,6 @@ Designator ::= IDENT
 			| Designator DOT IDENT
 			| Designator LANGLE Expr RANGLE
 			;
-
-/*
-DesignatorList ::= DesignatorList DesignatorElem;
-
-DesignatorElem ::= DOT IDENT
-				| LANGLE Expr RANGLE;
-*/
-
 
 Label ::= IDENT;
 AssignOp ::= EQUAL;

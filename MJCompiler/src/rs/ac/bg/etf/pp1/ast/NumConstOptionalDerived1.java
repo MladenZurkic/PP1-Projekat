@@ -1,13 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/11/2022 15:42:6
+// 25/11/2022 1:1:56
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class NumConstOptionalDerived1 extends NumConstOptional {
 
-    public NumConstOptionalDerived1 () {
+    private Integer N1;
+
+    public NumConstOptionalDerived1 (Integer N1) {
+        this.N1=N1;
+    }
+
+    public Integer getN1() {
+        return N1;
+    }
+
+    public void setN1(Integer N1) {
+        this.N1=N1;
     }
 
     public void accept(Visitor visitor) {
@@ -29,6 +40,9 @@ public class NumConstOptionalDerived1 extends NumConstOptional {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("NumConstOptionalDerived1(\n");
+
+        buffer.append(" "+tab+N1);
+        buffer.append("\n");
 
         buffer.append(tab);
         buffer.append(") [NumConstOptionalDerived1]");

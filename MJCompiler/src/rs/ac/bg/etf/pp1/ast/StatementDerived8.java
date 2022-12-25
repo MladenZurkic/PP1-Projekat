@@ -1,36 +1,36 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/11/2022 15:42:6
+// 25/11/2022 1:1:56
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class StatementDerived8 extends Statement {
 
-    private Expr Expr;
-    private NumConstOptional NumConstOptional;
+    private Designator Designator;
+    private Statement Statement;
 
-    public StatementDerived8 (Expr Expr, NumConstOptional NumConstOptional) {
-        this.Expr=Expr;
-        if(Expr!=null) Expr.setParent(this);
-        this.NumConstOptional=NumConstOptional;
-        if(NumConstOptional!=null) NumConstOptional.setParent(this);
+    public StatementDerived8 (Designator Designator, Statement Statement) {
+        this.Designator=Designator;
+        if(Designator!=null) Designator.setParent(this);
+        this.Statement=Statement;
+        if(Statement!=null) Statement.setParent(this);
     }
 
-    public Expr getExpr() {
-        return Expr;
+    public Designator getDesignator() {
+        return Designator;
     }
 
-    public void setExpr(Expr Expr) {
-        this.Expr=Expr;
+    public void setDesignator(Designator Designator) {
+        this.Designator=Designator;
     }
 
-    public NumConstOptional getNumConstOptional() {
-        return NumConstOptional;
+    public Statement getStatement() {
+        return Statement;
     }
 
-    public void setNumConstOptional(NumConstOptional NumConstOptional) {
-        this.NumConstOptional=NumConstOptional;
+    public void setStatement(Statement Statement) {
+        this.Statement=Statement;
     }
 
     public void accept(Visitor visitor) {
@@ -38,19 +38,19 @@ public class StatementDerived8 extends Statement {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Expr!=null) Expr.accept(visitor);
-        if(NumConstOptional!=null) NumConstOptional.accept(visitor);
+        if(Designator!=null) Designator.accept(visitor);
+        if(Statement!=null) Statement.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Expr!=null) Expr.traverseTopDown(visitor);
-        if(NumConstOptional!=null) NumConstOptional.traverseTopDown(visitor);
+        if(Designator!=null) Designator.traverseTopDown(visitor);
+        if(Statement!=null) Statement.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Expr!=null) Expr.traverseBottomUp(visitor);
-        if(NumConstOptional!=null) NumConstOptional.traverseBottomUp(visitor);
+        if(Designator!=null) Designator.traverseBottomUp(visitor);
+        if(Statement!=null) Statement.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -59,14 +59,14 @@ public class StatementDerived8 extends Statement {
         buffer.append(tab);
         buffer.append("StatementDerived8(\n");
 
-        if(Expr!=null)
-            buffer.append(Expr.toString("  "+tab));
+        if(Designator!=null)
+            buffer.append(Designator.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(NumConstOptional!=null)
-            buffer.append(NumConstOptional.toString("  "+tab));
+        if(Statement!=null)
+            buffer.append(Statement.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

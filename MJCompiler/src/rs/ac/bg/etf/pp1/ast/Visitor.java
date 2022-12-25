@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 23/11/2022 15:42:6
+// 25/11/2022 1:1:56
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -10,10 +10,12 @@ public interface Visitor {
     public void visit(ActParsOptional ActParsOptional);
     public void visit(ExprOptional ExprOptional);
     public void visit(MethodDecl MethodDecl);
+    public void visit(FormParsEnd FormParsEnd);
     public void visit(ConstructorDecl ConstructorDecl);
     public void visit(ExprCommaList ExprCommaList);
     public void visit(CondTermList CondTermList);
     public void visit(ActParsParenOptional ActParsParenOptional);
+    public void visit(VarDeclComma VarDeclComma);
     public void visit(StatementList StatementList);
     public void visit(ActParsParen ActParsParen);
     public void visit(ClassConstrMethodDecl ClassConstrMethodDecl);
@@ -39,20 +41,20 @@ public interface Visitor {
     public void visit(VarDeclList VarDeclList);
     public void visit(Expr Expr);
     public void visit(DeclsList DeclsList);
+    public void visit(VarDeclEnd VarDeclEnd);
     public void visit(ActPars ActPars);
     public void visit(AddOp AddOp);
     public void visit(TypeOrVoid TypeOrVoid);
     public void visit(DesignatorStatement DesignatorStatement);
+    public void visit(VarDeclListBasic VarDeclListBasic);
     public void visit(NumConstOptional NumConstOptional);
     public void visit(ConstsList ConstsList);
     public void visit(Statement Statement);
     public void visit(VarDecl VarDecl);
-    public void visit(AngleBrackets AngleBrackets);
+    public void visit(FormParsIdent FormParsIdent);
     public void visit(DesignatorStatementOptional DesignatorStatementOptional);
     public void visit(ConstrMethodBothOptional ConstrMethodBothOptional);
-    public void visit(Type Type);
     public void visit(ExprOrActPars ExprOrActPars);
-    public void visit(ClassDecl ClassDecl);
     public void visit(ConstDecl ConstDecl);
     public void visit(MulOpFactorList MulOpFactorList);
     public void visit(CondFact CondFact);
@@ -126,11 +128,13 @@ public interface Visitor {
     public void visit(ExprOptionalDerived1 ExprOptionalDerived1);
     public void visit(ElseStatementOptionalDerived2 ElseStatementOptionalDerived2);
     public void visit(ElseStatementOptionalDerived1 ElseStatementOptionalDerived1);
+    public void visit(DesignatorStatementDerived3 DesignatorStatementDerived3);
     public void visit(DesignatorStatementDerived2 DesignatorStatementDerived2);
     public void visit(DesignatorStatementDerived1 DesignatorStatementDerived1);
     public void visit(StatementDerived10 StatementDerived10);
     public void visit(StatementDerived9 StatementDerived9);
     public void visit(StatementDerived8 StatementDerived8);
+    public void visit(PrintStmt PrintStmt);
     public void visit(StatementDerived7 StatementDerived7);
     public void visit(StatementDerived6 StatementDerived6);
     public void visit(StatementDerived5 StatementDerived5);
@@ -141,8 +145,12 @@ public interface Visitor {
     public void visit(TypeOrVoidDerived2 TypeOrVoidDerived2);
     public void visit(TypeOrVoidDerived1 TypeOrVoidDerived1);
     public void visit(MethodDeclDerived1 MethodDeclDerived1);
+    public void visit(FormParsIdentDerived1 FormParsIdentDerived1);
+    public void visit(FormParsEndDerived2 FormParsEndDerived2);
+    public void visit(FormParsEndDerived1 FormParsEndDerived1);
     public void visit(FormParsListDerived2 FormParsListDerived2);
     public void visit(FormParsListDerived1 FormParsListDerived1);
+    public void visit(FormParsDerived2 FormParsDerived2);
     public void visit(FormParsDerived1 FormParsDerived1);
     public void visit(StatementListDerived2 StatementListDerived2);
     public void visit(StatementListDerived1 StatementListDerived1);
@@ -159,24 +167,33 @@ public interface Visitor {
     public void visit(ConstrMethodBothOptionalDerived1 ConstrMethodBothOptionalDerived1);
     public void visit(ClassConstrMethodDeclDerived2 ClassConstrMethodDeclDerived2);
     public void visit(ClassConstrMethodDeclDerived1 ClassConstrMethodDeclDerived1);
-    public void visit(VarDeclListDerived2 VarDeclListDerived2);
-    public void visit(VarDeclListDerived1 VarDeclListDerived1);
-    public void visit(ExtendsOptionalDerived2 ExtendsOptionalDerived2);
-    public void visit(ExtendsOptionalDerived1 ExtendsOptionalDerived1);
-    public void visit(ClassDeclDerived1 ClassDeclDerived1);
-    public void visit(MoreVarDeclsDerived2 MoreVarDeclsDerived2);
+    public void visit(VarDeclsListEpsilon VarDeclsListEpsilon);
+    public void visit(VarDeclsList VarDeclsList);
+    public void visit(ExtendsOptionalEpsilon ExtendsOptionalEpsilon);
+    public void visit(ExtendsOptionalDef ExtendsOptionalDef);
+    public void visit(ClassDecl ClassDecl);
     public void visit(MoreVarDeclsDerived1 MoreVarDeclsDerived1);
-    public void visit(AngleBracketsDerived2 AngleBracketsDerived2);
-    public void visit(AngleBracketsDerived1 AngleBracketsDerived1);
-    public void visit(VarDeclDerived1 VarDeclDerived1);
-    public void visit(TypeDerived1 TypeDerived1);
-    public void visit(ConstsListDerived2 ConstsListDerived2);
-    public void visit(ConstsListDerived1 ConstsListDerived1);
-    public void visit(ConstsDerived3 ConstsDerived3);
-    public void visit(ConstsDerived2 ConstsDerived2);
-    public void visit(ConstsDerived1 ConstsDerived1);
-    public void visit(ConstDeclDerived1 ConstDeclDerived1);
-    public void visit(MethodDeclListDerived2 MethodDeclListDerived2);
+    public void visit(MoreVarDeclsDef MoreVarDeclsDef);
+    public void visit(NoAngleBrackets NoAngleBrackets);
+    public void visit(AngleBrackets AngleBrackets);
+    public void visit(VarDeclIdent VarDeclIdent);
+    public void visit(ErrorVarDecl ErrorVarDecl);
+    public void visit(VarDeclEndDef VarDeclEndDef);
+    public void visit(ErrorVarDeclListBasic ErrorVarDeclListBasic);
+    public void visit(VarDeclCommaDef VarDeclCommaDef);
+    public void visit(VarDeclListBasicDerived2 VarDeclListBasicDerived2);
+    public void visit(VarDeclListBasicDerived1 VarDeclListBasicDerived1);
+    public void visit(VarDeclErrorPossible VarDeclErrorPossible);
+    public void visit(DefVarDecl DefVarDecl);
+    public void visit(Type Type);
+    public void visit(ConstsListElem ConstsListElem);
+    public void visit(ConstsListElemInList ConstsListElemInList);
+    public void visit(ConstsListDef ConstsListDef);
+    public void visit(ConstsBoolConst ConstsBoolConst);
+    public void visit(ConstsCharConst ConstsCharConst);
+    public void visit(ConstsNumber ConstsNumber);
+    public void visit(ConstDeclDef ConstDeclDef);
+    public void visit(NoMethodDeclList NoMethodDeclList);
     public void visit(MethodDeclListDerived1 MethodDeclListDerived1);
     public void visit(DeclsClassDecl DeclsClassDecl);
     public void visit(DeclsVarDecl DeclsVarDecl);

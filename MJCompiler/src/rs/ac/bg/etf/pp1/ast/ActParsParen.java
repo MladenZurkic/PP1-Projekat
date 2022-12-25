@@ -1,15 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2022 1:1:56
+// 25/11/2022 16:53:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public abstract class ActParsParen implements SyntaxNode {
+public class ActParsParen implements SyntaxNode {
 
     private SyntaxNode parent;
-
     private int line;
+    private ActParsOptional ActParsOptional;
+
+    public ActParsParen (ActParsOptional ActParsOptional) {
+        this.ActParsOptional=ActParsOptional;
+        if(ActParsOptional!=null) ActParsOptional.setParent(this);
+    }
+
+    public ActParsOptional getActParsOptional() {
+        return ActParsOptional;
+    }
+
+    public void setActParsOptional(ActParsOptional ActParsOptional) {
+        this.ActParsOptional=ActParsOptional;
+    }
 
     public SyntaxNode getParent() {
         return parent;
@@ -27,11 +40,37 @@ public abstract class ActParsParen implements SyntaxNode {
         this.line=line;
     }
 
-    public abstract void accept(Visitor visitor);
-    public abstract void childrenAccept(Visitor visitor);
-    public abstract void traverseTopDown(Visitor visitor);
-    public abstract void traverseBottomUp(Visitor visitor);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
-    public String toString() { return toString(""); }
-    public abstract String toString(String tab);
+    public void childrenAccept(Visitor visitor) {
+        if(ActParsOptional!=null) ActParsOptional.accept(visitor);
+    }
+
+    public void traverseTopDown(Visitor visitor) {
+        accept(visitor);
+        if(ActParsOptional!=null) ActParsOptional.traverseTopDown(visitor);
+    }
+
+    public void traverseBottomUp(Visitor visitor) {
+        if(ActParsOptional!=null) ActParsOptional.traverseBottomUp(visitor);
+        accept(visitor);
+    }
+
+    public String toString(String tab) {
+        StringBuffer buffer=new StringBuffer();
+        buffer.append(tab);
+        buffer.append("ActParsParen(\n");
+
+        if(ActParsOptional!=null)
+            buffer.append(ActParsOptional.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        buffer.append(tab);
+        buffer.append(") [ActParsParen]");
+        return buffer.toString();
+    }
 }

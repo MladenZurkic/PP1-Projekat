@@ -74,14 +74,11 @@ nonterminal RelOpExprOptional, Expr, MinusOptional, AddOpTermList, Term, MulOpFa
 nonterminal Factor, ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
 nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstrMethodBothOptional, ConstsListElem;
 nonterminal VarDeclErrorPossible, FormParsEnd, FormParsIdent;
-
-/*nonterminal DesignatorElem, DesignatorList*/
-
 nonterminal VarDeclListBasic, VarDeclComma, VarDeclEnd, VarDeclIdent;
 
 precedence left ELSE;
 
-Program ::= (Program) PROG IDENT DeclsList LBRACE MethodDeclList RBRACE;
+Program ::= (Program) PROG IDENT:progName DeclsList LBRACE MethodDeclList RBRACE;
 
 DeclsList ::= (Declarations) DeclsList Decls
 			| 
@@ -93,12 +90,11 @@ Decls ::= (DeclsConstDecl) ConstDecl
 		| (DeclsClassDecl) ClassDecl;
 
 
-
 MethodDeclList ::= MethodDeclList MethodDecl  
 				| (NoMethodDeclList) /* epsilon */
 				;
 
-ConstDecl ::= (ConstDeclDef) CONST Type ConstsList SEMI;
+ConstDecl ::= (ConstDeclDef) CONST Type:type ConstsList SEMI;
 			
 
 Consts ::= (ConstsNumber) NUMBER
@@ -111,14 +107,14 @@ ConstsList ::= (ConstsListDef) ConstsList COMMA ConstsListElem
 			
 ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:value;
 
-Type ::= (Type) IDENT;
+Type ::= (Type) IDENT:typeName;
 
-VarDecl ::= (DefVarDecl) Type VarDeclIdent MoreVarDecls SEMI;
+VarDecl ::= (DefVarDecl) Type:typeName VarDeclIdent MoreVarDecls SEMI;
 
-VarDeclErrorPossible ::= (VarDeclErrorPossible) Type VarDeclListBasic;
+VarDeclErrorPossible ::= (VarDeclErrorPossible) Type:typeName VarDeclListBasic;
 
-VarDeclListBasic ::= VarDeclComma VarDeclListBasic
-				| VarDeclEnd;
+VarDeclListBasic ::= (VarDeclListBasicDef) VarDeclComma VarDeclListBasic
+				| (VarDeclListBasicEnd) VarDeclEnd;
 
 
 VarDeclComma ::= (VarDeclCommaDef) VarDeclIdent COMMA
@@ -131,205 +127,205 @@ VarDeclEnd ::= (VarDeclEndDef) VarDeclIdent SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (VarDeclEnd) u liniji " + errleft, null);  :}
 			;
 
-VarDeclIdent ::= (VarDeclIdent) IDENT AngleBrackets;
+VarDeclIdent ::= (VarDeclIdent) IDENT:ident AngleBrackets;
 
 
 AngleBrackets ::= (AngleBrackets) LANGLE RANGLE
-				| (NoAngleBrackets)
+				| (NoAngleBrackets) /* epsilon */
 				;
 
 MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls COMMA VarDeclIdent
-			|
+			| (MoreVarDeclsEpislon) /* epsilon */
 			;
 			
-ClassDecl ::= (ClassDecl) CLASS IDENT ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
+ClassDecl ::= (ClassDecl) CLASS IDENT:ident ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
 
-ExtendsOptional ::= (ExtendsOptionalDef) EXTENDS Type
-			| (ExtendsOptionalEpsilon)
+ExtendsOptional ::= (ExtendsOptionalDef) EXTENDS Type:typeName
+			| (ExtendsOptionalEpsilon) /* epsilon */
 			;
 
 VarDeclList ::= (VarDeclsList) VarDeclList VarDecl
-			| (VarDeclsListEpsilon)
+			| (VarDeclsListEpsilon) /* epsilon */
 			;
 			
-ClassConstrMethodDecl ::= LBRACE ConstrMethodBothOptional RBRACE
-						|
+ClassConstrMethodDecl ::= (ClassConstrMethodDeclDef) LBRACE ConstrMethodBothOptional RBRACE
+						| (ClassConstrMethodDeclEpsilon) /* epsilon */
 						;
 
-ConstrMethodBothOptional ::= IDENT ConstMethodSecondPart ConstrMethodBothOptional
-							| IDENT IDENT ConstMethodSecondPart MethodRest
-							| VOID IDENT ConstMethodSecondPart MethodRest
-							|
+ConstrMethodBothOptional ::= (ConstrMethodBothConstrPart) IDENT:ident ConstMethodSecondPart ConstrMethodBothOptional
+							| (ConstrMethodBothMethodIdentPart) IDENT:typeName IDENT:ident ConstMethodSecondPart MethodRest
+							| (ConstrMethodBothMethodVoidPart) VOID:typeName IDENT:ident ConstMethodSecondPart MethodRest
+							| (ConstrMethodBothMethodEpsilon) /* epsilon */
 							;
 
-ConstMethodSecondPart ::= LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+ConstMethodSecondPart ::= (ConstMethodSecondPart) LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
-MethodRest ::= IDENT IDENT ConstMethodSecondPart MethodRest
-			| VOID IDENT ConstMethodSecondPart MethodRest
-			|
+MethodRest ::= (MethodRestIdent) IDENT:typeName IDENT:ident ConstMethodSecondPart MethodRest
+			| (MethodRestVoid) VOID:typeName IDENT:ident ConstMethodSecondPart MethodRest
+			| (MethodRestEpsilon) /* epsilon */
 			;
 
-ConstructorDecl ::= IDENT LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+ConstructorDecl ::= (ConstructorDecl) IDENT:ident LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
-FormParsOptional ::= FormPars
-					| RPAREN
+FormParsOptional ::= (FormParsOptionalPars) FormPars
+					| (FormParsOptionalRPAREN) RPAREN
 					;
 					
-StatementList ::= StatementList Statement
-				|
+StatementList ::= (StatementListDef) StatementList Statement
+				| (StatementListEpsilon) /* epsilon */
 				;
 
-FormPars ::= FormParsList FormPars
-			| FormParsEnd
+FormPars ::= (FormParsWithList) FormParsList FormPars
+			| (FormParsListEnd) FormParsEnd
 			;
 
-FormParsList ::= FormParsIdent COMMA
-				| error:err COMMA
+FormParsList ::= (FormParsListWithCOMMA) FormParsIdent COMMA
+				| (ErrorFormParsListCOMMA) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (FormParsList) u liniji " + errleft, null);  :}
 				;
 				
-FormParsEnd ::= FormParsIdent RPAREN
-			| error:err RPAREN
+FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent RPAREN
+			| (ErrorFormParsEndRPAREN) error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :}
 			;
 			
-FormParsIdent ::= Type IDENT AngleBrackets;
+FormParsIdent ::= (FormParsIdent) Type:typeName IDENT:formName AngleBrackets;
 				
-MethodDecl ::= TypeOrVoid IDENT LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+MethodDecl ::= (MethodDecl) TypeOrVoid:typeName IDENT:methName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
-TypeOrVoid ::= Type
-			| VOID;
+TypeOrVoid ::= (TypeOrVoidType) Type:typeName
+			| (TypeOrVoidVoid) VOID:typeName;
 
-Statement ::= DesignatorStatement
-			| IF LPAREN Condition RPAREN Statement ElseStatementOptional
-			| WHILE LPAREN Condition RPAREN Statement
-			| BREAK SEMI
-			| CONTINUE SEMI
-			| RETURN ExprOptional SEMI
-			| READ LPAREN Designator RPAREN SEMI
-			| (PrintStmt) PRINT LPAREN Expr NumConstOptional RPAREN SEMI
-			| Designator DOT FOREACH LPAREN IDENT LAMBDAOP Statement RPAREN SEMI
-			| LBRACE StatementList RBRACE
-			| IF LPAREN error:err RPAREN
+Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt
+			| (IfStmt) IF LPAREN Condition:condition RPAREN Statement:stmt ElseStatementOptional
+			| (WhileStmt) WHILE LPAREN Condition:condition RPAREN Statement:stmt
+			| (BreakStmt) BREAK SEMI
+			| (ContinueStmt) CONTINUE SEMI
+			| (ReturnStmt) RETURN ExprOptional:ExprOpt SEMI
+			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI
+			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI
+			| (ForEachStmt) Designator:designator DOT FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI
+			| (StmtList) LBRACE StatementList RBRACE
+			| (ErrorStmtIFCondition) IF LPAREN error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (IF condition) u liniji " + errleft, null);  :}
 			;
 
-DesignatorStatement ::= Designator DesignatorStatementOptional SEMI
-					| LANGLE DesignatorOptional DesignatorCommaList RANGLE EQUAL Designator SEMI
-					| error:err SEMI
+DesignatorStatement ::= (DesignatorStmtDef) Designator DesignatorStatementOptional SEMI
+					| (DesignatorStmtAngleBrack) LANGLE DesignatorOptional DesignatorCommaList RANGLE EQUAL Designator SEMI
+					| (ErrorDesignatorStmtSEMI) error:err SEMI
 					{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :}
 					;
 
-ElseStatementOptional ::= ELSE Statement
-						|
+ElseStatementOptional ::= (ElseStmtOpt) ELSE Statement:stmt
+						| (ElseStmtEpsilon) /* epsilon */
 						;
 
-ExprOptional ::= Expr
-				|
+ExprOptional ::= (ExprOpt) Expr:expr
+				| (ExprEpsilon) /* epsilon */
 				;
 
-NumConstOptional ::= COMMA NUMBER
-				|
+NumConstOptional ::= (NumConstOpt) COMMA NUMBER
+				| (NumConstEpsilon) /* epsilon */
 				;
 
 
 
 
-DesignatorStatementOptional ::= AssignOp Expr
-							| LPAREN ActParsOptional RPAREN
-							| INC
-							| DEC;
+DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
+							| (DesignatorStmtOptActPars) LPAREN ActParsOptional RPAREN
+							| (DesignatorStmtOptINC) INC
+							| (DesignatorStmtOptDEC) DEC;
 							
-ActParsOptional ::= ActPars
-				|
+ActParsOptional ::= (ActParsOpt) ActPars
+				| (ActParsOptEpsilon) /* epsilon */
 				;
 
-DesignatorOptional ::= Designator
-					|
+DesignatorOptional ::= (DesignatorOpt) Designator
+					| (DesignatorOptEpsilon) /* epsilon */
 					;
 
-DesignatorCommaList ::= DesignatorCommaList COMMA DesignatorOptional
-					|
+DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA DesignatorOptional
+					| (DesignatorCommaListEpsilon) /* epsilon */
 					;
 
 
 
-ActPars ::= Expr ExprCommaList;
+ActPars ::= (ActPars) Expr:expr ExprCommaList;
 
-ExprCommaList ::= ExprCommaList COMMA Expr
-				|
+ExprCommaList ::= (ExprCommaListDef) ExprCommaList COMMA Expr:expr
+				| (ExprCommaListEpsilon) /* epsilon */
 				;
 
-Condition ::= CondTerm CondTermList;
+Condition ::= (Condition) CondTerm CondTermList;
 
-CondTermList ::= CondTermList BITOR CondTerm
-				|
+CondTermList ::= (CondTermListDef) CondTermList BITOR CondTerm
+				| (CondTermListEpsilon) /* epsilon */
 				;
 
-CondTerm ::= CondFact CondFactList;
+CondTerm ::= (CondTerm) CondFact CondFactList;
 
-CondFactList ::= CondFactList BITAND CondFact
-				|
+CondFactList ::= (CondFactListDef) CondFactList BITAND CondFact
+				| (CondFactListEpsilon) /* epsilon */
 				;
 				
-CondFact ::= Expr RelOpExprOptional;
+CondFact ::= (CondFact) Expr RelOpExprOptional;
 
-RelOpExprOptional ::= RelOp Expr
-					|
+RelOpExprOptional ::= (RelOpExprDef) RelOp Expr
+					| (RelOpExprEpsilon) /* epsilon */
 					;
 
 
 
-Expr ::= MinusOptional Term AddOpTermList;
+Expr ::= (Expr) MinusOptional Term:term AddOpTermList;
 
-MinusOptional ::= MINUS
-			|
+MinusOptional ::= (MinusDef) MINUS
+			| (MinusEpsilon) /* epsilon */
 			;
 
-AddOpTermList ::= AddOpTermList AddOp Term
-				|
+AddOpTermList ::= (AddOpTermListDef) AddOpTermList AddOp Term:term
+				| (AddOpTermListEpsilon) /* epsilon */
 				;
 
 
 
-Term ::= Factor MulOpFactorList;
+Term ::= (Term) Factor:factor MulOpFactorList;
 
-MulOpFactorList ::= MulOpFactorList MulOp Factor
-				|
+MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList MulOp Factor
+				| (MulOpFactorListEpsilon) /* epsilon */
 				;
 
 
 
-Factor ::= Designator ActParsParenOptional
-		| NUMBER
-		| CHARCONST
-		| BOOLCONST
-		| NEW Type ExprOrActPars
-		| LPAREN Expr RPAREN;
+Factor ::= (FactorDesignator) Designator:designator ActParsParenOptional
+		| (FactorNumber) NUMBER
+		| (FactorChar) CHARCONST
+		| (FactorBool) BOOLCONST
+		| (FactorNew) NEW Type:typeName ExprOrActPars
+		| (FactorExpr) LPAREN Expr:expr RPAREN;
 
 
 
 
-ActParsParen ::= LPAREN ActParsOptional RPAREN;
+ActParsParen ::= (ActParsParen) LPAREN ActParsOptional RPAREN;
 
-ActParsParenOptional ::= ActParsParen
-						|
+ActParsParenOptional ::= (ActParsParenDef) ActParsParen
+						| (ActParsParenEpsilon) /* epsilon */
 						;
 
-ExprOrActPars ::= LANGLE Expr RANGLE
-				| LPAREN ActParsOptional RPAREN;
+ExprOrActPars ::= (ExprOrActParsExpr) LANGLE Expr:expr RANGLE
+				| (ExprOrActParsActPars) LPAREN ActParsOptional RPAREN;
 
 
 
-Designator ::= IDENT
-			| Designator DOT IDENT
-			| Designator LANGLE Expr RANGLE
+Designator ::= (DesignatorIdent) IDENT:ident
+			| (DesignatorDotIdent) Designator:designator DOT IDENT:ident
+			| (DesignatorExpr) Designator:designator LANGLE Expr RANGLE
 			;
 
-Label ::= IDENT;
-AssignOp ::= EQUAL;
-RelOp ::= EQ | NEQ | GT | GEQ | LT | LEQ;
-AddOp ::= PLUS | MINUS;
-MulOp ::= MUL | DIV | MOD;
+Label ::= (Label) IDENT:ident;
+AssignOp ::= (AssignOp) EQUAL;
+RelOp ::= (RelEQ) EQ | (RelNEQ) NEQ | (RelGT) GT | (RelGEQ) GEQ | (RelLT) LT | (RelLEQ) LEQ;
+AddOp ::= (AddPLUS) PLUS | (AddMINUS) MINUS;
+MulOp ::= (MulMUL) MUL | (MulDIV) DIV | (MulMOD) MOD;
 
 

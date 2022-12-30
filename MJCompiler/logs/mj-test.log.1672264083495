@@ -1,0 +1,156 @@
+INFO  22:38:40,522 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  22:38:40,550 - #2 program
+INFO  22:38:40,550 - #17 MJProgram
+INFO  22:38:40,550 - #17 int
+INFO  22:38:40,551 - #17 x
+INFO  22:38:40,552 - #31 =
+ERROR 22:38:40,552 - 
+Sintaksna greska na liniji 2
+INFO  22:38:40,552 - #35 ,
+INFO  22:38:40,552 - #17 y
+INFO  22:38:40,552 - #34 ;
+INFO  22:38:40,553 - #41 {
+ERROR 22:38:40,553 - Izvrsen oporavak do , (VarDeclComma) u liniji 2
+INFO  22:38:40,556 - #17 int
+INFO  22:38:40,557 - #17 main
+INFO  22:38:40,558 - #37 (
+INFO  22:38:40,558 - #38 )
+INFO  22:38:40,558 - #41 {
+INFO  22:38:40,559 - #10 print
+INFO  22:38:40,559 - #37 (
+INFO  22:38:40,559 - #47 1
+INFO  22:38:40,560 - #38 )
+INFO  22:38:40,563 - #34 ;
+INFO  22:38:40,563 - #17 x
+INFO  22:38:40,563 - #31 =
+INFO  22:38:40,563 - #17 y
+INFO  22:38:40,564 - #18 +
+INFO  22:38:40,564 - #47 5
+INFO  22:38:40,565 - #34 ;
+INFO  22:38:40,565 - #10 print
+INFO  22:38:40,565 - #37 (
+INFO  22:38:40,565 - #47 2
+INFO  22:38:40,565 - #38 )
+INFO  22:38:40,565 - #34 ;
+INFO  22:38:40,565 - #42 }
+INFO  22:38:40,565 - #42 }
+INFO  22:38:40,567 - Program(
+  Declarations(
+    NoVarDecl(
+    ) [NoVarDecl]
+    DeclsVarDecl(
+      VarDeclErrorPossible(
+        Type(
+        ) [Type]
+        VarDeclListBasicDef(
+          ErrorVarDeclListBasic(
+          ) [ErrorVarDeclListBasic]
+          VarDeclListBasicEnd(
+            VarDeclEndDef(
+              VarDeclIdent(
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [VarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [VarDeclListBasicEnd]
+        ) [VarDeclListBasicDef]
+      ) [VarDeclErrorPossible]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclListDerived1(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      TypeOrVoidType(
+        Type(
+        ) [Type]
+      ) [TypeOrVoidType]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      VarDeclsListEpsilon(
+      ) [VarDeclsListEpsilon]
+      StatementListDef(
+        StatementListDef(
+          StatementListDef(
+            StatementListEpsilon(
+            ) [StatementListEpsilon]
+            PrintStmt(
+              Expr(
+                MinusEpsilon(
+                ) [MinusEpsilon]
+                Term(
+                  FactorNumber(
+                   1
+                  ) [FactorNumber]
+                  MulOpFactorListEpsilon(
+                  ) [MulOpFactorListEpsilon]
+                ) [Term]
+                AddOpTermListEpsilon(
+                ) [AddOpTermListEpsilon]
+              ) [Expr]
+              NumConstEpsilon(
+              ) [NumConstEpsilon]
+            ) [PrintStmt]
+          ) [StatementListDef]
+          DesignatorStmt(
+            DesignatorStmtDef(
+              DesignatorIdent(
+              ) [DesignatorIdent]
+              DesignatorStmtOptAssign(
+                AssignOp(
+                ) [AssignOp]
+                Expr(
+                  MinusEpsilon(
+                  ) [MinusEpsilon]
+                  Term(
+                    FactorDesignator(
+                      DesignatorIdent(
+                      ) [DesignatorIdent]
+                      ActParsParenEpsilon(
+                      ) [ActParsParenEpsilon]
+                    ) [FactorDesignator]
+                    MulOpFactorListEpsilon(
+                    ) [MulOpFactorListEpsilon]
+                  ) [Term]
+                  AddOpTermListDef(
+                    AddOpTermListEpsilon(
+                    ) [AddOpTermListEpsilon]
+                    AddPLUS(
+                    ) [AddPLUS]
+                    Term(
+                      FactorNumber(
+                       5
+                      ) [FactorNumber]
+                      MulOpFactorListEpsilon(
+                      ) [MulOpFactorListEpsilon]
+                    ) [Term]
+                  ) [AddOpTermListDef]
+                ) [Expr]
+              ) [DesignatorStmtOptAssign]
+            ) [DesignatorStmtDef]
+          ) [DesignatorStmt]
+        ) [StatementListDef]
+        PrintStmt(
+          Expr(
+            MinusEpsilon(
+            ) [MinusEpsilon]
+            Term(
+              FactorNumber(
+               2
+              ) [FactorNumber]
+              MulOpFactorListEpsilon(
+              ) [MulOpFactorListEpsilon]
+            ) [Term]
+            AddOpTermListEpsilon(
+            ) [AddOpTermListEpsilon]
+          ) [Expr]
+          NumConstEpsilon(
+          ) [NumConstEpsilon]
+        ) [PrintStmt]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclListDerived1]
+) [Program]
+INFO  22:38:40,567 - ===================================
+INFO  22:38:40,569 -  Print count calls = 2
+INFO  22:38:40,569 -  Deklarisanih promenljivih ima = 1

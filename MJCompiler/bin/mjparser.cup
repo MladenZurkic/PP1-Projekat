@@ -2,14 +2,13 @@ package rs.ac.bg.etf.pp1;
 
 import java_cup.runtime.*;
 import org.apache.log4j.*;
-
 import java.io.*;
 import rs.ac.bg.etf.pp1.ast.*;
 
 
 parser code {:
-	
-	boolean errorDetected = false;
+
+	boolean errorDetected;
 	
 	Logger log = Logger.getLogger(getClass());
    
@@ -36,14 +35,10 @@ parser code {:
             msg.append (" na liniji ").append(((Symbol)info).left);
         log.error(msg.toString());
     }
-    
-    public void report_info(String message, Object info) {
-    	StringBuilder msg = new StringBuilder(message); 
-    	if (info instanceof Symbol)
-            msg.append (" na liniji ").append(((Symbol)info).left);
-        log.info(msg.toString());
-    }
-    
+:}
+
+init with {:
+	errorDetected = false;
 :}
 
 scan with {:
@@ -54,17 +49,15 @@ scan with {:
 :}
 
 terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal FOREACH, IDENT, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ;
+terminal FOREACH, IDENT, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ, RANGLE, LBRACE, RBRACE, LAMBDAOP;
 terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
-terminal RANGLE, LBRACE, RBRACE, LAMBDAOP;
-terminal  DO, ENUM, COLON;
+terminal COLON, DO, ENUM;
 terminal Integer NUMBER;
 terminal Character CHARCONST;
 terminal Boolean BOOLCONST;
 
 nonterminal Program, DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
 nonterminal Type, VarDecl, AngleBrackets, MoreVarDecls, ClassDecl, ClassConstrMethodDecl;
-nonterminal ExtendsOptional, VarDeclList, ConstMethodSecondPart, MethodRest;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
 nonterminal FormParsList, MethodDecl, TypeOrVoid, Statement, DesignatorStatement;
 nonterminal ElseStatementOptional, ExprOptional, NumConstOptional, DesignatorStatementOptional;
@@ -72,58 +65,64 @@ nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
 nonterminal RelOpExprOptional, Expr, MinusOptional, AddOpTermList, Term, MulOpFactorList;
 nonterminal Factor, ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
-nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstrMethodBothOptional, ConstsListElem;
-nonterminal VarDeclErrorPossible, FormParsEnd, FormParsIdent;
-nonterminal VarDeclListBasic, VarDeclComma, VarDeclEnd, VarDeclIdent;
+nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstsListElem;
+nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
+nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
+nonterminal ConstructorDeclList, ClassMethodDeclList;
+
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
+
 
 precedence left ELSE;
 
-Program ::= (Program) PROG IDENT:progName DeclsList LBRACE MethodDeclList RBRACE;
+Program ::= (Program) PROG ProgName:p DeclsList LBRACE MethodDeclList RBRACE;
+
+ProgName ::= (ProgName) IDENT:progName;
 
 DeclsList ::= (Declarations) DeclsList Decls
 			| 
-			(NoVarDecl) /* epsilon */
+			(NoDeclarations) /* epsilon */
 			;
 
 Decls ::= (DeclsConstDecl) ConstDecl
-		| (DeclsVarDecl) VarDeclErrorPossible
+		| (DeclsVarDecl) GlobalVarDecl
 		| (DeclsClassDecl) ClassDecl;
 
 
-MethodDeclList ::= MethodDeclList MethodDecl  
+MethodDeclList ::= (MethodDeclLists) MethodDeclList MethodDecl  
 				| (NoMethodDeclList) /* epsilon */
 				;
 
-ConstDecl ::= (ConstDeclDef) CONST Type:type ConstsList SEMI;
+ConstDecl ::= (ConstDecl) CONST Type:type ConstsList SEMI;
 			
 
-Consts ::= (ConstsNumber) NUMBER
-		| (ConstsCharConst) CHARCONST
-		| (ConstsBoolConst) BOOLCONST;
+Consts ::= (NumberConst) NUMBER
+		| (CharConst) CHARCONST
+		| (BoolConst) BOOLCONST;
 		
-ConstsList ::= (ConstsListDef) ConstsList COMMA ConstsListElem
-			| (ConstsListElemInList) ConstsListElem
+ConstsList ::= (ConstsLists) ConstsList COMMA ConstsListElem
+			| (ConstsListSingle) ConstsListElem
 			;
 			
 ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:value;
 
 Type ::= (Type) IDENT:typeName;
 
-VarDecl ::= (DefVarDecl) Type:typeName VarDeclIdent MoreVarDecls SEMI;
+VarDecl ::= (VarDecl) Type:typeName VarDeclIdent MoreVarDecls SEMI;
 
-VarDeclErrorPossible ::= (VarDeclErrorPossible) Type:typeName VarDeclListBasic;
+GlobalVarDecl ::= (GlobalVarDecl) Type:typeName GlobalVarDeclList;
 
-VarDeclListBasic ::= (VarDeclListBasicDef) VarDeclComma VarDeclListBasic
-				| (VarDeclListBasicEnd) VarDeclEnd;
+GlobalVarDeclList ::= (GlobalVarDeclLists) VarDeclComma GlobalVarDeclList
+				| (GlobalVarDeclListEnd) VarDeclEnd;
 
 
 VarDeclComma ::= (VarDeclCommaDef) VarDeclIdent COMMA
-				| (ErrorVarDeclListBasic) error:err COMMA
+				| (ErrorVarDeclComma) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (VarDeclComma) u liniji " + errleft, null);  :}
 				;
 
 VarDeclEnd ::= (VarDeclEndDef) VarDeclIdent SEMI
-			| (ErrorVarDecl) error:err SEMI
+			| (ErrorVarDeclEnd) error:err SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (VarDeclEnd) u liniji " + errleft, null);  :}
 			;
 
@@ -135,44 +134,45 @@ AngleBrackets ::= (AngleBrackets) LANGLE RANGLE
 				;
 
 MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls COMMA VarDeclIdent
-			| (MoreVarDeclsEpislon) /* epsilon */
+			| (NoMoreVarDecls) /* epsilon */
 			;
 			
 ClassDecl ::= (ClassDecl) CLASS IDENT:ident ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
 
 ExtendsOptional ::= (ExtendsOptionalDef) EXTENDS Type:typeName
-			| (ExtendsOptionalEpsilon) /* epsilon */
+			| (NoExtendsOptional) /* epsilon */
 			;
 
-VarDeclList ::= (VarDeclsList) VarDeclList VarDecl
-			| (VarDeclsListEpsilon) /* epsilon */
+VarDeclList ::= (VarDeclLists) VarDeclList VarDecl
+			| (NoVarDeclList) /* epsilon */
 			;
-			
-ClassConstrMethodDecl ::= (ClassConstrMethodDeclDef) LBRACE ConstrMethodBothOptional RBRACE
-						| (ClassConstrMethodDeclEpsilon) /* epsilon */
+
+
+
+ClassConstrMethodDecl ::= (ClassConstrMethodDeclOnlyBraces) LBRACE RBRACE
+						| (ClassConstrMethodDeclOnlyConstructor) LBRACE ConstructorDeclList RBRACE
+						| (ClassConstrMethodDecOnlyMethod) LBRACE ClassMethodDeclList RBRACE
+						| (ClassConstrMethodDeclBoth) LBRACE ConstructorDeclList ClassMethodDeclList RBRACE
+						| (NoClassConstrMethodDecl) /*epsilon*/
 						;
 
-ConstrMethodBothOptional ::= (ConstrMethodBothConstrPart) IDENT:ident ConstMethodSecondPart ConstrMethodBothOptional
-							| (ConstrMethodBothMethodIdentPart) IDENT:typeName IDENT:ident ConstMethodSecondPart MethodRest
-							| (ConstrMethodBothMethodVoidPart) VOID:typeName IDENT:ident ConstMethodSecondPart MethodRest
-							| (ConstrMethodBothMethodEpsilon) /* epsilon */
-							;
+ConstructorDeclList ::= (ConstructorDeclLists) ConstructorDeclList ConstructorDecl
+					| (ConstructorDeclListSingle) ConstructorDecl;
 
-ConstMethodSecondPart ::= (ConstMethodSecondPart) LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+ClassMethodDeclList ::= (ClassMethodDeclListDef) ClassMethodDeclList MethodDecl 
+					| (ClassMethodDeclListSingle) MethodDecl;
 
-MethodRest ::= (MethodRestIdent) IDENT:typeName IDENT:ident ConstMethodSecondPart MethodRest
-			| (MethodRestVoid) VOID:typeName IDENT:ident ConstMethodSecondPart MethodRest
-			| (MethodRestEpsilon) /* epsilon */
-			;
 
-ConstructorDecl ::= (ConstructorDecl) IDENT:ident LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+ConstructorDecl ::= (ConstructorDecl) IDENT:constName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+MethodDecl ::= (MethodDecl) TypeOrVoid:typeName IDENT:methName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+
 
 FormParsOptional ::= (FormParsOptionalPars) FormPars
 					| (FormParsOptionalRPAREN) RPAREN
 					;
 					
 StatementList ::= (StatementListDef) StatementList Statement
-				| (StatementListEpsilon) /* epsilon */
+				| (NoStatementList) /* epsilon */
 				;
 
 FormPars ::= (FormParsWithList) FormParsList FormPars
@@ -191,8 +191,6 @@ FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent RPAREN
 			
 FormParsIdent ::= (FormParsIdent) Type:typeName IDENT:formName AngleBrackets;
 				
-MethodDecl ::= (MethodDecl) TypeOrVoid:typeName IDENT:methName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
-
 TypeOrVoid ::= (TypeOrVoidType) Type:typeName
 			| (TypeOrVoidVoid) VOID:typeName;
 
@@ -221,14 +219,12 @@ ElseStatementOptional ::= (ElseStmtOpt) ELSE Statement:stmt
 						;
 
 ExprOptional ::= (ExprOpt) Expr:expr
-				| (ExprEpsilon) /* epsilon */
+				| (NoExpr) /* epsilon */
 				;
 
 NumConstOptional ::= (NumConstOpt) COMMA NUMBER
-				| (NumConstEpsilon) /* epsilon */
+				| (NoNumConst) /* epsilon */
 				;
-
-
 
 
 DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
@@ -237,15 +233,15 @@ DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
 							| (DesignatorStmtOptDEC) DEC;
 							
 ActParsOptional ::= (ActParsOpt) ActPars
-				| (ActParsOptEpsilon) /* epsilon */
+				| (NoActParsOpt) /* epsilon */
 				;
 
 DesignatorOptional ::= (DesignatorOpt) Designator
-					| (DesignatorOptEpsilon) /* epsilon */
+					| (NoDesignatorOpt) /* epsilon */
 					;
 
 DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA DesignatorOptional
-					| (DesignatorCommaListEpsilon) /* epsilon */
+					| (NoDesignatorCommaList) /* epsilon */
 					;
 
 
@@ -253,25 +249,25 @@ DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA Desig
 ActPars ::= (ActPars) Expr:expr ExprCommaList;
 
 ExprCommaList ::= (ExprCommaListDef) ExprCommaList COMMA Expr:expr
-				| (ExprCommaListEpsilon) /* epsilon */
+				| (NoExprCommaList) /* epsilon */
 				;
 
 Condition ::= (Condition) CondTerm CondTermList;
 
 CondTermList ::= (CondTermListDef) CondTermList BITOR CondTerm
-				| (CondTermListEpsilon) /* epsilon */
+				| (NoCondTermList) /* epsilon */
 				;
 
 CondTerm ::= (CondTerm) CondFact CondFactList;
 
 CondFactList ::= (CondFactListDef) CondFactList BITAND CondFact
-				| (CondFactListEpsilon) /* epsilon */
+				| (NoCondFactList) /* epsilon */
 				;
 				
 CondFact ::= (CondFact) Expr RelOpExprOptional;
 
 RelOpExprOptional ::= (RelOpExprDef) RelOp Expr
-					| (RelOpExprEpsilon) /* epsilon */
+					| (NoRelOpExpr) /* epsilon */
 					;
 
 
@@ -279,11 +275,11 @@ RelOpExprOptional ::= (RelOpExprDef) RelOp Expr
 Expr ::= (Expr) MinusOptional Term:term AddOpTermList;
 
 MinusOptional ::= (MinusDef) MINUS
-			| (MinusEpsilon) /* epsilon */
+			| (NoMinus) /* epsilon */
 			;
 
 AddOpTermList ::= (AddOpTermListDef) AddOpTermList AddOp Term:term
-				| (AddOpTermListEpsilon) /* epsilon */
+				| (NoAddOpTermList) /* epsilon */
 				;
 
 
@@ -291,7 +287,7 @@ AddOpTermList ::= (AddOpTermListDef) AddOpTermList AddOp Term:term
 Term ::= (Term) Factor:factor MulOpFactorList;
 
 MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList MulOp Factor
-				| (MulOpFactorListEpsilon) /* epsilon */
+				| (NoMulOpFactorList) /* epsilon */
 				;
 
 
@@ -309,12 +305,11 @@ Factor ::= (FactorDesignator) Designator:designator ActParsParenOptional
 ActParsParen ::= (ActParsParen) LPAREN ActParsOptional RPAREN;
 
 ActParsParenOptional ::= (ActParsParenDef) ActParsParen
-						| (ActParsParenEpsilon) /* epsilon */
+						| (NoActParsParen) /* epsilon */
 						;
 
 ExprOrActPars ::= (ExprOrActParsExpr) LANGLE Expr:expr RANGLE
 				| (ExprOrActParsActPars) LPAREN ActParsOptional RPAREN;
-
 
 
 Designator ::= (DesignatorIdent) IDENT:ident

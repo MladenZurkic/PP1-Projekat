@@ -1,25 +1,25 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2022 16:53:39
+// 29/11/2022 18:48:27
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class DeclsVarDecl extends Decls {
 
-    private VarDeclErrorPossible VarDeclErrorPossible;
+    private GlobalVarDecl GlobalVarDecl;
 
-    public DeclsVarDecl (VarDeclErrorPossible VarDeclErrorPossible) {
-        this.VarDeclErrorPossible=VarDeclErrorPossible;
-        if(VarDeclErrorPossible!=null) VarDeclErrorPossible.setParent(this);
+    public DeclsVarDecl (GlobalVarDecl GlobalVarDecl) {
+        this.GlobalVarDecl=GlobalVarDecl;
+        if(GlobalVarDecl!=null) GlobalVarDecl.setParent(this);
     }
 
-    public VarDeclErrorPossible getVarDeclErrorPossible() {
-        return VarDeclErrorPossible;
+    public GlobalVarDecl getGlobalVarDecl() {
+        return GlobalVarDecl;
     }
 
-    public void setVarDeclErrorPossible(VarDeclErrorPossible VarDeclErrorPossible) {
-        this.VarDeclErrorPossible=VarDeclErrorPossible;
+    public void setGlobalVarDecl(GlobalVarDecl GlobalVarDecl) {
+        this.GlobalVarDecl=GlobalVarDecl;
     }
 
     public void accept(Visitor visitor) {
@@ -27,16 +27,16 @@ public class DeclsVarDecl extends Decls {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(VarDeclErrorPossible!=null) VarDeclErrorPossible.accept(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(VarDeclErrorPossible!=null) VarDeclErrorPossible.traverseTopDown(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(VarDeclErrorPossible!=null) VarDeclErrorPossible.traverseBottomUp(visitor);
+        if(GlobalVarDecl!=null) GlobalVarDecl.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -45,8 +45,8 @@ public class DeclsVarDecl extends Decls {
         buffer.append(tab);
         buffer.append("DeclsVarDecl(\n");
 
-        if(VarDeclErrorPossible!=null)
-            buffer.append(VarDeclErrorPossible.toString("  "+tab));
+        if(GlobalVarDecl!=null)
+            buffer.append(GlobalVarDecl.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

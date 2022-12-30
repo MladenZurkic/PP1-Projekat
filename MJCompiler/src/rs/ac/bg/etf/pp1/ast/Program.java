@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 25/11/2022 16:53:39
+// 29/11/2022 18:48:27
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,14 +9,25 @@ public class Program implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    private ProgName ProgName;
     private DeclsList DeclsList;
     private MethodDeclList MethodDeclList;
 
-    public Program (DeclsList DeclsList, MethodDeclList MethodDeclList) {
+    public Program (ProgName ProgName, DeclsList DeclsList, MethodDeclList MethodDeclList) {
+        this.ProgName=ProgName;
+        if(ProgName!=null) ProgName.setParent(this);
         this.DeclsList=DeclsList;
         if(DeclsList!=null) DeclsList.setParent(this);
         this.MethodDeclList=MethodDeclList;
         if(MethodDeclList!=null) MethodDeclList.setParent(this);
+    }
+
+    public ProgName getProgName() {
+        return ProgName;
+    }
+
+    public void setProgName(ProgName ProgName) {
+        this.ProgName=ProgName;
     }
 
     public DeclsList getDeclsList() {
@@ -56,17 +67,20 @@ public class Program implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ProgName!=null) ProgName.accept(visitor);
         if(DeclsList!=null) DeclsList.accept(visitor);
         if(MethodDeclList!=null) MethodDeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ProgName!=null) ProgName.traverseTopDown(visitor);
         if(DeclsList!=null) DeclsList.traverseTopDown(visitor);
         if(MethodDeclList!=null) MethodDeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ProgName!=null) ProgName.traverseBottomUp(visitor);
         if(DeclsList!=null) DeclsList.traverseBottomUp(visitor);
         if(MethodDeclList!=null) MethodDeclList.traverseBottomUp(visitor);
         accept(visitor);
@@ -76,6 +90,12 @@ public class Program implements SyntaxNode {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("Program(\n");
+
+        if(ProgName!=null)
+            buffer.append(ProgName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(DeclsList!=null)
             buffer.append(DeclsList.toString("  "+tab));

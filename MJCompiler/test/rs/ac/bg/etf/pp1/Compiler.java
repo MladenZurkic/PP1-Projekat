@@ -37,17 +37,29 @@ public class Compiler {
 	        Symbol s = p.parse();  //pocetak parsiranja
 	        
 	        Program prog = (Program)(s.value); 
+	        ExTab.init();
+	        
 			// ispis sintaksnog stabla
 			log.info(prog.toString(""));
 			log.info("===================================");
 
 			// ispis prepoznatih programskih konstrukcija
-			RuleVisitor v = new RuleVisitor();
+			SemanticAnalyzer v = new SemanticAnalyzer();
 			prog.traverseBottomUp(v); 
 	      
 			log.info(" Print count calls = " + v.printCallCount);
 
 			log.info(" Deklarisanih promenljivih ima = " + v.varDeclCount);
+			log.info("===================================");
+			
+			ExTab.dump();
+			
+			if(!p.errorDetected && v.passed()) {
+				log.info("Parisanje uspesno zavrseno!");
+			}
+			else {
+				log.error("Parsiranje NIJE uspesno zavrseno.");
+			}
 			
 		}
 		finally {

@@ -56,7 +56,7 @@ terminal Integer NUMBER;
 terminal Character CHARCONST;
 terminal Boolean BOOLCONST;
 
-nonterminal Program, DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
+nonterminal DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
 nonterminal Type, VarDecl, AngleBrackets, MoreVarDecls, ClassDecl, ClassConstrMethodDecl;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
 nonterminal FormParsList, MethodDecl, TypeOrVoid, Statement, DesignatorStatement;
@@ -70,9 +70,7 @@ nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclL
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
 nonterminal ConstructorDeclList, ClassMethodDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
-
-
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
 precedence left ELSE;
 
 Program ::= (Program) PROG ProgName:p DeclsList LBRACE MethodDeclList RBRACE;

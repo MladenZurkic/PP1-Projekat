@@ -56,7 +56,6 @@ terminal Integer NUMBER;
 terminal Character CHARCONST;
 terminal Boolean BOOLCONST;
 
-nonterminal Program Program;
 nonterminal DeclsList DeclsList;
 nonterminal Decls Decls;
 nonterminal MethodDeclList MethodDeclList;
@@ -121,9 +120,7 @@ nonterminal VarDeclIdent VarDeclIdent;
 nonterminal ConstructorDeclList ConstructorDeclList;
 nonterminal ClassMethodDeclList ClassMethodDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName;
-
-
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
 precedence left ELSE;
 
 Program ::= (Program) PROG ProgName:p DeclsList:D1 LBRACE MethodDeclList:M2 RBRACE {: RESULT=new Program(p, D1, M2); RESULT.setLine(pleft); :};

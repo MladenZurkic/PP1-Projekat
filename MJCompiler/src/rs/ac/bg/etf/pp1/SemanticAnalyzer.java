@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
+import rs.etf.pp1.symboltable.concepts.Obj;
 
 
 public class SemanticAnalyzer extends VisitorAdaptor {
@@ -34,6 +35,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	return !errorDetected;
     }
 	
+    public void visit(ProgName progName) {
+    	ExTab.insert(Obj.Prog, null, null);
+    }
+    
 	public void visit(VarDeclIdent vardeclident) {
 		varDeclCount++;
 	}

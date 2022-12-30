@@ -4,11 +4,11 @@
 	<target name="delete">
 		<delete>
 			<fileset dir="src/rs/ac/bg/etf/pp1">
-				<exclude name="sym.java" />
 				<exclude name="util/Log4JUtils.java" />
 				<exclude name="symOld.java" />
 				<exclude name="RuleVisitor.java" />
 				<exclude name="SemanticAnalyzer.java" />
+				<exclude name="ExTab.java" />
 			</fileset>
 		</delete>
 		<delete>

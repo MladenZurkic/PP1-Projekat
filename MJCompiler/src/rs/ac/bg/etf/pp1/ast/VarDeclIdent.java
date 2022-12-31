@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,11 +9,21 @@ public class VarDeclIdent implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    private String ident;
     private AngleBrackets AngleBrackets;
 
-    public VarDeclIdent (AngleBrackets AngleBrackets) {
+    public VarDeclIdent (String ident, AngleBrackets AngleBrackets) {
+        this.ident=ident;
         this.AngleBrackets=AngleBrackets;
         if(AngleBrackets!=null) AngleBrackets.setParent(this);
+    }
+
+    public String getIdent() {
+        return ident;
+    }
+
+    public void setIdent(String ident) {
+        this.ident=ident;
     }
 
     public AngleBrackets getAngleBrackets() {
@@ -62,6 +72,9 @@ public class VarDeclIdent implements SyntaxNode {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("VarDeclIdent(\n");
+
+        buffer.append(" "+tab+ident);
+        buffer.append("\n");
 
         if(AngleBrackets!=null)
             buffer.append(AngleBrackets.toString("  "+tab));

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,14 +9,16 @@ public class MethodDecl implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
-    private TypeOrVoid TypeOrVoid;
+    public rs.etf.pp1.symboltable.concepts.Obj obj = null;
+
+    private MethodTypeName MethodTypeName;
     private FormParsOptional FormParsOptional;
     private VarDeclList VarDeclList;
     private StatementList StatementList;
 
-    public MethodDecl (TypeOrVoid TypeOrVoid, FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
-        this.TypeOrVoid=TypeOrVoid;
-        if(TypeOrVoid!=null) TypeOrVoid.setParent(this);
+    public MethodDecl (MethodTypeName MethodTypeName, FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
+        this.MethodTypeName=MethodTypeName;
+        if(MethodTypeName!=null) MethodTypeName.setParent(this);
         this.FormParsOptional=FormParsOptional;
         if(FormParsOptional!=null) FormParsOptional.setParent(this);
         this.VarDeclList=VarDeclList;
@@ -25,12 +27,12 @@ public class MethodDecl implements SyntaxNode {
         if(StatementList!=null) StatementList.setParent(this);
     }
 
-    public TypeOrVoid getTypeOrVoid() {
-        return TypeOrVoid;
+    public MethodTypeName getMethodTypeName() {
+        return MethodTypeName;
     }
 
-    public void setTypeOrVoid(TypeOrVoid TypeOrVoid) {
-        this.TypeOrVoid=TypeOrVoid;
+    public void setMethodTypeName(MethodTypeName MethodTypeName) {
+        this.MethodTypeName=MethodTypeName;
     }
 
     public FormParsOptional getFormParsOptional() {
@@ -78,7 +80,7 @@ public class MethodDecl implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(TypeOrVoid!=null) TypeOrVoid.accept(visitor);
+        if(MethodTypeName!=null) MethodTypeName.accept(visitor);
         if(FormParsOptional!=null) FormParsOptional.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
         if(StatementList!=null) StatementList.accept(visitor);
@@ -86,14 +88,14 @@ public class MethodDecl implements SyntaxNode {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(TypeOrVoid!=null) TypeOrVoid.traverseTopDown(visitor);
+        if(MethodTypeName!=null) MethodTypeName.traverseTopDown(visitor);
         if(FormParsOptional!=null) FormParsOptional.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
         if(StatementList!=null) StatementList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(TypeOrVoid!=null) TypeOrVoid.traverseBottomUp(visitor);
+        if(MethodTypeName!=null) MethodTypeName.traverseBottomUp(visitor);
         if(FormParsOptional!=null) FormParsOptional.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
         if(StatementList!=null) StatementList.traverseBottomUp(visitor);
@@ -105,8 +107,8 @@ public class MethodDecl implements SyntaxNode {
         buffer.append(tab);
         buffer.append("MethodDecl(\n");
 
-        if(TypeOrVoid!=null)
-            buffer.append(TypeOrVoid.toString("  "+tab));
+        if(MethodTypeName!=null)
+            buffer.append(MethodTypeName.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

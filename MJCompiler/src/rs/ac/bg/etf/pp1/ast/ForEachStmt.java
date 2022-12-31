@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,11 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class ForEachStmt extends Statement {
 
     private Designator Designator;
+    private String ident;
     private Statement Statement;
 
-    public ForEachStmt (Designator Designator, Statement Statement) {
+    public ForEachStmt (Designator Designator, String ident, Statement Statement) {
         this.Designator=Designator;
         if(Designator!=null) Designator.setParent(this);
+        this.ident=ident;
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
     }
@@ -23,6 +25,14 @@ public class ForEachStmt extends Statement {
 
     public void setDesignator(Designator Designator) {
         this.Designator=Designator;
+    }
+
+    public String getIdent() {
+        return ident;
+    }
+
+    public void setIdent(String ident) {
+        this.ident=ident;
     }
 
     public Statement getStatement() {
@@ -63,6 +73,9 @@ public class ForEachStmt extends Statement {
             buffer.append(Designator.toString("  "+tab));
         else
             buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        buffer.append(" "+tab+ident);
         buffer.append("\n");
 
         if(Statement!=null)

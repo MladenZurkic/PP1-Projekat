@@ -1,15 +1,15 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class ExprOpt extends ExprOptional {
+public class ReturnExpr extends Statement {
 
     private Expr Expr;
 
-    public ExprOpt (Expr Expr) {
+    public ReturnExpr (Expr Expr) {
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
     }
@@ -43,7 +43,7 @@ public class ExprOpt extends ExprOptional {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("ExprOpt(\n");
+        buffer.append("ReturnExpr(\n");
 
         if(Expr!=null)
             buffer.append(Expr.toString("  "+tab));
@@ -52,7 +52,7 @@ public class ExprOpt extends ExprOptional {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [ExprOpt]");
+        buffer.append(") [ReturnExpr]");
         return buffer.toString();
     }
 }

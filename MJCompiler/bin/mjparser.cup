@@ -49,28 +49,31 @@ scan with {:
 :}
 
 terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
-terminal FOREACH, IDENT, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ, RANGLE, LBRACE, RBRACE, LAMBDAOP;
+terminal FOREACH, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ, RANGLE, LBRACE, RBRACE, LAMBDAOP;
 terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
 terminal COLON, DO, ENUM;
+terminal String IDENT;
 terminal Integer NUMBER;
 terminal Character CHARCONST;
 terminal Boolean BOOLCONST;
 
-nonterminal DeclsList, Decls, MethodDeclList, ConstDecl, Consts, ConstsList;
-nonterminal Type, VarDecl, AngleBrackets, MoreVarDecls, ClassDecl, ClassConstrMethodDecl;
+nonterminal DeclsList, Decls, MethodDeclList, ConstDecl, ConstsList;
+nonterminal VarDecl, AngleBrackets, MoreVarDecls, ClassConstrMethodDecl;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
-nonterminal FormParsList, MethodDecl, TypeOrVoid, Statement, DesignatorStatement;
-nonterminal ElseStatementOptional, ExprOptional, NumConstOptional, DesignatorStatementOptional;
+nonterminal FormParsList, Statement, DesignatorStatement;
+nonterminal ElseStatementOptional, NumConstOptional, DesignatorStatementOptional;
 nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
-nonterminal RelOpExprOptional, Expr, MinusOptional, AddOpTermList, Term, MulOpFactorList;
-nonterminal Factor, ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
+nonterminal RelOpExprOptional, MinusOptional, AddOpTermList, MulOpFactorList;
+nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
 nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstsListElem;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
 nonterminal ConstructorDeclList, ClassMethodDeclList;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
+nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
 Program ::= (Program) PROG ProgName:p DeclsList LBRACE MethodDeclList RBRACE;
@@ -135,7 +138,9 @@ MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls COMMA VarDeclIdent
 			| (NoMoreVarDecls) /* epsilon */
 			;
 			
-ClassDecl ::= (ClassDecl) CLASS IDENT:ident ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
+ClassDecl ::= (ClassDecl) ClassDeclName ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
+
+ClassDeclName ::= (ClassDeclName) CLASS IDENT:className;
 
 ExtendsOptional ::= (ExtendsOptionalDef) EXTENDS Type:typeName
 			| (NoExtendsOptional) /* epsilon */
@@ -162,8 +167,10 @@ ClassMethodDeclList ::= (ClassMethodDeclListDef) ClassMethodDeclList MethodDecl
 
 
 ConstructorDecl ::= (ConstructorDecl) IDENT:constName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
-MethodDecl ::= (MethodDecl) TypeOrVoid:typeName IDENT:methName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
 
+MethodDecl ::= (MethodDecl) MethodTypeName LPAREN FormParsOptional VarDeclList LBRACE StatementList RBRACE;
+
+MethodTypeName ::= (MethodTypeName) TypeOrVoid:typeName IDENT:methName;
 
 FormParsOptional ::= (FormParsOptionalPars) FormPars
 					| (FormParsOptionalRPAREN) RPAREN
@@ -197,7 +204,8 @@ Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt
 			| (WhileStmt) WHILE LPAREN Condition:condition RPAREN Statement:stmt
 			| (BreakStmt) BREAK SEMI
 			| (ContinueStmt) CONTINUE SEMI
-			| (ReturnStmt) RETURN ExprOptional:ExprOpt SEMI
+			| (ReturnExpr) RETURN Expr:expr SEMI
+			| (ReturnNoExpr) RETURN SEMI
 			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI
 			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI
 			| (ForEachStmt) Designator:designator DOT FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI
@@ -215,10 +223,6 @@ DesignatorStatement ::= (DesignatorStmtDef) Designator DesignatorStatementOption
 ElseStatementOptional ::= (ElseStmtOpt) ELSE Statement:stmt
 						| (ElseStmtEpsilon) /* epsilon */
 						;
-
-ExprOptional ::= (ExprOpt) Expr:expr
-				| (NoExpr) /* epsilon */
-				;
 
 NumConstOptional ::= (NumConstOpt) COMMA NUMBER
 				| (NoNumConst) /* epsilon */

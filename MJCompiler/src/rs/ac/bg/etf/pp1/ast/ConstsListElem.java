@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,11 +9,21 @@ public class ConstsListElem implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    private String id;
     private Consts Consts;
 
-    public ConstsListElem (Consts Consts) {
+    public ConstsListElem (String id, Consts Consts) {
+        this.id=id;
         this.Consts=Consts;
         if(Consts!=null) Consts.setParent(this);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id=id;
     }
 
     public Consts getConsts() {
@@ -62,6 +72,9 @@ public class ConstsListElem implements SyntaxNode {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("ConstsListElem(\n");
+
+        buffer.append(" "+tab+id);
+        buffer.append("\n");
 
         if(Consts!=null)
             buffer.append(Consts.toString("  "+tab));

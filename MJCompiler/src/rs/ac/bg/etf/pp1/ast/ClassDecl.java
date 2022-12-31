@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,17 +9,30 @@ public class ClassDecl implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    public rs.etf.pp1.symboltable.concepts.Obj obj = null;
+
+    private ClassDeclName ClassDeclName;
     private ExtendsOptional ExtendsOptional;
     private VarDeclList VarDeclList;
     private ClassConstrMethodDecl ClassConstrMethodDecl;
 
-    public ClassDecl (ExtendsOptional ExtendsOptional, VarDeclList VarDeclList, ClassConstrMethodDecl ClassConstrMethodDecl) {
+    public ClassDecl (ClassDeclName ClassDeclName, ExtendsOptional ExtendsOptional, VarDeclList VarDeclList, ClassConstrMethodDecl ClassConstrMethodDecl) {
+        this.ClassDeclName=ClassDeclName;
+        if(ClassDeclName!=null) ClassDeclName.setParent(this);
         this.ExtendsOptional=ExtendsOptional;
         if(ExtendsOptional!=null) ExtendsOptional.setParent(this);
         this.VarDeclList=VarDeclList;
         if(VarDeclList!=null) VarDeclList.setParent(this);
         this.ClassConstrMethodDecl=ClassConstrMethodDecl;
         if(ClassConstrMethodDecl!=null) ClassConstrMethodDecl.setParent(this);
+    }
+
+    public ClassDeclName getClassDeclName() {
+        return ClassDeclName;
+    }
+
+    public void setClassDeclName(ClassDeclName ClassDeclName) {
+        this.ClassDeclName=ClassDeclName;
     }
 
     public ExtendsOptional getExtendsOptional() {
@@ -67,6 +80,7 @@ public class ClassDecl implements SyntaxNode {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ClassDeclName!=null) ClassDeclName.accept(visitor);
         if(ExtendsOptional!=null) ExtendsOptional.accept(visitor);
         if(VarDeclList!=null) VarDeclList.accept(visitor);
         if(ClassConstrMethodDecl!=null) ClassConstrMethodDecl.accept(visitor);
@@ -74,12 +88,14 @@ public class ClassDecl implements SyntaxNode {
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ClassDeclName!=null) ClassDeclName.traverseTopDown(visitor);
         if(ExtendsOptional!=null) ExtendsOptional.traverseTopDown(visitor);
         if(VarDeclList!=null) VarDeclList.traverseTopDown(visitor);
         if(ClassConstrMethodDecl!=null) ClassConstrMethodDecl.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ClassDeclName!=null) ClassDeclName.traverseBottomUp(visitor);
         if(ExtendsOptional!=null) ExtendsOptional.traverseBottomUp(visitor);
         if(VarDeclList!=null) VarDeclList.traverseBottomUp(visitor);
         if(ClassConstrMethodDecl!=null) ClassConstrMethodDecl.traverseBottomUp(visitor);
@@ -90,6 +106,12 @@ public class ClassDecl implements SyntaxNode {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("ClassDecl(\n");
+
+        if(ClassDeclName!=null)
+            buffer.append(ClassDeclName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(ExtendsOptional!=null)
             buffer.append(ExtendsOptional.toString("  "+tab));

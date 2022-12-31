@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -10,11 +10,13 @@ public class FormParsIdent implements SyntaxNode {
     private SyntaxNode parent;
     private int line;
     private Type Type;
+    private String formName;
     private AngleBrackets AngleBrackets;
 
-    public FormParsIdent (Type Type, AngleBrackets AngleBrackets) {
+    public FormParsIdent (Type Type, String formName, AngleBrackets AngleBrackets) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
+        this.formName=formName;
         this.AngleBrackets=AngleBrackets;
         if(AngleBrackets!=null) AngleBrackets.setParent(this);
     }
@@ -25,6 +27,14 @@ public class FormParsIdent implements SyntaxNode {
 
     public void setType(Type Type) {
         this.Type=Type;
+    }
+
+    public String getFormName() {
+        return formName;
+    }
+
+    public void setFormName(String formName) {
+        this.formName=formName;
     }
 
     public AngleBrackets getAngleBrackets() {
@@ -81,6 +91,9 @@ public class FormParsIdent implements SyntaxNode {
             buffer.append(Type.toString("  "+tab));
         else
             buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        buffer.append(" "+tab+formName);
         buffer.append("\n");
 
         if(AngleBrackets!=null)

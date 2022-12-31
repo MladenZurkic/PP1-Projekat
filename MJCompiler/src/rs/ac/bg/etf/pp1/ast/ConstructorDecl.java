@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 30/11/2022 15:43:20
+// 31/11/2022 15:19:34
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -9,17 +9,27 @@ public class ConstructorDecl implements SyntaxNode {
 
     private SyntaxNode parent;
     private int line;
+    private String constName;
     private FormParsOptional FormParsOptional;
     private VarDeclList VarDeclList;
     private StatementList StatementList;
 
-    public ConstructorDecl (FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
+    public ConstructorDecl (String constName, FormParsOptional FormParsOptional, VarDeclList VarDeclList, StatementList StatementList) {
+        this.constName=constName;
         this.FormParsOptional=FormParsOptional;
         if(FormParsOptional!=null) FormParsOptional.setParent(this);
         this.VarDeclList=VarDeclList;
         if(VarDeclList!=null) VarDeclList.setParent(this);
         this.StatementList=StatementList;
         if(StatementList!=null) StatementList.setParent(this);
+    }
+
+    public String getConstName() {
+        return constName;
+    }
+
+    public void setConstName(String constName) {
+        this.constName=constName;
     }
 
     public FormParsOptional getFormParsOptional() {
@@ -90,6 +100,9 @@ public class ConstructorDecl implements SyntaxNode {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("ConstructorDecl(\n");
+
+        buffer.append(" "+tab+constName);
+        buffer.append("\n");
 
         if(FormParsOptional!=null)
             buffer.append(FormParsOptional.toString("  "+tab));

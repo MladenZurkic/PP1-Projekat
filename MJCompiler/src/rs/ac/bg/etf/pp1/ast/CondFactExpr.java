@@ -1,28 +1,17 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class RelOpExprDef extends RelOpExprOptional {
+public class CondFactExpr extends CondFact {
 
-    private RelOp RelOp;
     private Expr Expr;
 
-    public RelOpExprDef (RelOp RelOp, Expr Expr) {
-        this.RelOp=RelOp;
-        if(RelOp!=null) RelOp.setParent(this);
+    public CondFactExpr (Expr Expr) {
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
-    }
-
-    public RelOp getRelOp() {
-        return RelOp;
-    }
-
-    public void setRelOp(RelOp RelOp) {
-        this.RelOp=RelOp;
     }
 
     public Expr getExpr() {
@@ -38,18 +27,15 @@ public class RelOpExprDef extends RelOpExprOptional {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(RelOp!=null) RelOp.accept(visitor);
         if(Expr!=null) Expr.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(RelOp!=null) RelOp.traverseTopDown(visitor);
         if(Expr!=null) Expr.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(RelOp!=null) RelOp.traverseBottomUp(visitor);
         if(Expr!=null) Expr.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -57,13 +43,7 @@ public class RelOpExprDef extends RelOpExprOptional {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("RelOpExprDef(\n");
-
-        if(RelOp!=null)
-            buffer.append(RelOp.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
+        buffer.append("CondFactExpr(\n");
 
         if(Expr!=null)
             buffer.append(Expr.toString("  "+tab));
@@ -72,7 +52,7 @@ public class RelOpExprDef extends RelOpExprOptional {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [RelOpExprDef]");
+        buffer.append(") [CondFactExpr]");
         return buffer.toString();
     }
 }

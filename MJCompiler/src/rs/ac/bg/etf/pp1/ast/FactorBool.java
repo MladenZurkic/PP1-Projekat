@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FactorBool extends Factor {
 
-    private Boolean B1;
+    private Boolean bool;
 
-    public FactorBool (Boolean B1) {
-        this.B1=B1;
+    public FactorBool (Boolean bool) {
+        this.bool=bool;
     }
 
-    public Boolean getB1() {
-        return B1;
+    public Boolean getBool() {
+        return bool;
     }
 
-    public void setB1(Boolean B1) {
-        this.B1=B1;
+    public void setBool(Boolean bool) {
+        this.bool=bool;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FactorBool extends Factor {
         buffer.append(tab);
         buffer.append("FactorBool(\n");
 
-        buffer.append(" "+tab+B1);
+        buffer.append(" "+tab+bool);
         buffer.append("\n");
 
         buffer.append(tab);

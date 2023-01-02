@@ -1,25 +1,25 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class VarDeclEndDef extends VarDeclEnd {
 
-    private VarDeclIdent VarDeclIdent;
+    private GlobalVarDeclIdent GlobalVarDeclIdent;
 
-    public VarDeclEndDef (VarDeclIdent VarDeclIdent) {
-        this.VarDeclIdent=VarDeclIdent;
-        if(VarDeclIdent!=null) VarDeclIdent.setParent(this);
+    public VarDeclEndDef (GlobalVarDeclIdent GlobalVarDeclIdent) {
+        this.GlobalVarDeclIdent=GlobalVarDeclIdent;
+        if(GlobalVarDeclIdent!=null) GlobalVarDeclIdent.setParent(this);
     }
 
-    public VarDeclIdent getVarDeclIdent() {
-        return VarDeclIdent;
+    public GlobalVarDeclIdent getGlobalVarDeclIdent() {
+        return GlobalVarDeclIdent;
     }
 
-    public void setVarDeclIdent(VarDeclIdent VarDeclIdent) {
-        this.VarDeclIdent=VarDeclIdent;
+    public void setGlobalVarDeclIdent(GlobalVarDeclIdent GlobalVarDeclIdent) {
+        this.GlobalVarDeclIdent=GlobalVarDeclIdent;
     }
 
     public void accept(Visitor visitor) {
@@ -27,16 +27,16 @@ public class VarDeclEndDef extends VarDeclEnd {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(VarDeclIdent!=null) VarDeclIdent.accept(visitor);
+        if(GlobalVarDeclIdent!=null) GlobalVarDeclIdent.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(VarDeclIdent!=null) VarDeclIdent.traverseTopDown(visitor);
+        if(GlobalVarDeclIdent!=null) GlobalVarDeclIdent.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(VarDeclIdent!=null) VarDeclIdent.traverseBottomUp(visitor);
+        if(GlobalVarDeclIdent!=null) GlobalVarDeclIdent.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -45,8 +45,8 @@ public class VarDeclEndDef extends VarDeclEnd {
         buffer.append(tab);
         buffer.append("VarDeclEndDef(\n");
 
-        if(VarDeclIdent!=null)
-            buffer.append(VarDeclIdent.toString("  "+tab));
+        if(GlobalVarDeclIdent!=null)
+            buffer.append(GlobalVarDeclIdent.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

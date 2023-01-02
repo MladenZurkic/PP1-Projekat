@@ -49,7 +49,7 @@ public class Compiler {
 	      
 			log.info(" Print count calls = " + v.printCallCount);
 
-			log.info(" Deklarisanih promenljivih ima = " + v.varDeclCount);
+			log.info(" Deklarisanih promenljivih ima = " + v.localVarDeclCount);
 			log.info("===================================");
 			
 			ExTab.dump();

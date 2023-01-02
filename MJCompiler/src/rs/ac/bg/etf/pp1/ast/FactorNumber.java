@@ -1,24 +1,24 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class FactorNumber extends Factor {
 
-    private Integer N1;
+    private Integer num;
 
-    public FactorNumber (Integer N1) {
-        this.N1=N1;
+    public FactorNumber (Integer num) {
+        this.num=num;
     }
 
-    public Integer getN1() {
-        return N1;
+    public Integer getNum() {
+        return num;
     }
 
-    public void setN1(Integer N1) {
-        this.N1=N1;
+    public void setNum(Integer num) {
+        this.num=num;
     }
 
     public void accept(Visitor visitor) {
@@ -41,7 +41,7 @@ public class FactorNumber extends Factor {
         buffer.append(tab);
         buffer.append("FactorNumber(\n");
 
-        buffer.append(" "+tab+N1);
+        buffer.append(" "+tab+num);
         buffer.append("\n");
 
         buffer.append(tab);

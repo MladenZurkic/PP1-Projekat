@@ -86,8 +86,6 @@ nonterminal CondTermList CondTermList;
 nonterminal CondTerm CondTerm;
 nonterminal CondFactList CondFactList;
 nonterminal CondFact CondFact;
-nonterminal RelOpExprOptional RelOpExprOptional;
-nonterminal MinusOptional MinusOptional;
 nonterminal AddOpTermList AddOpTermList;
 nonterminal MulOpFactorList MulOpFactorList;
 nonterminal ActParsParen ActParsParen;
@@ -99,7 +97,6 @@ nonterminal AssignOp AssignOp;
 nonterminal RelOp RelOp;
 nonterminal AddOp AddOp;
 nonterminal MulOp MulOp;
-nonterminal ConstsListElem ConstsListElem;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FormParsEnd FormParsEnd;
 nonterminal FormParsIdent FormParsIdent;
@@ -111,9 +108,11 @@ nonterminal VarDeclEnd VarDeclEnd;
 nonterminal VarDeclIdent VarDeclIdent;
 nonterminal ConstructorDeclList ConstructorDeclList;
 nonterminal ClassMethodDeclList ClassMethodDeclList;
+nonterminal GlobalVarDeclIdent GlobalVarDeclIdent;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
@@ -136,17 +135,17 @@ MethodDeclList ::= (MethodDeclLists) MethodDeclList:M1 MethodDecl:M2 {: RESULT=n
 				;
 
 ConstDecl ::= (ConstDecl) CONST Type:type ConstsList:C1 SEMI {: RESULT=new ConstDecl(type, C1); RESULT.setLine(typeleft); :};
-			
 
-Consts ::= (NumberConst) NUMBER:N1 {: RESULT=new NumberConst(N1); RESULT.setLine(N1left); :}
-		| (CharConst) CHARCONST:C1 {: RESULT=new CharConst(C1); RESULT.setLine(C1left); :}
-		| (BoolConst) BOOLCONST:B1 {: RESULT=new BoolConst(B1); RESULT.setLine(B1left); :};
+
+Consts ::= (NumberConst) NUMBER:num {: RESULT=new NumberConst(num); RESULT.setLine(numleft); :}
+		| (CharConst) CHARCONST:charConst {: RESULT=new CharConst(charConst); RESULT.setLine(charConstleft); :}
+		| (BoolConst) BOOLCONST:bool {: RESULT=new BoolConst(bool); RESULT.setLine(boolleft); :};
 		
 ConstsList ::= (ConstsLists) ConstsList:C1 COMMA ConstsListElem:C2 {: RESULT=new ConstsLists(C1, C2); RESULT.setLine(C1left); :}
 			| (ConstsListSingle) ConstsListElem:C1 {: RESULT=new ConstsListSingle(C1); RESULT.setLine(C1left); :}
 			;
 			
-ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:value {: RESULT=new ConstsListElem(id, value); RESULT.setLine(idleft); :};
+ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:C1 {: RESULT=new ConstsListElem(id, C1); RESULT.setLine(idleft); :};
 
 Type ::= (Type) IDENT:typeName {: RESULT=new Type(typeName); RESULT.setLine(typeNameleft); :};
 
@@ -158,17 +157,19 @@ GlobalVarDeclList ::= (GlobalVarDeclLists) VarDeclComma:V1 GlobalVarDeclList:G2 
 				| (GlobalVarDeclListEnd) VarDeclEnd:V1 {: RESULT=new GlobalVarDeclListEnd(V1); RESULT.setLine(V1left); :};
 
 
-VarDeclComma ::= (VarDeclCommaDef) VarDeclIdent:V1 COMMA {: RESULT=new VarDeclCommaDef(V1); RESULT.setLine(V1left); :}
+VarDeclComma ::= (VarDeclCommaDef) GlobalVarDeclIdent:G1 COMMA {: RESULT=new VarDeclCommaDef(G1); RESULT.setLine(G1left); :}
 				| (ErrorVarDeclComma) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (VarDeclComma) u liniji " + errleft, null);  :} {: RESULT=new ErrorVarDeclComma(); :}
 				;
 
-VarDeclEnd ::= (VarDeclEndDef) VarDeclIdent:V1 SEMI {: RESULT=new VarDeclEndDef(V1); RESULT.setLine(V1left); :}
+VarDeclEnd ::= (VarDeclEndDef) GlobalVarDeclIdent:G1 SEMI {: RESULT=new VarDeclEndDef(G1); RESULT.setLine(G1left); :}
 			| (ErrorVarDeclEnd) error:err SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (VarDeclEnd) u liniji " + errleft, null);  :} {: RESULT=new ErrorVarDeclEnd(); :}
 			;
 
 VarDeclIdent ::= (VarDeclIdent) IDENT:ident AngleBrackets:A1 {: RESULT=new VarDeclIdent(ident, A1); RESULT.setLine(identleft); :};
+
+GlobalVarDeclIdent ::= (GlobalVarDeclIdent) IDENT:ident AngleBrackets:A1 {: RESULT=new GlobalVarDeclIdent(ident, A1); RESULT.setLine(identleft); :};
 
 
 AngleBrackets ::= (AngleBrackets) LANGLE RANGLE {: RESULT=new AngleBrackets(); :}
@@ -178,7 +179,7 @@ AngleBrackets ::= (AngleBrackets) LANGLE RANGLE {: RESULT=new AngleBrackets(); :
 MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls:M1 COMMA VarDeclIdent:V2 {: RESULT=new MoreVarDeclsDef(M1, V2); RESULT.setLine(M1left); :}
 			| (NoMoreVarDecls) {: RESULT=new NoMoreVarDecls(); :} /* epsilon */
 			;
-			
+
 ClassDecl ::= (ClassDecl) ClassDeclName:C1 ExtendsOptional:E2 LBRACE VarDeclList:V3 ClassConstrMethodDecl:C4 RBRACE {: RESULT=new ClassDecl(C1, E2, V3, C4); RESULT.setLine(C1left); :};
 
 ClassDeclName ::= (ClassDeclName) CLASS IDENT:className {: RESULT=new ClassDeclName(className); RESULT.setLine(classNameleft); :};
@@ -216,7 +217,7 @@ MethodTypeName ::= (MethodTypeName) TypeOrVoid:typeName IDENT:methName {: RESULT
 FormParsOptional ::= (FormParsOptionalPars) FormPars:F1 {: RESULT=new FormParsOptionalPars(F1); RESULT.setLine(F1left); :}
 					| (FormParsOptionalRPAREN) RPAREN {: RESULT=new FormParsOptionalRPAREN(); :}
 					;
-					
+
 StatementList ::= (StatementListDef) StatementList:S1 Statement:S2 {: RESULT=new StatementListDef(S1, S2); RESULT.setLine(S1left); :}
 				| (NoStatementList) {: RESULT=new NoStatementList(); :} /* epsilon */
 				;
@@ -229,7 +230,7 @@ FormParsList ::= (FormParsListWithCOMMA) FormParsIdent:F1 COMMA {: RESULT=new Fo
 				| (ErrorFormParsListCOMMA) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (FormParsList) u liniji " + errleft, null);  :} {: RESULT=new ErrorFormParsListCOMMA(); :}
 				;
-				
+
 FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent:F1 RPAREN {: RESULT=new FormParsEndWithRPAREN(F1); RESULT.setLine(F1left); :}
 			| (ErrorFormParsEndRPAREN) error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :} {: RESULT=new ErrorFormParsEndRPAREN(); :}
@@ -274,7 +275,7 @@ DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp:A1 Expr:expr 
 							| (DesignatorStmtOptActPars) LPAREN ActParsOptional:A1 RPAREN {: RESULT=new DesignatorStmtOptActPars(A1); RESULT.setLine(A1left); :}
 							| (DesignatorStmtOptINC) INC {: RESULT=new DesignatorStmtOptINC(); :}
 							| (DesignatorStmtOptDEC) DEC {: RESULT=new DesignatorStmtOptDEC(); :};
-							
+
 ActParsOptional ::= (ActParsOpt) ActPars:A1 {: RESULT=new ActParsOpt(A1); RESULT.setLine(A1left); :}
 				| (NoActParsOpt) {: RESULT=new NoActParsOpt(); :} /* epsilon */
 				;
@@ -307,27 +308,20 @@ CondFactList ::= (CondFactListDef) CondFactList:C1 BITAND CondFact:C2 {: RESULT=
 				| (NoCondFactList) {: RESULT=new NoCondFactList(); :} /* epsilon */
 				;
 				
-CondFact ::= (CondFact) Expr:E1 RelOpExprOptional:R2 {: RESULT=new CondFact(E1, R2); RESULT.setLine(E1left); :};
-
-RelOpExprOptional ::= (RelOpExprDef) RelOp:R1 Expr:E2 {: RESULT=new RelOpExprDef(R1, E2); RESULT.setLine(R1left); :}
-					| (NoRelOpExpr) {: RESULT=new NoRelOpExpr(); :} /* epsilon */
-					;
+CondFact ::= (CondFactExpr) Expr:E1 {: RESULT=new CondFactExpr(E1); RESULT.setLine(E1left); :}
+			| (CondFactExprRelOpExpr) Expr:expr1 RelOp:R1 Expr:expr2 {: RESULT=new CondFactExprRelOpExpr(expr1, R1, expr2); RESULT.setLine(expr1left); :};
 
 
-
-Expr ::= (Expr) MinusOptional:M1 Term:term AddOpTermList:A2 {: RESULT=new Expr(M1, term, A2); RESULT.setLine(M1left); :};
-
-MinusOptional ::= (MinusDef) MINUS {: RESULT=new MinusDef(); :}
-			| (NoMinus) {: RESULT=new NoMinus(); :} /* epsilon */
-			;
+Expr ::= (ExprMinusTerm) MINUS Term:T1 {: RESULT=new ExprMinusTerm(T1); RESULT.setLine(T1left); :}
+		| (ExprTerm) Term:T1 {: RESULT=new ExprTerm(T1); RESULT.setLine(T1left); :}
+		| (ExprPlusTerm) Expr:E1 AddOp:A2 Term:T3 {: RESULT=new ExprPlusTerm(E1, A2, T3); RESULT.setLine(E1left); :};
 
 AddOpTermList ::= (AddOpTermListDef) AddOpTermList:A1 AddOp:A2 Term:term {: RESULT=new AddOpTermListDef(A1, A2, term); RESULT.setLine(A1left); :}
 				| (NoAddOpTermList) {: RESULT=new NoAddOpTermList(); :} /* epsilon */
 				;
 
-
-
-Term ::= (Term) Factor:factor MulOpFactorList:M1 {: RESULT=new Term(factor, M1); RESULT.setLine(factorleft); :};
+Term ::= (TermFactor) Factor:F1 {: RESULT=new TermFactor(F1); RESULT.setLine(F1left); :}
+		| (TermMulFactor) Term:T1 MulOp:M2 Factor:F3 {: RESULT=new TermMulFactor(T1, M2, F3); RESULT.setLine(T1left); :};
 
 MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList:M1 MulOp:M2 Factor:F3 {: RESULT=new MulOpFactorListDef(M1, M2, F3); RESULT.setLine(M1left); :}
 				| (NoMulOpFactorList) {: RESULT=new NoMulOpFactorList(); :} /* epsilon */
@@ -335,14 +329,14 @@ MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList:M1 MulOp:M2 Factor:F3 {
 
 
 
-Factor ::= (FactorDesignator) Designator:designator ActParsParenOptional:A1 {: RESULT=new FactorDesignator(designator, A1); RESULT.setLine(designatorleft); :}
-		| (FactorNumber) NUMBER:N1 {: RESULT=new FactorNumber(N1); RESULT.setLine(N1left); :}
-		| (FactorChar) CHARCONST:C1 {: RESULT=new FactorChar(C1); RESULT.setLine(C1left); :}
-		| (FactorBool) BOOLCONST:B1 {: RESULT=new FactorBool(B1); RESULT.setLine(B1left); :}
-		| (FactorNew) NEW Type:typeName ExprOrActPars:E1 {: RESULT=new FactorNew(typeName, E1); RESULT.setLine(typeNameleft); :}
+Factor ::= (FactorDesignator) Designator:designator {: RESULT=new FactorDesignator(designator); RESULT.setLine(designatorleft); :}
+		|  (FactorDesignatorWithParen) Designator:designator LPAREN ActParsOptional:A1 RPAREN {: RESULT=new FactorDesignatorWithParen(designator, A1); RESULT.setLine(designatorleft); :}
+		| (FactorNumber) NUMBER:num {: RESULT=new FactorNumber(num); RESULT.setLine(numleft); :}
+		| (FactorChar) CHARCONST:charConst {: RESULT=new FactorChar(charConst); RESULT.setLine(charConstleft); :}
+		| (FactorBool) BOOLCONST:bool {: RESULT=new FactorBool(bool); RESULT.setLine(boolleft); :}
+		| (FactorNewExpr) NEW Type:typeName LANGLE Expr:expr RANGLE {: RESULT=new FactorNewExpr(typeName, expr); RESULT.setLine(typeNameleft); :}
+		| (FactorNewActPars) NEW Type:typeName LPAREN ActParsOptional:A1 RPAREN {: RESULT=new FactorNewActPars(typeName, A1); RESULT.setLine(typeNameleft); :}
 		| (FactorExpr) LPAREN Expr:expr RPAREN {: RESULT=new FactorExpr(expr); RESULT.setLine(exprleft); :};
-
-
 
 
 ActParsParen ::= (ActParsParen) LPAREN ActParsOptional:A1 RPAREN {: RESULT=new ActParsParen(A1); RESULT.setLine(A1left); :};

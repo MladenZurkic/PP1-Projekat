@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -22,14 +22,15 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorCommaList DesignatorCommaList) { }
     public void visit(MoreVarDecls MoreVarDecls) { }
     public void visit(Designator Designator) { }
+    public void visit(Term Term) { }
     public void visit(FormParsList FormParsList) { }
     public void visit(FormParsOptional FormParsOptional) { }
     public void visit(MulOp MulOp) { }
-    public void visit(MinusOptional MinusOptional) { }
     public void visit(DesignatorOptional DesignatorOptional) { }
     public void visit(RelOp RelOp) { }
     public void visit(ConstructorDeclList ConstructorDeclList) { }
     public void visit(VarDeclList VarDeclList) { }
+    public void visit(Expr Expr) { }
     public void visit(DeclsList DeclsList) { }
     public void visit(VarDeclEnd VarDeclEnd) { }
     public void visit(TypeOrVoid TypeOrVoid) { }
@@ -42,9 +43,9 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ExprOrActPars ExprOrActPars) { }
     public void visit(ExtendsOptional ExtendsOptional) { }
     public void visit(MulOpFactorList MulOpFactorList) { }
+    public void visit(CondFact CondFact) { }
     public void visit(MethodDeclList MethodDeclList) { }
     public void visit(ElseStatementOptional ElseStatementOptional) { }
-    public void visit(RelOpExprOptional RelOpExprOptional) { }
     public void visit(Decls Decls) { }
     public void visit(Consts Consts) { }
     public void visit(GlobalVarDeclList GlobalVarDeclList) { }
@@ -71,22 +72,24 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ActParsParenDef ActParsParenDef) { visit(); }
     public void visit(ActParsParen ActParsParen) { visit(); }
     public void visit(FactorExpr FactorExpr) { visit(); }
-    public void visit(FactorNew FactorNew) { visit(); }
+    public void visit(FactorNewActPars FactorNewActPars) { visit(); }
+    public void visit(FactorNewExpr FactorNewExpr) { visit(); }
     public void visit(FactorBool FactorBool) { visit(); }
     public void visit(FactorChar FactorChar) { visit(); }
     public void visit(FactorNumber FactorNumber) { visit(); }
+    public void visit(FactorDesignatorWithParen FactorDesignatorWithParen) { visit(); }
     public void visit(FactorDesignator FactorDesignator) { visit(); }
     public void visit(NoMulOpFactorList NoMulOpFactorList) { visit(); }
     public void visit(MulOpFactorListDef MulOpFactorListDef) { visit(); }
-    public void visit(Term Term) { visit(); }
+    public void visit(TermMulFactor TermMulFactor) { visit(); }
+    public void visit(TermFactor TermFactor) { visit(); }
     public void visit(NoAddOpTermList NoAddOpTermList) { visit(); }
     public void visit(AddOpTermListDef AddOpTermListDef) { visit(); }
-    public void visit(NoMinus NoMinus) { visit(); }
-    public void visit(MinusDef MinusDef) { visit(); }
-    public void visit(Expr Expr) { visit(); }
-    public void visit(NoRelOpExpr NoRelOpExpr) { visit(); }
-    public void visit(RelOpExprDef RelOpExprDef) { visit(); }
-    public void visit(CondFact CondFact) { visit(); }
+    public void visit(ExprPlusTerm ExprPlusTerm) { visit(); }
+    public void visit(ExprTerm ExprTerm) { visit(); }
+    public void visit(ExprMinusTerm ExprMinusTerm) { visit(); }
+    public void visit(CondFactExprRelOpExpr CondFactExprRelOpExpr) { visit(); }
+    public void visit(CondFactExpr CondFactExpr) { visit(); }
     public void visit(NoCondFactList NoCondFactList) { visit(); }
     public void visit(CondFactListDef CondFactListDef) { visit(); }
     public void visit(CondTerm CondTerm) { visit(); }
@@ -160,6 +163,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(MoreVarDeclsDef MoreVarDeclsDef) { visit(); }
     public void visit(NoAngleBrackets NoAngleBrackets) { visit(); }
     public void visit(AngleBrackets AngleBrackets) { visit(); }
+    public void visit(GlobalVarDeclIdent GlobalVarDeclIdent) { visit(); }
     public void visit(VarDeclIdent VarDeclIdent) { visit(); }
     public void visit(ErrorVarDeclEnd ErrorVarDeclEnd) { visit(); }
     public void visit(VarDeclEndDef VarDeclEndDef) { visit(); }

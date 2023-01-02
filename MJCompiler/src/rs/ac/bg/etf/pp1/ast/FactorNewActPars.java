@@ -1,20 +1,20 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class FactorNew extends Factor {
+public class FactorNewActPars extends Factor {
 
     private Type Type;
-    private ExprOrActPars ExprOrActPars;
+    private ActParsOptional ActParsOptional;
 
-    public FactorNew (Type Type, ExprOrActPars ExprOrActPars) {
+    public FactorNewActPars (Type Type, ActParsOptional ActParsOptional) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
-        this.ExprOrActPars=ExprOrActPars;
-        if(ExprOrActPars!=null) ExprOrActPars.setParent(this);
+        this.ActParsOptional=ActParsOptional;
+        if(ActParsOptional!=null) ActParsOptional.setParent(this);
     }
 
     public Type getType() {
@@ -25,12 +25,12 @@ public class FactorNew extends Factor {
         this.Type=Type;
     }
 
-    public ExprOrActPars getExprOrActPars() {
-        return ExprOrActPars;
+    public ActParsOptional getActParsOptional() {
+        return ActParsOptional;
     }
 
-    public void setExprOrActPars(ExprOrActPars ExprOrActPars) {
-        this.ExprOrActPars=ExprOrActPars;
+    public void setActParsOptional(ActParsOptional ActParsOptional) {
+        this.ActParsOptional=ActParsOptional;
     }
 
     public void accept(Visitor visitor) {
@@ -39,25 +39,25 @@ public class FactorNew extends Factor {
 
     public void childrenAccept(Visitor visitor) {
         if(Type!=null) Type.accept(visitor);
-        if(ExprOrActPars!=null) ExprOrActPars.accept(visitor);
+        if(ActParsOptional!=null) ActParsOptional.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(Type!=null) Type.traverseTopDown(visitor);
-        if(ExprOrActPars!=null) ExprOrActPars.traverseTopDown(visitor);
+        if(ActParsOptional!=null) ActParsOptional.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(Type!=null) Type.traverseBottomUp(visitor);
-        if(ExprOrActPars!=null) ExprOrActPars.traverseBottomUp(visitor);
+        if(ActParsOptional!=null) ActParsOptional.traverseBottomUp(visitor);
         accept(visitor);
     }
 
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("FactorNew(\n");
+        buffer.append("FactorNewActPars(\n");
 
         if(Type!=null)
             buffer.append(Type.toString("  "+tab));
@@ -65,14 +65,14 @@ public class FactorNew extends Factor {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(ExprOrActPars!=null)
-            buffer.append(ExprOrActPars.toString("  "+tab));
+        if(ActParsOptional!=null)
+            buffer.append(ActParsOptional.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [FactorNew]");
+        buffer.append(") [FactorNewActPars]");
         return buffer.toString();
     }
 }

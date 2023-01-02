@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 31/11/2022 15:19:34
+// 2/0/2023 22:54:39
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -22,14 +22,15 @@ public interface Visitor {
     public void visit(DesignatorCommaList DesignatorCommaList);
     public void visit(MoreVarDecls MoreVarDecls);
     public void visit(Designator Designator);
+    public void visit(Term Term);
     public void visit(FormParsList FormParsList);
     public void visit(FormParsOptional FormParsOptional);
     public void visit(MulOp MulOp);
-    public void visit(MinusOptional MinusOptional);
     public void visit(DesignatorOptional DesignatorOptional);
     public void visit(RelOp RelOp);
     public void visit(ConstructorDeclList ConstructorDeclList);
     public void visit(VarDeclList VarDeclList);
+    public void visit(Expr Expr);
     public void visit(DeclsList DeclsList);
     public void visit(VarDeclEnd VarDeclEnd);
     public void visit(TypeOrVoid TypeOrVoid);
@@ -42,9 +43,9 @@ public interface Visitor {
     public void visit(ExprOrActPars ExprOrActPars);
     public void visit(ExtendsOptional ExtendsOptional);
     public void visit(MulOpFactorList MulOpFactorList);
+    public void visit(CondFact CondFact);
     public void visit(MethodDeclList MethodDeclList);
     public void visit(ElseStatementOptional ElseStatementOptional);
-    public void visit(RelOpExprOptional RelOpExprOptional);
     public void visit(Decls Decls);
     public void visit(Consts Consts);
     public void visit(GlobalVarDeclList GlobalVarDeclList);
@@ -71,22 +72,24 @@ public interface Visitor {
     public void visit(ActParsParenDef ActParsParenDef);
     public void visit(ActParsParen ActParsParen);
     public void visit(FactorExpr FactorExpr);
-    public void visit(FactorNew FactorNew);
+    public void visit(FactorNewActPars FactorNewActPars);
+    public void visit(FactorNewExpr FactorNewExpr);
     public void visit(FactorBool FactorBool);
     public void visit(FactorChar FactorChar);
     public void visit(FactorNumber FactorNumber);
+    public void visit(FactorDesignatorWithParen FactorDesignatorWithParen);
     public void visit(FactorDesignator FactorDesignator);
     public void visit(NoMulOpFactorList NoMulOpFactorList);
     public void visit(MulOpFactorListDef MulOpFactorListDef);
-    public void visit(Term Term);
+    public void visit(TermMulFactor TermMulFactor);
+    public void visit(TermFactor TermFactor);
     public void visit(NoAddOpTermList NoAddOpTermList);
     public void visit(AddOpTermListDef AddOpTermListDef);
-    public void visit(NoMinus NoMinus);
-    public void visit(MinusDef MinusDef);
-    public void visit(Expr Expr);
-    public void visit(NoRelOpExpr NoRelOpExpr);
-    public void visit(RelOpExprDef RelOpExprDef);
-    public void visit(CondFact CondFact);
+    public void visit(ExprPlusTerm ExprPlusTerm);
+    public void visit(ExprTerm ExprTerm);
+    public void visit(ExprMinusTerm ExprMinusTerm);
+    public void visit(CondFactExprRelOpExpr CondFactExprRelOpExpr);
+    public void visit(CondFactExpr CondFactExpr);
     public void visit(NoCondFactList NoCondFactList);
     public void visit(CondFactListDef CondFactListDef);
     public void visit(CondTerm CondTerm);
@@ -160,6 +163,7 @@ public interface Visitor {
     public void visit(MoreVarDeclsDef MoreVarDeclsDef);
     public void visit(NoAngleBrackets NoAngleBrackets);
     public void visit(AngleBrackets AngleBrackets);
+    public void visit(GlobalVarDeclIdent GlobalVarDeclIdent);
     public void visit(VarDeclIdent VarDeclIdent);
     public void visit(ErrorVarDeclEnd ErrorVarDeclEnd);
     public void visit(VarDeclEndDef VarDeclEndDef);

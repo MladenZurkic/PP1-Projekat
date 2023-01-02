@@ -64,15 +64,16 @@ nonterminal FormParsList, Statement, DesignatorStatement;
 nonterminal ElseStatementOptional, NumConstOptional, DesignatorStatementOptional;
 nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
-nonterminal RelOpExprOptional, MinusOptional, AddOpTermList, MulOpFactorList;
+nonterminal AddOpTermList, MulOpFactorList;
 nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
-nonterminal Label, AssignOp, RelOp, AddOp, MulOp, ConstsListElem;
+nonterminal Label, AssignOp, RelOp, AddOp, MulOp;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
-nonterminal ConstructorDeclList, ClassMethodDeclList;
+nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
@@ -95,17 +96,17 @@ MethodDeclList ::= (MethodDeclLists) MethodDeclList MethodDecl
 				;
 
 ConstDecl ::= (ConstDecl) CONST Type:type ConstsList SEMI;
-			
 
-Consts ::= (NumberConst) NUMBER
-		| (CharConst) CHARCONST
-		| (BoolConst) BOOLCONST;
+
+Consts ::= (NumberConst) NUMBER:num
+		| (CharConst) CHARCONST:charConst
+		| (BoolConst) BOOLCONST:bool;
 		
 ConstsList ::= (ConstsLists) ConstsList COMMA ConstsListElem
 			| (ConstsListSingle) ConstsListElem
 			;
 			
-ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts:value;
+ConstsListElem ::= (ConstsListElem) IDENT:id EQUAL Consts;
 
 Type ::= (Type) IDENT:typeName;
 
@@ -117,17 +118,19 @@ GlobalVarDeclList ::= (GlobalVarDeclLists) VarDeclComma GlobalVarDeclList
 				| (GlobalVarDeclListEnd) VarDeclEnd;
 
 
-VarDeclComma ::= (VarDeclCommaDef) VarDeclIdent COMMA
+VarDeclComma ::= (VarDeclCommaDef) GlobalVarDeclIdent COMMA
 				| (ErrorVarDeclComma) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (VarDeclComma) u liniji " + errleft, null);  :}
 				;
 
-VarDeclEnd ::= (VarDeclEndDef) VarDeclIdent SEMI
+VarDeclEnd ::= (VarDeclEndDef) GlobalVarDeclIdent SEMI
 			| (ErrorVarDeclEnd) error:err SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (VarDeclEnd) u liniji " + errleft, null);  :}
 			;
 
 VarDeclIdent ::= (VarDeclIdent) IDENT:ident AngleBrackets;
+
+GlobalVarDeclIdent ::= (GlobalVarDeclIdent) IDENT:ident AngleBrackets;
 
 
 AngleBrackets ::= (AngleBrackets) LANGLE RANGLE
@@ -137,7 +140,7 @@ AngleBrackets ::= (AngleBrackets) LANGLE RANGLE
 MoreVarDecls ::= (MoreVarDeclsDef) MoreVarDecls COMMA VarDeclIdent
 			| (NoMoreVarDecls) /* epsilon */
 			;
-			
+
 ClassDecl ::= (ClassDecl) ClassDeclName ExtendsOptional LBRACE VarDeclList ClassConstrMethodDecl RBRACE;
 
 ClassDeclName ::= (ClassDeclName) CLASS IDENT:className;
@@ -175,7 +178,7 @@ MethodTypeName ::= (MethodTypeName) TypeOrVoid:typeName IDENT:methName;
 FormParsOptional ::= (FormParsOptionalPars) FormPars
 					| (FormParsOptionalRPAREN) RPAREN
 					;
-					
+
 StatementList ::= (StatementListDef) StatementList Statement
 				| (NoStatementList) /* epsilon */
 				;
@@ -188,7 +191,7 @@ FormParsList ::= (FormParsListWithCOMMA) FormParsIdent COMMA
 				| (ErrorFormParsListCOMMA) error:err COMMA
 				{: parser.report_error("Izvrsen oporavak do , (FormParsList) u liniji " + errleft, null);  :}
 				;
-				
+
 FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent RPAREN
 			| (ErrorFormParsEndRPAREN) error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :}
@@ -233,7 +236,7 @@ DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
 							| (DesignatorStmtOptActPars) LPAREN ActParsOptional RPAREN
 							| (DesignatorStmtOptINC) INC
 							| (DesignatorStmtOptDEC) DEC;
-							
+
 ActParsOptional ::= (ActParsOpt) ActPars
 				| (NoActParsOpt) /* epsilon */
 				;
@@ -266,27 +269,20 @@ CondFactList ::= (CondFactListDef) CondFactList BITAND CondFact
 				| (NoCondFactList) /* epsilon */
 				;
 				
-CondFact ::= (CondFact) Expr RelOpExprOptional;
-
-RelOpExprOptional ::= (RelOpExprDef) RelOp Expr
-					| (NoRelOpExpr) /* epsilon */
-					;
+CondFact ::= (CondFactExpr) Expr
+			| (CondFactExprRelOpExpr) Expr:expr1 RelOp Expr:expr2;
 
 
-
-Expr ::= (Expr) MinusOptional Term:term AddOpTermList;
-
-MinusOptional ::= (MinusDef) MINUS
-			| (NoMinus) /* epsilon */
-			;
+Expr ::= (ExprMinusTerm) MINUS Term
+		| (ExprTerm) Term
+		| (ExprPlusTerm) Expr AddOp Term;
 
 AddOpTermList ::= (AddOpTermListDef) AddOpTermList AddOp Term:term
 				| (NoAddOpTermList) /* epsilon */
 				;
 
-
-
-Term ::= (Term) Factor:factor MulOpFactorList;
+Term ::= (TermFactor) Factor
+		| (TermMulFactor) Term MulOp Factor;
 
 MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList MulOp Factor
 				| (NoMulOpFactorList) /* epsilon */
@@ -294,14 +290,14 @@ MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList MulOp Factor
 
 
 
-Factor ::= (FactorDesignator) Designator:designator ActParsParenOptional
-		| (FactorNumber) NUMBER
-		| (FactorChar) CHARCONST
-		| (FactorBool) BOOLCONST
-		| (FactorNew) NEW Type:typeName ExprOrActPars
+Factor ::= (FactorDesignator) Designator:designator
+		|  (FactorDesignatorWithParen) Designator:designator LPAREN ActParsOptional RPAREN
+		| (FactorNumber) NUMBER:num
+		| (FactorChar) CHARCONST:charConst
+		| (FactorBool) BOOLCONST:bool
+		| (FactorNewExpr) NEW Type:typeName LANGLE Expr:expr RANGLE
+		| (FactorNewActPars) NEW Type:typeName LPAREN ActParsOptional RPAREN
 		| (FactorExpr) LPAREN Expr:expr RPAREN;
-
-
 
 
 ActParsParen ::= (ActParsParen) LPAREN ActParsOptional RPAREN;

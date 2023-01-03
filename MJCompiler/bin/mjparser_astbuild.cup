@@ -88,15 +88,14 @@ nonterminal CondFactList CondFactList;
 nonterminal CondFact CondFact;
 nonterminal AddOpTermList AddOpTermList;
 nonterminal MulOpFactorList MulOpFactorList;
-nonterminal ActParsParen ActParsParen;
-nonterminal ActParsParenOptional ActParsParenOptional;
-nonterminal ExprOrActPars ExprOrActPars;
-nonterminal Designator Designator;
 nonterminal Label Label;
 nonterminal AssignOp AssignOp;
 nonterminal RelOp RelOp;
 nonterminal AddOp AddOp;
 nonterminal MulOp MulOp;
+nonterminal ActParsParen ActParsParen;
+nonterminal ActParsParenOptional ActParsParenOptional;
+nonterminal ExprOrActPars ExprOrActPars;
 nonterminal GlobalVarDecl GlobalVarDecl;
 nonterminal FormParsEnd FormParsEnd;
 nonterminal FormParsIdent FormParsIdent;
@@ -112,7 +111,7 @@ nonterminal GlobalVarDeclIdent GlobalVarDeclIdent;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
@@ -290,7 +289,9 @@ DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList:D1 COMMA De
 
 
 
-ActPars ::= (ActPars) Expr:expr ExprCommaList:E1 {: RESULT=new ActPars(expr, E1); RESULT.setLine(exprleft); :};
+ActPars ::= (ActParsExprOnly) Expr:expr {: RESULT=new ActParsExprOnly(expr); RESULT.setLine(exprleft); :}
+			| (ActParsExprList) ActPars:A1 COMMA Expr:E2 {: RESULT=new ActParsExprList(A1, E2); RESULT.setLine(A1left); :};
+			
 
 ExprCommaList ::= (ExprCommaListDef) ExprCommaList:E1 COMMA Expr:expr {: RESULT=new ExprCommaListDef(E1, expr); RESULT.setLine(E1left); :}
 				| (NoExprCommaList) {: RESULT=new NoExprCommaList(); :} /* epsilon */

@@ -64,16 +64,15 @@ nonterminal FormParsList, Statement, DesignatorStatement;
 nonterminal ElseStatementOptional, NumConstOptional, DesignatorStatementOptional;
 nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
-nonterminal AddOpTermList, MulOpFactorList;
-nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars, Designator;
-nonterminal Label, AssignOp, RelOp, AddOp, MulOp;
+nonterminal AddOpTermList, MulOpFactorList, Label, AssignOp, RelOp, AddOp, MulOp;
+nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
 nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
@@ -251,7 +250,9 @@ DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA Desig
 
 
 
-ActPars ::= (ActPars) Expr:expr ExprCommaList;
+ActPars ::= (ActParsExprOnly) Expr:expr
+			| (ActParsExprList) ActPars COMMA Expr;
+			
 
 ExprCommaList ::= (ExprCommaListDef) ExprCommaList COMMA Expr:expr
 				| (NoExprCommaList) /* epsilon */

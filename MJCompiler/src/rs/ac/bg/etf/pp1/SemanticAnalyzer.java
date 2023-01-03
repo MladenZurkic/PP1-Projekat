@@ -1,5 +1,9 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.symboltable.Tab;
@@ -40,8 +44,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean isConditionBool = true;
 	int nVars;
 	
-	boolean angleBrackets = false;
 	
+	List<Expr> actPars = new ArrayList<Expr>();
+	Obj designatorForActPars = null;
+	
+	boolean angleBrackets = false;
+	int numOfActPars = 0;
 	Obj currentClass = null;
 	
     public boolean passed() {
@@ -385,5 +393,151 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     }
     
+    public void visit(DesignatorIdent designatorIdent) {
+    	Obj object = ExTab.find(designatorIdent.getIdent());
+    	if(object == ExTab.noObj) {
+    		report_error("Greska - Ime " + designatorIdent.getIdent() + " nije pronadjeno (nije definisano)", designatorIdent);
+    	}
+    	else {
+    		if(object.getKind() == Obj.Var) {
+    			if(object.getLevel() == 0)
+    				report_info("Pronadjena globalna varijabla! - " + designatorIdent.getIdent(), designatorIdent);
+    			else
+    				report_info("Pronadjena lokalna varijabla! - " + designatorIdent.getIdent(), designatorIdent);
+    		}
+    		if(object.getKind() == Obj.Con) {
+    			report_info("Pronadjena konstanta! - " + designatorIdent.getIdent(), designatorIdent);
+    		}
+    	}
+    	designatorIdent.obj = object;
+    }
     
+    public void visit(DesignatorExpr designatorExpr) {
+    	Obj designator = designatorExpr.getDesignator().obj;
+    	designatorExpr.obj = designator;
+    	if(designator == ExTab.noObj) {
+    		report_error("Greska - Ime " + designator.getName() + " nije pronadjeno (nije definisano)", designatorExpr);
+    	}
+    	else {
+    		if(designator.getType().getKind() != Struct.Array) {
+        		report_error("Greska na "+designatorExpr.getLine()+" :"+designator.getName()+" mora biti niz"
+        				+ " - designatorExpr" , null);
+        	}
+        	else {
+        		if(designatorExpr.getExpr().struct != ExTab.intType) {
+        			report_error("Greska na "+ designatorExpr.getLine() +" vrednost unutar [] mora biti int!"
+            				+ " - designatorExpr" , null);
+        		}
+        		else {
+        			report_info("Pristup elementu niza - " + designator.getName(), designatorExpr);
+        			designatorExpr.obj = new Obj(Obj.Elem, "Elem - " + designator.getName(), designator.getType().getElemType());
+        		}
+        	}
+    	}
+    }
+    
+    public void visit(DesignatorDotIdent designatorDotIdent) {
+    	Obj designator = designatorDotIdent.getDesignator().obj;
+    	if(designator == ExTab.noObj) {
+    		report_error("Greska - Ime " + designator.getName() + " nije pronadjeno (nije definisano)", designatorDotIdent);
+    	}
+    	else {
+    		if(designator.getType().getKind() != Struct.Class) {
+    			report_error("Greska na " + designatorDotIdent.getLine() + " : " + designator.getName()
+    					+ " nije klasa!", null);
+    		}
+    		else {
+    			boolean found = false;
+    			Collection<Obj> fields = designator.getType().getMembers();
+    			for(Obj field : fields) {
+    				if(field.getName().equals(designatorDotIdent.getIdent())) {
+    					found = true;
+    					designatorDotIdent.obj = field;
+    					break;
+    				}	
+    			}
+    			if(!found) {
+    				report_error("Greska na " + designatorDotIdent.getLine() + " : " + designatorDotIdent.getIdent()
+					+ " ne postoji kao polje ili metoda klase!", null);
+    				designatorDotIdent.obj = ExTab.noObj;
+    			}
+    			else {
+    				//designatorDotIdent.obj = fields.find(designatorDotIdent.getIdent());
+    			}
+    		}
+    	}
+    }
+    
+    public void visit(FactorDesignator fd) {
+    	fd.struct = fd.getDesignator().obj.getType();
+    }
+    
+    public void visit(FactorExpr fe) {
+    	fe.struct = fe.getExpr().struct;
+    }
+    
+    /*edit! DA LI TREBA PROVERA FORMALNIH/STVARNIH PARAMETARA? edit:da*/ 
+    public void visit(FactorDesignatorWithParen factorDesignatorWithParen) {
+    	//Provera parametara posle!
+    	designatorForActPars = factorDesignatorWithParen.getDesignator().obj;
+    	
+    	if(factorDesignatorWithParen.getDesignator().obj.getKind() != Obj.Meth) {
+    		report_error("Greska - " + factorDesignatorWithParen.getDesignator().obj.getName() + 
+    				" nije funkcija (metoda)", factorDesignatorWithParen);
+    	}
+    	else {
+    		factorDesignatorWithParen.struct = factorDesignatorWithParen.getDesignator().obj.getType();
+    	}
+    }
+    
+    public void visit(FactorNewActPars factorNewActPars) {
+    	if(factorNewActPars.getType().struct.getKind() != Struct.Class) {
+    		report_error("Greska - tip mora biti klasni! - factorNewActPars", factorNewActPars);
+    	}
+    	else {
+    		factorNewActPars.struct = factorNewActPars.getType().struct;
+    	}
+    }
+    
+    public void visit(FactorNewExpr factorNewExpr) {
+    	if(factorNewExpr.getExpr().struct.getKind() != Struct.Int) {
+    		report_error("Greska - tip mora biti int! - factorNewExpr", factorNewExpr);
+    	}
+    	else {
+    		factorNewExpr.struct = new Struct(Struct.Array, factorNewExpr.getType().struct);
+    	}
+    }
+    
+    public void visit(NoActParsOpt noActPars) {
+    	numOfActPars = 0;
+    }
+    
+    public void visit(ActParsExprOnly actParsExprOnly) {
+    	numOfActPars += 1;
+    	actPars.add(actParsExprOnly.getExpr());
+    }
+    
+    public void visit(ActParsExprList actParsExprList) {
+    	numOfActPars += 1;
+    	actPars.add(actParsExprList.getExpr());
+    }
+    
+    public void visit(ActParsOpt actParsOpt) {
+    	if(designatorForActPars.getLevel() != numOfActPars) {
+    		report_error("Greska - Broj stvarnih i formalnih parametara nije isti! - actParsOpt", actParsOpt);
+    	}
+    	else {
+    		Collection<Obj> formPars = designatorForActPars.getLocalSymbols();
+    		int counter = 0;
+    		for(Obj formPar : formPars) {
+    			if(formPar.getType().getKind() != actPars.get(counter).struct.getKind()) {
+    				report_error("Greska - Stvarni argument nije istog tipa kao formalni! - actParsOpt", actParsOpt);
+    				break;
+    			}
+    			counter++;
+    		}
+    	}
+    }
+    
+    //public void visit()
 }

@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -43,10 +44,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean relOpClassArrayCompatible = false;
 	boolean isConditionBool = true;
 	int nVars;
-	
+	List<Obj> designators = new ArrayList<Obj>();
 	
 	List<Expr> actPars = new ArrayList<Expr>();
 	Obj designatorForActPars = null;
+//	Obj designatorForStatement = null;
 	
 	boolean angleBrackets = false;
 	int numOfActPars = 0;
@@ -161,7 +163,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		report_error("Greska na liniji" + returnExpr.getLine() + "Return moze da se pozove samo iz metode!", null);
     	}
     	else {
-    		if(!currentMethod.getType().compatibleWith(returnExpr.getExpr().struct)) {
+    		if(!currentMethod.getType().equals(returnExpr.getExpr().struct)) {
     			report_error("Greska na liniji " + returnExpr.getLine() + " : " + 
     					"tip izraza u return naredbi ne slaze se sa tipom povratne vrednosti funkcije " + 
     					currentMethod.getName(), null);
@@ -479,16 +481,21 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     /*edit! DA LI TREBA PROVERA FORMALNIH/STVARNIH PARAMETARA? edit:da*/ 
     public void visit(FactorDesignatorWithParen factorDesignatorWithParen) {
     	//Provera parametara posle!
-    	designatorForActPars = factorDesignatorWithParen.getDesignator().obj;
+    	//designatorForActPars = factorDesignatorWithParen.getDesignator().obj;
     	
-    	if(factorDesignatorWithParen.getDesignator().obj.getKind() != Obj.Meth) {
-    		report_error("Greska - " + factorDesignatorWithParen.getDesignator().obj.getName() + 
+    	if(factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getKind() != Obj.Meth) {
+    		report_error("Greska - " + factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getName() + 
     				" nije funkcija (metoda)", factorDesignatorWithParen);
     	}
     	else {
-    		factorDesignatorWithParen.struct = factorDesignatorWithParen.getDesignator().obj.getType();
+    		factorDesignatorWithParen.struct = factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getType();
     	}
     }
+    
+    public void visit(DesignatorForActPars designatorForActPars) {
+    	this.designatorForActPars = designatorForActPars.getDesignator().obj;
+    }
+    
     
     public void visit(FactorNewActPars factorNewActPars) {
     	if(factorNewActPars.getType().struct.getKind() != Struct.Class) {
@@ -537,7 +544,82 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			counter++;
     		}
     	}
+    	designatorForActPars = null;
     }
     
-    //public void visit()
+    public void visit(DesignatorStmtOptAssign designatorStmtOptAssign) {
+    	Obj designator = designatorStmtOptAssign.getDesignator().obj;
+    	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
+    		if(!designatorStmtOptAssign.getExpr().struct.assignableTo(designator.getType())) {
+    			report_error("Greska - izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign", designatorStmtOptAssign);
+    		}
+    	}
+    	else {
+    		report_error("Greska - pogresan podatak pri dodeli vrednosti! - desigAssign", designatorStmtOptAssign);
+    	}
+    }
+    
+    public void visit(DesignatorStmtOptINC DSinc) {
+    	Obj designator = DSinc.getDesignator().obj;
+    	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
+    		if(!(designator.getType().getKind() == Struct.Int)) {
+    			report_error("Greska - podatak mora biti tipa int pri inkrementiranju! - DSinc", DSinc);
+    		}
+    	}
+    	else {
+    		report_error("Greska - pogresan podatak pri inkrementiranju! - DSinc", DSinc);
+    	}
+    }
+    
+    public void visit(DesignatorStmtOptDEC DSdec) {
+    	Obj designator = DSdec.getDesignator().obj;
+    	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
+    		if(!(designator.getType().getKind() == Struct.Int)) {
+    			report_error("Greska - podatak mora biti tipa int pri dekrementiranju! - DSdec", DSdec);
+    		}
+    	}
+    	else {
+    		report_error("Greska - pogresan podatak pri inkrementiranju! - DSdec", DSdec);
+    	}
+    }
+    
+    
+    public void visit(DesignatorStmtActPars designatorStmtActPars) {
+    	Obj designator = designatorStmtActPars.getDesignatorForActPars().getDesignator().obj;
+    	if(designator.getKind() != Obj.Meth) {
+    		report_error("Greska - Designator mora biti metoda! - DStmtActPars", designatorStmtActPars);
+    	}
+    	else {
+    		report_info("Poziv funkcije " + designator.getName() + "!", designatorStmtActPars);
+    	}
+    }
+    
+    public void visit(DesignatorOpt designatorOpt) {
+    	designators.add(designatorOpt.getDesignator().obj);
+    }
+    
+    public void visit(DesignatorStmtAngleBrack desigStmtAngleBrack) {
+    	Collections.reverse(designators);
+    	designators.add(0, designatorForActPars);
+    	designatorForActPars = null;
+    	boolean firstError = false;
+    	for (Obj designator : designators) {
+    		if(!(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld)) {
+    			firstError = true;
+    			report_error("Greska - jedna od vrednosti sa leve strane nije promenljiva, element niza ili polje! - desigStmtAngleBrack", desigStmtAngleBrack);
+    			break;
+    		}
+    	}
+    	
+    	if(!firstError) {
+    		Obj rightDesignator = desigStmtAngleBrack.getDesignator().obj;
+    		if(rightDesignator.getType().getKind() != Struct.Array) {
+    			report_error("Greska - Desni designator nije niz! - desigStmtAB", desigStmtAngleBrack);
+    		}
+    		else {
+    			
+    		}
+    	}
+    	
+    }
 }

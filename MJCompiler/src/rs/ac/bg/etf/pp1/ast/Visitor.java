@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 3/0/2023 22:35:46
+// 4/0/2023 2:7:48
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -40,7 +40,6 @@ public interface Visitor {
     public void visit(NumConstOptional NumConstOptional);
     public void visit(ConstsList ConstsList);
     public void visit(Statement Statement);
-    public void visit(DesignatorStatementOptional DesignatorStatementOptional);
     public void visit(ExprOrActPars ExprOrActPars);
     public void visit(ExtendsOptional ExtendsOptional);
     public void visit(MulOpFactorList MulOpFactorList);
@@ -72,6 +71,7 @@ public interface Visitor {
     public void visit(NoActParsParen NoActParsParen);
     public void visit(ActParsParenDef ActParsParenDef);
     public void visit(ActParsParen ActParsParen);
+    public void visit(DesignatorForActPars DesignatorForActPars);
     public void visit(FactorExpr FactorExpr);
     public void visit(FactorNewActPars FactorNewActPars);
     public void visit(FactorNewExpr FactorNewExpr);
@@ -107,17 +107,17 @@ public interface Visitor {
     public void visit(DesignatorOpt DesignatorOpt);
     public void visit(NoActParsOpt NoActParsOpt);
     public void visit(ActParsOpt ActParsOpt);
-    public void visit(DesignatorStmtOptDEC DesignatorStmtOptDEC);
-    public void visit(DesignatorStmtOptINC DesignatorStmtOptINC);
-    public void visit(DesignatorStmtOptActPars DesignatorStmtOptActPars);
-    public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign);
     public void visit(NoNumConst NoNumConst);
     public void visit(NumConstOpt NumConstOpt);
     public void visit(ElseStmtEpsilon ElseStmtEpsilon);
     public void visit(ElseStmtOpt ElseStmtOpt);
     public void visit(ErrorDesignatorStmtSEMI ErrorDesignatorStmtSEMI);
+    public void visit(DesignatorStmtAngleBrackNoDesig DesignatorStmtAngleBrackNoDesig);
     public void visit(DesignatorStmtAngleBrack DesignatorStmtAngleBrack);
-    public void visit(DesignatorStmtDef DesignatorStmtDef);
+    public void visit(DesignatorStmtOptDEC DesignatorStmtOptDEC);
+    public void visit(DesignatorStmtOptINC DesignatorStmtOptINC);
+    public void visit(DesignatorStmtActPars DesignatorStmtActPars);
+    public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign);
     public void visit(ErrorStmtIFCondition ErrorStmtIFCondition);
     public void visit(StmtList StmtList);
     public void visit(ForEachStmt ForEachStmt);

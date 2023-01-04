@@ -1,31 +1,31 @@
 // generated with ast extension for cup
 // version 0.8
-// 3/0/2023 22:35:46
+// 4/0/2023 2:7:48
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class DesignatorStmtAngleBrack extends DesignatorStatement {
 
-    private DesignatorOptional DesignatorOptional;
+    private DesignatorForActPars DesignatorForActPars;
     private DesignatorCommaList DesignatorCommaList;
     private Designator Designator;
 
-    public DesignatorStmtAngleBrack (DesignatorOptional DesignatorOptional, DesignatorCommaList DesignatorCommaList, Designator Designator) {
-        this.DesignatorOptional=DesignatorOptional;
-        if(DesignatorOptional!=null) DesignatorOptional.setParent(this);
+    public DesignatorStmtAngleBrack (DesignatorForActPars DesignatorForActPars, DesignatorCommaList DesignatorCommaList, Designator Designator) {
+        this.DesignatorForActPars=DesignatorForActPars;
+        if(DesignatorForActPars!=null) DesignatorForActPars.setParent(this);
         this.DesignatorCommaList=DesignatorCommaList;
         if(DesignatorCommaList!=null) DesignatorCommaList.setParent(this);
         this.Designator=Designator;
         if(Designator!=null) Designator.setParent(this);
     }
 
-    public DesignatorOptional getDesignatorOptional() {
-        return DesignatorOptional;
+    public DesignatorForActPars getDesignatorForActPars() {
+        return DesignatorForActPars;
     }
 
-    public void setDesignatorOptional(DesignatorOptional DesignatorOptional) {
-        this.DesignatorOptional=DesignatorOptional;
+    public void setDesignatorForActPars(DesignatorForActPars DesignatorForActPars) {
+        this.DesignatorForActPars=DesignatorForActPars;
     }
 
     public DesignatorCommaList getDesignatorCommaList() {
@@ -49,20 +49,20 @@ public class DesignatorStmtAngleBrack extends DesignatorStatement {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(DesignatorOptional!=null) DesignatorOptional.accept(visitor);
+        if(DesignatorForActPars!=null) DesignatorForActPars.accept(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.accept(visitor);
         if(Designator!=null) Designator.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(DesignatorOptional!=null) DesignatorOptional.traverseTopDown(visitor);
+        if(DesignatorForActPars!=null) DesignatorForActPars.traverseTopDown(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.traverseTopDown(visitor);
         if(Designator!=null) Designator.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(DesignatorOptional!=null) DesignatorOptional.traverseBottomUp(visitor);
+        if(DesignatorForActPars!=null) DesignatorForActPars.traverseBottomUp(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.traverseBottomUp(visitor);
         if(Designator!=null) Designator.traverseBottomUp(visitor);
         accept(visitor);
@@ -73,8 +73,8 @@ public class DesignatorStmtAngleBrack extends DesignatorStatement {
         buffer.append(tab);
         buffer.append("DesignatorStmtAngleBrack(\n");
 
-        if(DesignatorOptional!=null)
-            buffer.append(DesignatorOptional.toString("  "+tab));
+        if(DesignatorForActPars!=null)
+            buffer.append(DesignatorForActPars.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 3/0/2023 22:35:46
+// 4/0/2023 2:7:48
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -40,7 +40,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NumConstOptional NumConstOptional) { }
     public void visit(ConstsList ConstsList) { }
     public void visit(Statement Statement) { }
-    public void visit(DesignatorStatementOptional DesignatorStatementOptional) { }
     public void visit(ExprOrActPars ExprOrActPars) { }
     public void visit(ExtendsOptional ExtendsOptional) { }
     public void visit(MulOpFactorList MulOpFactorList) { }
@@ -72,6 +71,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NoActParsParen NoActParsParen) { visit(); }
     public void visit(ActParsParenDef ActParsParenDef) { visit(); }
     public void visit(ActParsParen ActParsParen) { visit(); }
+    public void visit(DesignatorForActPars DesignatorForActPars) { visit(); }
     public void visit(FactorExpr FactorExpr) { visit(); }
     public void visit(FactorNewActPars FactorNewActPars) { visit(); }
     public void visit(FactorNewExpr FactorNewExpr) { visit(); }
@@ -107,17 +107,17 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorOpt DesignatorOpt) { visit(); }
     public void visit(NoActParsOpt NoActParsOpt) { visit(); }
     public void visit(ActParsOpt ActParsOpt) { visit(); }
-    public void visit(DesignatorStmtOptDEC DesignatorStmtOptDEC) { visit(); }
-    public void visit(DesignatorStmtOptINC DesignatorStmtOptINC) { visit(); }
-    public void visit(DesignatorStmtOptActPars DesignatorStmtOptActPars) { visit(); }
-    public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign) { visit(); }
     public void visit(NoNumConst NoNumConst) { visit(); }
     public void visit(NumConstOpt NumConstOpt) { visit(); }
     public void visit(ElseStmtEpsilon ElseStmtEpsilon) { visit(); }
     public void visit(ElseStmtOpt ElseStmtOpt) { visit(); }
     public void visit(ErrorDesignatorStmtSEMI ErrorDesignatorStmtSEMI) { visit(); }
+    public void visit(DesignatorStmtAngleBrackNoDesig DesignatorStmtAngleBrackNoDesig) { visit(); }
     public void visit(DesignatorStmtAngleBrack DesignatorStmtAngleBrack) { visit(); }
-    public void visit(DesignatorStmtDef DesignatorStmtDef) { visit(); }
+    public void visit(DesignatorStmtOptDEC DesignatorStmtOptDEC) { visit(); }
+    public void visit(DesignatorStmtOptINC DesignatorStmtOptINC) { visit(); }
+    public void visit(DesignatorStmtActPars DesignatorStmtActPars) { visit(); }
+    public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign) { visit(); }
     public void visit(ErrorStmtIFCondition ErrorStmtIFCondition) { visit(); }
     public void visit(StmtList StmtList) { visit(); }
     public void visit(ForEachStmt ForEachStmt) { visit(); }

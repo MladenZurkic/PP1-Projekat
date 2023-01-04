@@ -61,7 +61,7 @@ nonterminal DeclsList, Decls, MethodDeclList, ConstDecl, ConstsList;
 nonterminal VarDecl, AngleBrackets, MoreVarDecls, ClassConstrMethodDecl;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
 nonterminal FormParsList, Statement, DesignatorStatement;
-nonterminal ElseStatementOptional, NumConstOptional, DesignatorStatementOptional;
+nonterminal ElseStatementOptional, NumConstOptional;
 nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
 nonterminal AddOpTermList, MulOpFactorList, Label, AssignOp, RelOp, AddOp, MulOp;
@@ -69,10 +69,11 @@ nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
 nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent;
+/*nonterminal DesignatorStatementOptional;*/
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator, DesignatorForActPars;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 
@@ -216,11 +217,15 @@ Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt
 			{: parser.report_error("Izvrsen oporavak do ) (IF condition) u liniji " + errleft, null);  :}
 			;
 
-DesignatorStatement ::= (DesignatorStmtDef) Designator DesignatorStatementOptional SEMI
-					| (DesignatorStmtAngleBrack) LANGLE DesignatorOptional DesignatorCommaList RANGLE EQUAL Designator SEMI
-					| (ErrorDesignatorStmtSEMI) error:err SEMI
-					{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :}
-					;
+DesignatorStatement ::= (DesignatorStmtOptAssign) Designator AssignOp Expr:expr SEMI
+			| (DesignatorStmtActPars) DesignatorForActPars LPAREN ActParsOptional RPAREN SEMI
+			| (DesignatorStmtOptINC) Designator INC SEMI
+			| (DesignatorStmtOptDEC) Designator DEC SEMI
+			| (DesignatorStmtAngleBrack) LANGLE DesignatorForActPars DesignatorCommaList RANGLE EQUAL Designator SEMI
+			| (DesignatorStmtAngleBrackNoDesig) LANGLE DesignatorCommaList RANGLE EQUAL Designator SEMI
+			| (ErrorDesignatorStmtSEMI) error:err SEMI
+			{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :}
+			;
 
 ElseStatementOptional ::= (ElseStmtOpt) ELSE Statement:stmt
 						| (ElseStmtEpsilon) /* epsilon */
@@ -230,11 +235,13 @@ NumConstOptional ::= (NumConstOpt) COMMA NUMBER
 				| (NoNumConst) /* epsilon */
 				;
 
-
+/*
 DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
-							| (DesignatorStmtOptActPars) LPAREN ActParsOptional RPAREN
+							| (DesignatorStmtNoActPars) LPAREN ActPars RPAREN
+							| (DesignatorStmtActPars) LPAREN RPAREN
 							| (DesignatorStmtOptINC) INC
 							| (DesignatorStmtOptDEC) DEC;
+*/
 
 ActParsOptional ::= (ActParsOpt) ActPars
 				| (NoActParsOpt) /* epsilon */
@@ -247,8 +254,6 @@ DesignatorOptional ::= (DesignatorOpt) Designator
 DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA DesignatorOptional
 					| (NoDesignatorCommaList) /* epsilon */
 					;
-
-
 
 ActPars ::= (ActParsExprOnly) Expr:expr
 			| (ActParsExprList) ActPars COMMA Expr;
@@ -292,7 +297,7 @@ MulOpFactorList ::= (MulOpFactorListDef) MulOpFactorList MulOp Factor
 
 
 Factor ::= (FactorDesignator) Designator:designator
-		|  (FactorDesignatorWithParen) Designator:designator LPAREN ActParsOptional RPAREN
+		|  (FactorDesignatorWithParen) DesignatorForActPars LPAREN ActParsOptional RPAREN
 		| (FactorNumber) NUMBER:num
 		| (FactorChar) CHARCONST:charConst
 		| (FactorBool) BOOLCONST:bool
@@ -300,6 +305,8 @@ Factor ::= (FactorDesignator) Designator:designator
 		| (FactorNewActPars) NEW Type:typeName LPAREN ActParsOptional RPAREN
 		| (FactorExpr) LPAREN Expr:expr RPAREN;
 
+
+DesignatorForActPars ::= (DesignatorForActPars) Designator;
 
 ActParsParen ::= (ActParsParen) LPAREN ActParsOptional RPAREN;
 

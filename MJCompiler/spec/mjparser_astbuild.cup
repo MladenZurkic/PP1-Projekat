@@ -107,6 +107,7 @@ nonterminal VarDeclIdent VarDeclIdent;
 nonterminal ConstructorDeclList ConstructorDeclList;
 nonterminal ClassMethodDeclList ClassMethodDeclList;
 nonterminal GlobalVarDeclIdent GlobalVarDeclIdent;
+nonterminal EnteredLoop EnteredLoop;
 /*nonterminal DesignatorStatementOptional;*/
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
@@ -235,25 +236,28 @@ FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent:F1 RPAREN {: RESULT=new Fo
 			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :} {: RESULT=new ErrorFormParsEndRPAREN(); :}
 			;
 			
-FormParsIdent ::= (FormParsIdent) Type:typeName IDENT:formName AngleBrackets:A1 {: RESULT=new FormParsIdent(typeName, formName, A1); RESULT.setLine(typeNameleft); :};
+FormParsIdent ::= (FormParsIdentWithBrackets) Type:typeName IDENT:formName LANGLE RANGLE {: RESULT=new FormParsIdentWithBrackets(typeName, formName); RESULT.setLine(typeNameleft); :}
+				| (FormParsIdentNoBrackets) Type:typeName IDENT:formName {: RESULT=new FormParsIdentNoBrackets(typeName, formName); RESULT.setLine(typeNameleft); :};
 				
 TypeOrVoid ::= (TypeOrVoidType) Type:typeName {: RESULT=new TypeOrVoidType(typeName); RESULT.setLine(typeNameleft); :}
 			| (TypeOrVoidVoid) VOID:typeName {: RESULT=new TypeOrVoidVoid(); :};
 
 Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt {: RESULT=new DesignatorStmt(designatorStmt); RESULT.setLine(designatorStmtleft); :}
 			| (IfStmt) IF LPAREN Condition:condition RPAREN Statement:stmt ElseStatementOptional:E1 {: RESULT=new IfStmt(condition, stmt, E1); RESULT.setLine(conditionleft); :}
-			| (WhileStmt) WHILE LPAREN Condition:condition RPAREN Statement:stmt {: RESULT=new WhileStmt(condition, stmt); RESULT.setLine(conditionleft); :}
+			| (WhileStmt) EnteredLoop:E1 WHILE LPAREN Condition:condition RPAREN Statement:stmt {: RESULT=new WhileStmt(E1, condition, stmt); RESULT.setLine(E1left); :}
 			| (BreakStmt) BREAK SEMI {: RESULT=new BreakStmt(); :}
 			| (ContinueStmt) CONTINUE SEMI {: RESULT=new ContinueStmt(); :}
 			| (ReturnExpr) RETURN Expr:expr SEMI {: RESULT=new ReturnExpr(expr); RESULT.setLine(exprleft); :}
 			| (ReturnNoExpr) RETURN SEMI {: RESULT=new ReturnNoExpr(); :}
 			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI {: RESULT=new ReadStmt(designator); RESULT.setLine(designatorleft); :}
 			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI {: RESULT=new PrintStmt(expr, numOpt); RESULT.setLine(exprleft); :}
-			| (ForEachStmt) Designator:designator DOT FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI {: RESULT=new ForEachStmt(designator, ident, stmt); RESULT.setLine(designatorleft); :}
+			| (ForEachStmt) Designator:designator DOT EnteredLoop:E1 FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI {: RESULT=new ForEachStmt(designator, E1, ident, stmt); RESULT.setLine(designatorleft); :}
 			| (StmtList) LBRACE StatementList:S1 RBRACE {: RESULT=new StmtList(S1); RESULT.setLine(S1left); :}
 			| (ErrorStmtIFCondition) IF LPAREN error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (IF condition) u liniji " + errleft, null);  :} {: RESULT=new ErrorStmtIFCondition(); :}
 			;
+
+EnteredLoop ::= (EnteredLoop) {: RESULT=new EnteredLoop(); :} ;
 
 DesignatorStatement ::= (DesignatorStmtOptAssign) Designator:D1 AssignOp:A2 Expr:expr SEMI {: RESULT=new DesignatorStmtOptAssign(D1, A2, expr); RESULT.setLine(D1left); :}
 			| (DesignatorStmtActPars) DesignatorForActPars:D1 LPAREN ActParsOptional:A2 RPAREN SEMI {: RESULT=new DesignatorStmtActPars(D1, A2); RESULT.setLine(D1left); :}

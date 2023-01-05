@@ -68,7 +68,7 @@ nonterminal AddOpTermList, MulOpFactorList, Label, AssignOp, RelOp, AddOp, MulOp
 nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
-nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent;
+nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent, EnteredLoop;
 /*nonterminal DesignatorStatementOptional;*/
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
@@ -197,25 +197,28 @@ FormParsEnd ::= (FormParsEndWithRPAREN) FormParsIdent RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (FormParsEnd) u liniji " + errleft, null);  :}
 			;
 			
-FormParsIdent ::= (FormParsIdent) Type:typeName IDENT:formName AngleBrackets;
+FormParsIdent ::= (FormParsIdentWithBrackets) Type:typeName IDENT:formName LANGLE RANGLE
+				| (FormParsIdentNoBrackets) Type:typeName IDENT:formName;
 				
 TypeOrVoid ::= (TypeOrVoidType) Type:typeName
 			| (TypeOrVoidVoid) VOID:typeName;
 
 Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt
 			| (IfStmt) IF LPAREN Condition:condition RPAREN Statement:stmt ElseStatementOptional
-			| (WhileStmt) WHILE LPAREN Condition:condition RPAREN Statement:stmt
+			| (WhileStmt) EnteredLoop WHILE LPAREN Condition:condition RPAREN Statement:stmt
 			| (BreakStmt) BREAK SEMI
 			| (ContinueStmt) CONTINUE SEMI
 			| (ReturnExpr) RETURN Expr:expr SEMI
 			| (ReturnNoExpr) RETURN SEMI
 			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI
 			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI
-			| (ForEachStmt) Designator:designator DOT FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI
+			| (ForEachStmt) Designator:designator DOT EnteredLoop FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI
 			| (StmtList) LBRACE StatementList RBRACE
 			| (ErrorStmtIFCondition) IF LPAREN error:err RPAREN
 			{: parser.report_error("Izvrsen oporavak do ) (IF condition) u liniji " + errleft, null);  :}
 			;
+
+EnteredLoop ::= (EnteredLoop) ;
 
 DesignatorStatement ::= (DesignatorStmtOptAssign) Designator AssignOp Expr:expr SEMI
 			| (DesignatorStmtActPars) DesignatorForActPars LPAREN ActParsOptional RPAREN SEMI

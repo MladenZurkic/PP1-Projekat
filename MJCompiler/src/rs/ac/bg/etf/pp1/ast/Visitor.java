@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 4/0/2023 2:7:48
+// 5/0/2023 0:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -40,6 +40,7 @@ public interface Visitor {
     public void visit(NumConstOptional NumConstOptional);
     public void visit(ConstsList ConstsList);
     public void visit(Statement Statement);
+    public void visit(FormParsIdent FormParsIdent);
     public void visit(ExprOrActPars ExprOrActPars);
     public void visit(ExtendsOptional ExtendsOptional);
     public void visit(MulOpFactorList MulOpFactorList);
@@ -118,6 +119,7 @@ public interface Visitor {
     public void visit(DesignatorStmtOptINC DesignatorStmtOptINC);
     public void visit(DesignatorStmtActPars DesignatorStmtActPars);
     public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign);
+    public void visit(EnteredLoop EnteredLoop);
     public void visit(ErrorStmtIFCondition ErrorStmtIFCondition);
     public void visit(StmtList StmtList);
     public void visit(ForEachStmt ForEachStmt);
@@ -132,7 +134,8 @@ public interface Visitor {
     public void visit(DesignatorStmt DesignatorStmt);
     public void visit(TypeOrVoidVoid TypeOrVoidVoid);
     public void visit(TypeOrVoidType TypeOrVoidType);
-    public void visit(FormParsIdent FormParsIdent);
+    public void visit(FormParsIdentNoBrackets FormParsIdentNoBrackets);
+    public void visit(FormParsIdentWithBrackets FormParsIdentWithBrackets);
     public void visit(ErrorFormParsEndRPAREN ErrorFormParsEndRPAREN);
     public void visit(FormParsEndWithRPAREN FormParsEndWithRPAREN);
     public void visit(ErrorFormParsListCOMMA ErrorFormParsListCOMMA);

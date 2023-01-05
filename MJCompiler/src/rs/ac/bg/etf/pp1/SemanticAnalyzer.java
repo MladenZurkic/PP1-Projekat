@@ -43,6 +43,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int currentConstValue = 0;
 	boolean relOpClassArrayCompatible = false;
 	boolean isConditionBool = true;
+	int numOfLoops = 0;
 	int nVars;
 	List<Obj> designators = new ArrayList<Obj>();
 	
@@ -84,9 +85,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
     public void visit(PrintStmt print) {
 		printCallCount++;
+		int kind = print.getExpr().struct.getKind();
+		if(!(kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool)) {
+			report_error("Expr u printu mora da bude tipa int, char ili bool!", print);
+		}
 	}
     
     
+    /*start*/
     
     
     public void visit(ProgName progName) {
@@ -95,7 +101,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(Program program) {
-    	nVars = Tab.currentScope.getnVars();
+    	nVars = ExTab.currentScope.getnVars();
     	if(!mainExists)
     		report_error("Greska: main metoda ne postoji!", null);
     	ExTab.chainLocalSymbols(program.getProgName().obj);
@@ -210,7 +216,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     public void visit(TypeOrVoidVoid ToVVoid) {
     	ToVVoid.struct = ExTab.noType;
-    	currentType = new Obj(Obj.Type, "void", Tab.noType);
+    	currentType = new Obj(Obj.Type, "void", ExTab.noType);
     }
     
     public void visit(TypeOrVoidType ToVType) {
@@ -617,9 +623,102 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			report_error("Greska - Desni designator nije niz! - desigStmtAB", desigStmtAngleBrack);
     		}
     		else {
+    			boolean secondError = false;
+    			for (Obj designator : designators) {
+    				if(!rightDesignator.getType().assignableTo(designator.getType())) {
+    					secondError = true;
+    					report_error("Greska - Niz sa desne strane nije moguce dodeliti vrednostima sa leve strane!", desigStmtAngleBrack);
+    					break;
+    				}
+    				
+    			}
     			
     		}
     	}
-    	
+    }
+    
+    public void visit(EnteredLoop enteredLoop) {
+    	numOfLoops++;
+    }
+    
+    public void visit(BreakStmt breakStmt) {
+    	if(numOfLoops == 0) {
+    		report_error("Greska - Break moze samo unutar petlje!", breakStmt);
+    	}
+    	else {
+    		numOfLoops--;
+    	}
+    }
+    
+    public void visit(ContinueStmt continueStmt) {
+    	if(numOfLoops == 0) {
+    		report_error("Greska - Continue moze samo unutar petlje!", continueStmt);
+    	}
+    }
+    
+    public void visit(Condition condition) {
+    	if(!isConditionBool) {
+    		report_error("Uslov mora biti bool tipa!", condition);
+    	}
+    }
+    
+    public void visit(ReadStmt readStmt) {
+    	Obj designator = readStmt.getDesignator().obj;
+    	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
+    		int kind = designator.getType().getKind();
+    		if(!(kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool)) {
+    			report_error("Greska - podatak mora biti tipa int pri READ-u! - readStmt", readStmt);
+    		}
+    	}
+    	else {
+    		report_error("Greska - pogresan podatak pri READ-u! - readStmt", readStmt);
+    	}
+    }
+    
+    public void visit(ForEachStmt foreachStmt) {
+    	if(foreachStmt.getDesignator().obj.getType().getKind() != Struct.Array) {
+    		report_error("Greska - Mora se iterirati po nizu!", foreachStmt);
+    	}
+    	else {
+    		Obj var = ExTab.find(foreachStmt.getIdent());
+    		if(var == ExTab.noObj) {
+    			report_error("Greska - Ime " + foreachStmt.getIdent() + " nije deklarisano!", foreachStmt);
+    		}
+    		else {
+    			if(var.getKind() != Obj.Var) {
+    				report_error("Greska - Ime " + foreachStmt.getIdent() + " nije promenljiva!", foreachStmt);
+    			}
+    			else {
+    				Struct elemType = foreachStmt.getDesignator().obj.getType().getElemType();
+    				if(var.getType().getKind() != elemType.getKind()) {
+    					report_error("Greska - Promenljiva " + foreachStmt.getIdent() + 
+    							" nije istog tipa kao i elementi niza Designatora!", foreachStmt);
+    				}
+    			}
+    		}
+    	}
+    }
+    
+    public void visit(FormParsIdentNoBrackets formParsIdentNoBrackets) {
+    	if(ExTab.currentScope.findSymbol(formParsIdentNoBrackets.getFormName()) != null) {
+    		report_error("Greska - Vec je deklarisan formalni parametar sa imenom " + formParsIdentNoBrackets.getFormName(), formParsIdentNoBrackets);
+    	}
+    	else {
+    		Obj formPar = ExTab.insert(Obj.Var, formParsIdentNoBrackets.getFormName(), formParsIdentNoBrackets.getType().struct);
+    		currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		formPar.setFpPos(currentMethod.getLevel());
+    	}
+    }
+    
+    public void visit(FormParsIdentWithBrackets formParsIdentWithBrackets ) {
+    	if(ExTab.currentScope.findSymbol(formParsIdentWithBrackets.getFormName()) != null) {
+    		report_error("Greska - Vec je deklarisan formalni parametar sa imenom " + formParsIdentWithBrackets.getFormName(), formParsIdentWithBrackets);
+    	}
+    	else {
+    		Struct type = formParsIdentWithBrackets.getType().struct;
+    		Obj formPar = ExTab.insert(Obj.Var, formParsIdentWithBrackets.getFormName(), new Struct(Struct.Array, type));
+    		currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		formPar.setFpPos(currentMethod.getLevel());
+    	}
     }
 }

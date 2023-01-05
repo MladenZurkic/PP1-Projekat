@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 4/0/2023 2:7:48
+// 5/0/2023 0:53:28
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -40,6 +40,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(NumConstOptional NumConstOptional) { }
     public void visit(ConstsList ConstsList) { }
     public void visit(Statement Statement) { }
+    public void visit(FormParsIdent FormParsIdent) { }
     public void visit(ExprOrActPars ExprOrActPars) { }
     public void visit(ExtendsOptional ExtendsOptional) { }
     public void visit(MulOpFactorList MulOpFactorList) { }
@@ -118,6 +119,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorStmtOptINC DesignatorStmtOptINC) { visit(); }
     public void visit(DesignatorStmtActPars DesignatorStmtActPars) { visit(); }
     public void visit(DesignatorStmtOptAssign DesignatorStmtOptAssign) { visit(); }
+    public void visit(EnteredLoop EnteredLoop) { visit(); }
     public void visit(ErrorStmtIFCondition ErrorStmtIFCondition) { visit(); }
     public void visit(StmtList StmtList) { visit(); }
     public void visit(ForEachStmt ForEachStmt) { visit(); }
@@ -132,7 +134,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(DesignatorStmt DesignatorStmt) { visit(); }
     public void visit(TypeOrVoidVoid TypeOrVoidVoid) { visit(); }
     public void visit(TypeOrVoidType TypeOrVoidType) { visit(); }
-    public void visit(FormParsIdent FormParsIdent) { visit(); }
+    public void visit(FormParsIdentNoBrackets FormParsIdentNoBrackets) { visit(); }
+    public void visit(FormParsIdentWithBrackets FormParsIdentWithBrackets) { visit(); }
     public void visit(ErrorFormParsEndRPAREN ErrorFormParsEndRPAREN) { visit(); }
     public void visit(FormParsEndWithRPAREN FormParsEndWithRPAREN) { visit(); }
     public void visit(ErrorFormParsListCOMMA ErrorFormParsListCOMMA) { visit(); }

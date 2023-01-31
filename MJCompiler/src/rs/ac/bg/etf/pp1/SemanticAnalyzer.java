@@ -103,6 +103,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     /*start*/
     
+    /*
+    public void visit(ProgName progName) {
+    	if(ExTab.currentScope.findSymbol(progName.getProgName()) != null) {
+    		report_error("Greska - ime za program je vec deklarisano! ", progName);
+    		progName.obj = Tab.noObj;
+    	}
+    	else {
+    		progName.obj = ExTab.insert(Obj.Prog, progName.getProgName(), ExTab.noType);
+    	}
+    	ExTab.openScope();
+    */
     
     public void visit(ProgName progName) {
     	progName.obj = ExTab.insert(Obj.Prog, progName.getProgName(), ExTab.noType);
@@ -136,15 +147,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     public void visit(MethodTypeName methodTypeName) {
     	Obj existingMethod = ExTab.find(methodTypeName.getMethName());
-    	
     	if(existingMethod != ExTab.noObj) {
     		report_error("Greska na " + methodTypeName.getLine() + ": Metoda sa imenom " +
     	methodTypeName.getMethName() + " je vec deklarisana", null);
+    		currentMethod = Tab.noObj;
     	}
     	else {
     		currentMethod = ExTab.insert(Obj.Meth, methodTypeName.getMethName(), methodTypeName.getTypeOrVoid().struct);
         	methodTypeName.obj = currentMethod;
-        	System.out.println("IMEEE" + methodTypeName.getMethName());
+        	//System.out.println("IMEEE" + methodTypeName.getMethName());
         	if(methodTypeName.getMethName().equals("main")) {
         		mainExists = true;
         		if(methodTypeName.getTypeOrVoid().struct.getKind() != Struct.None)
@@ -157,7 +168,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}*/
     	
     	if(currentClass != null) {
-    		System.out.println("DESILOSE!");
+    		//System.out.println("DESILOSE!");
     		Obj temp = ExTab.insert(Obj.Var, "this", currentClass.getType());
     		temp.setFpPos(fPposLocal++);
     		
@@ -186,6 +197,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		report_error("Greska na liniji" + returnExpr.getLine() + "Return moze da se pozove samo iz metode!", null);
     	}
     	else {
+    		//System.out.println(returnExpr.getExpr().struct.getKind());
     		if(!currentMethod.getType().equals(returnExpr.getExpr().struct)) {
     			report_error("Greska na liniji " + returnExpr.getLine() + " : " + 
     					"tip izraza u return naredbi ne slaze se sa tipom povratne vrednosti funkcije " + 
@@ -511,6 +523,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	if(factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getKind() != Obj.Meth) {
     		report_error("Greska - " + factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getName() + 
     				" nije funkcija (metoda)", factorDesignatorWithParen);
+    		factorDesignatorWithParen.struct = ExTab.noType;
     	}
     	else {
     		factorDesignatorWithParen.struct = factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getType();
@@ -526,6 +539,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     public void visit(FactorNewActPars factorNewActPars) {
     	if(factorNewActPars.getType().struct.getKind() != Struct.Class) {
     		report_error("Greska - tip mora biti klasni! - factorNewActPars", factorNewActPars);
+    		factorNewActPars.struct = ExTab.noType;
     	}
     	else {
     		factorNewActPars.struct = factorNewActPars.getType().struct;
@@ -535,6 +549,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     public void visit(FactorNewExpr factorNewExpr) {
     	if(factorNewExpr.getExpr().struct.getKind() != Struct.Int) {
     		report_error("Greska - tip mora biti int! - factorNewExpr", factorNewExpr);
+    		factorNewExpr.struct = ExTab.noType;
     	}
     	else {
     		factorNewExpr.struct = new Struct(Struct.Array, factorNewExpr.getType().struct);
@@ -675,7 +690,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		else {
     			boolean secondError = false;
     			for (Obj designator : designators) {
-    				if(!rightDesignator.getType().assignableTo(designator.getType())) {
+    				if(!rightDesignator.getType().getElemType().assignableTo(designator.getType())) {
+    					System.out.println("Right - " + rightDesignator.getType().getKind());
+    					System.out.println("left? - " + designator.getType().getKind());
     					secondError = true;
     					report_error("Greska - Niz sa desne strane nije moguce dodeliti vrednostima sa leve strane!", desigStmtAngleBrack);
     					break;
@@ -755,7 +772,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	else {
     		Obj formPar = ExTab.insert(Obj.Var, formParsIdentNoBrackets.getFormName(), formParsIdentNoBrackets.getType().struct);
-    		currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		if(currentMethod != null) {
+    			currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		}
+    		else {
+    			report_error("Greska - FormParsNoBrackets - nema metode? ", formParsIdentNoBrackets);
+    		}
     		formPar.setFpPos(fPposLocal++);
     	}
     }
@@ -767,7 +789,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	else {
     		Struct type = formParsIdentWithBrackets.getType().struct;
     		Obj formPar = ExTab.insert(Obj.Var, formParsIdentWithBrackets.getFormName(), new Struct(Struct.Array, type));
-    		currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		if(currentMethod != null) {
+    			currentMethod.setLevel(currentMethod.getLevel() + 1);
+    		}
+    		else {
+    			report_error("Greska - FormParsWithBrackets - nema metode? ", formParsIdentWithBrackets);
+    		}
     		formPar.setFpPos(fPposLocal++);
     	}
     }

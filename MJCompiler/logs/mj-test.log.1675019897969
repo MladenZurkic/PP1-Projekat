@@ -1,0 +1,316 @@
+INFO  20:15:58,779 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  20:15:58,809 - #2 program
+INFO  20:15:58,809 - #46 syntax_errors
+INFO  20:15:58,809 - #46 int
+INFO  20:15:58,810 - #46 a
+INFO  20:15:58,810 - #37 ;
+INFO  20:15:58,812 - #46 int
+INFO  20:15:58,813 - #46 abbb
+INFO  20:15:58,813 - #38 ,
+INFO  20:15:58,813 - #46 b
+INFO  20:15:58,813 - #37 ;
+INFO  20:15:58,813 - #25 {
+INFO  20:15:58,813 - #13 void
+INFO  20:15:58,814 - #46 abb
+INFO  20:15:58,814 - #40 (
+INFO  20:15:58,814 - #46 int
+INFO  20:15:58,815 - #46 a
+INFO  20:15:58,815 - #38 ,
+INFO  20:15:58,815 - #46 int
+INFO  20:15:58,815 - #46 b
+INFO  20:15:58,815 - #41 )
+INFO  20:15:58,815 - #25 {
+INFO  20:15:58,816 - #26 }
+INFO  20:15:58,816 - #13 void
+INFO  20:15:58,817 - #46 main
+INFO  20:15:58,817 - #40 (
+INFO  20:15:58,817 - #41 )
+INFO  20:15:58,817 - #25 {
+INFO  20:15:58,817 - #46 b
+INFO  20:15:58,817 - #34 =
+INFO  20:15:58,817 - #47 43
+INFO  20:15:58,817 - #17 +
+INFO  20:15:58,818 - #47 123
+INFO  20:15:58,818 - #37 ;
+INFO  20:15:58,818 - #46 b
+INFO  20:15:58,819 - #34 =
+INFO  20:15:58,819 - #47 123
+INFO  20:15:58,819 - #37 ;
+INFO  20:15:58,819 - #46 b
+INFO  20:15:58,819 - #34 =
+INFO  20:15:58,819 - #47 43
+INFO  20:15:58,819 - #17 +
+INFO  20:15:58,819 - #47 123
+INFO  20:15:58,819 - #37 ;
+INFO  20:15:58,819 - #7 if
+INFO  20:15:58,819 - #40 (
+INFO  20:15:58,819 - #46 a
+INFO  20:15:58,819 - #28 >
+INFO  20:15:58,819 - #46 b
+INFO  20:15:58,820 - #41 )
+INFO  20:15:58,821 - #25 {
+INFO  20:15:58,821 - #46 b
+INFO  20:15:58,821 - #34 =
+INFO  20:15:58,821 - #47 43
+INFO  20:15:58,821 - #17 +
+INFO  20:15:58,821 - #47 123
+INFO  20:15:58,821 - #37 ;
+INFO  20:15:58,821 - #26 }
+INFO  20:15:58,822 - #26 }
+INFO  20:15:58,822 - #26 }
+INFO  20:15:58,826 - Program(
+  ProgName(
+   syntax_errors
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      NoDeclarations(
+      ) [NoDeclarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               a
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         int
+        ) [Type]
+        GlobalVarDeclLists(
+          VarDeclCommaDef(
+            GlobalVarDeclIdent(
+             abbb
+              NoAngleBrackets(
+              ) [NoAngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclCommaDef]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               b
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    MethodDeclLists(
+      NoMethodDeclList(
+      ) [NoMethodDeclList]
+      MethodDecl(
+        MethodTypeName(
+          TypeOrVoidVoid(
+          ) [TypeOrVoidVoid]
+         abb
+        ) [MethodTypeName]
+        FormParsOptionalPars(
+          FormParsWithList(
+            FormParsListWithCOMMA(
+              FormParsIdentNoBrackets(
+                Type(
+                 int
+                ) [Type]
+               a
+              ) [FormParsIdentNoBrackets]
+            ) [FormParsListWithCOMMA]
+            FormParsListEnd(
+              FormParsEndWithRPAREN(
+                FormParsIdentNoBrackets(
+                  Type(
+                   int
+                  ) [Type]
+                 b
+                ) [FormParsIdentNoBrackets]
+              ) [FormParsEndWithRPAREN]
+            ) [FormParsListEnd]
+          ) [FormParsWithList]
+        ) [FormParsOptionalPars]
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        NoStatementList(
+        ) [NoStatementList]
+      ) [MethodDecl]
+    ) [MethodDeclLists]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListDef(
+        StatementListDef(
+          StatementListDef(
+            StatementListDef(
+              NoStatementList(
+              ) [NoStatementList]
+              DesignatorStmt(
+                DesignatorStmtOptAssign(
+                  DesignatorIdent(
+                   b
+                  ) [DesignatorIdent]
+                  AssignOp(
+                  ) [AssignOp]
+                  ExprPlusTerm(
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         43
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                    AddPLUS(
+                    ) [AddPLUS]
+                    TermFactor(
+                      FactorNumber(
+                       123
+                      ) [FactorNumber]
+                    ) [TermFactor]
+                  ) [ExprPlusTerm]
+                ) [DesignatorStmtOptAssign]
+              ) [DesignatorStmt]
+            ) [StatementListDef]
+            DesignatorStmt(
+              DesignatorStmtOptAssign(
+                DesignatorIdent(
+                 b
+                ) [DesignatorIdent]
+                AssignOp(
+                ) [AssignOp]
+                ExprTerm(
+                  TermFactor(
+                    FactorNumber(
+                     123
+                    ) [FactorNumber]
+                  ) [TermFactor]
+                ) [ExprTerm]
+              ) [DesignatorStmtOptAssign]
+            ) [DesignatorStmt]
+          ) [StatementListDef]
+          DesignatorStmt(
+            DesignatorStmtOptAssign(
+              DesignatorIdent(
+               b
+              ) [DesignatorIdent]
+              AssignOp(
+              ) [AssignOp]
+              ExprPlusTerm(
+                ExprTerm(
+                  TermFactor(
+                    FactorNumber(
+                     43
+                    ) [FactorNumber]
+                  ) [TermFactor]
+                ) [ExprTerm]
+                AddPLUS(
+                ) [AddPLUS]
+                TermFactor(
+                  FactorNumber(
+                   123
+                  ) [FactorNumber]
+                ) [TermFactor]
+              ) [ExprPlusTerm]
+            ) [DesignatorStmtOptAssign]
+          ) [DesignatorStmt]
+        ) [StatementListDef]
+        IfStmt(
+          Condition(
+            CondTerm(
+              CondFactExprRelOpExpr(
+                ExprTerm(
+                  TermFactor(
+                    FactorDesignator(
+                      DesignatorIdent(
+                       a
+                      ) [DesignatorIdent]
+                    ) [FactorDesignator]
+                  ) [TermFactor]
+                ) [ExprTerm]
+                RelGT(
+                ) [RelGT]
+                ExprTerm(
+                  TermFactor(
+                    FactorDesignator(
+                      DesignatorIdent(
+                       b
+                      ) [DesignatorIdent]
+                    ) [FactorDesignator]
+                  ) [TermFactor]
+                ) [ExprTerm]
+              ) [CondFactExprRelOpExpr]
+              NoCondFactList(
+              ) [NoCondFactList]
+            ) [CondTerm]
+            NoCondTermList(
+            ) [NoCondTermList]
+          ) [Condition]
+          StmtList(
+            StatementListDef(
+              NoStatementList(
+              ) [NoStatementList]
+              DesignatorStmt(
+                DesignatorStmtOptAssign(
+                  DesignatorIdent(
+                   b
+                  ) [DesignatorIdent]
+                  AssignOp(
+                  ) [AssignOp]
+                  ExprPlusTerm(
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         43
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                    AddPLUS(
+                    ) [AddPLUS]
+                    TermFactor(
+                      FactorNumber(
+                       123
+                      ) [FactorNumber]
+                    ) [TermFactor]
+                  ) [ExprPlusTerm]
+                ) [DesignatorStmtOptAssign]
+              ) [DesignatorStmt]
+            ) [StatementListDef]
+          ) [StmtList]
+          ElseStmtEpsilon(
+          ) [ElseStmtEpsilon]
+        ) [IfStmt]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  20:15:58,826 - ===================================
+INFO  20:15:58,829 - Obradjuje se funkcija abb na liniji 7
+INFO  20:15:58,829 - Obradjuje se funkcija main na liniji 8
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - b na liniji 9
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - b na liniji 10
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - b na liniji 11
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - a na liniji 12
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - b na liniji 12
+INFO  20:15:58,830 - Pronadjena globalna varijabla! - b na liniji 13
+INFO  20:15:58,830 -  Print count calls = 0
+INFO  20:15:58,830 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  20:15:58,830 - ===================================
+INFO  20:15:58,831 - Parisanje uspesno zavrseno!

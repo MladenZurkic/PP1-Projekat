@@ -1,0 +1,230 @@
+INFO  20:06:59,082 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  20:06:59,114 - #2 program
+INFO  20:06:59,115 - #46 syntax_errors
+INFO  20:06:59,115 - #46 int
+INFO  20:06:59,115 - #46 a
+INFO  20:06:59,116 - #17 +
+ERROR 20:06:59,116 - 
+Sintaksna greska na liniji 3
+INFO  20:06:59,116 - #37 ;
+INFO  20:06:59,116 - #46 int
+INFO  20:06:59,116 - #46 a
+INFO  20:06:59,116 - #17 +
+ERROR 20:06:59,117 - Izvrsen oporavak do ; (VarDeclEnd) u liniji 3
+ERROR 20:06:59,117 - 
+Sintaksna greska na liniji 4
+INFO  20:06:59,117 - #38 ,
+INFO  20:06:59,118 - #46 b
+INFO  20:06:59,118 - #37 ;
+INFO  20:06:59,118 - #25 {
+ERROR 20:06:59,118 - Izvrsen oporavak do , (VarDeclComma) u liniji 4
+INFO  20:06:59,119 - #13 void
+INFO  20:06:59,119 - #46 a
+INFO  20:06:59,120 - #40 (
+INFO  20:06:59,120 - #46 int
+INFO  20:06:59,120 - #46 a
+INFO  20:06:59,120 - #17 +
+ERROR 20:06:59,120 - 
+Sintaksna greska na liniji 7
+INFO  20:06:59,120 - #38 ,
+INFO  20:06:59,120 - #46 int
+INFO  20:06:59,121 - #46 b
+INFO  20:06:59,121 - #41 )
+ERROR 20:06:59,121 - Izvrsen oporavak do , (FormParsList) u liniji 7
+INFO  20:06:59,121 - #25 {
+INFO  20:06:59,122 - #26 }
+INFO  20:06:59,122 - #13 void
+INFO  20:06:59,122 - #46 main
+INFO  20:06:59,122 - #40 (
+INFO  20:06:59,122 - #41 )
+INFO  20:06:59,122 - #25 {
+INFO  20:06:59,123 - #46 b
+INFO  20:06:59,123 - #34 =
+INFO  20:06:59,123 - #47 43
+INFO  20:06:59,123 - #17 +
+INFO  20:06:59,124 - #47 123
+INFO  20:06:59,124 - #17 +
+INFO  20:06:59,124 - #37 ;
+ERROR 20:06:59,124 - 
+Sintaksna greska na liniji 9
+INFO  20:06:59,124 - #46 b
+INFO  20:06:59,124 - #34 =
+INFO  20:06:59,125 - #47 123
+ERROR 20:06:59,125 - Izvrsen oporavak do ; (DesignatorStmt) u liniji 13
+INFO  20:06:59,125 - #37 ;
+INFO  20:06:59,125 - #46 b
+INFO  20:06:59,125 - #34 =
+INFO  20:06:59,125 - #47 43
+INFO  20:06:59,125 - #17 +
+INFO  20:06:59,125 - #47 123
+INFO  20:06:59,125 - #17 +
+INFO  20:06:59,125 - #37 ;
+ERROR 20:06:59,125 - 
+Sintaksna greska na liniji 11
+INFO  20:06:59,126 - #7 if
+INFO  20:06:59,126 - #40 (
+INFO  20:06:59,126 - #46 a
+ERROR 20:06:59,126 - Izvrsen oporavak do ; (DesignatorStmt) u liniji 13
+INFO  20:06:59,126 - #17 +
+INFO  20:06:59,126 - #28 >
+ERROR 20:06:59,126 - 
+Sintaksna greska na liniji 12
+INFO  20:06:59,126 - #46 b
+INFO  20:06:59,126 - #41 )
+INFO  20:06:59,126 - #25 {
+INFO  20:06:59,126 - #46 b
+INFO  20:06:59,126 - #34 =
+ERROR 20:06:59,126 - Izvrsen oporavak do ) (IF condition) u liniji 12
+INFO  20:06:59,127 - #47 43
+INFO  20:06:59,127 - #17 +
+INFO  20:06:59,127 - #47 123
+INFO  20:06:59,127 - #17 +
+INFO  20:06:59,127 - #37 ;
+ERROR 20:06:59,127 - 
+Sintaksna greska na liniji 13
+INFO  20:06:59,127 - #26 }
+INFO  20:06:59,127 - #26 }
+INFO  20:06:59,127 - #26 }
+ERROR 20:06:59,127 - Izvrsen oporavak do ; (DesignatorStmt) u liniji 14
+INFO  20:06:59,132 - Program(
+  ProgName(
+   syntax_errors
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      NoDeclarations(
+      ) [NoDeclarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclListEnd(
+            ErrorVarDeclEnd(
+            ) [ErrorVarDeclEnd]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         int
+        ) [Type]
+        GlobalVarDeclLists(
+          ErrorVarDeclComma(
+          ) [ErrorVarDeclComma]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               b
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    MethodDeclLists(
+      NoMethodDeclList(
+      ) [NoMethodDeclList]
+      MethodDecl(
+        MethodTypeName(
+          TypeOrVoidVoid(
+          ) [TypeOrVoidVoid]
+         a
+        ) [MethodTypeName]
+        FormParsOptionalPars(
+          FormParsWithList(
+            ErrorFormParsListCOMMA(
+            ) [ErrorFormParsListCOMMA]
+            FormParsListEnd(
+              FormParsEndWithRPAREN(
+                FormParsIdentNoBrackets(
+                  Type(
+                   int
+                  ) [Type]
+                 b
+                ) [FormParsIdentNoBrackets]
+              ) [FormParsEndWithRPAREN]
+            ) [FormParsListEnd]
+          ) [FormParsWithList]
+        ) [FormParsOptionalPars]
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        NoStatementList(
+        ) [NoStatementList]
+      ) [MethodDecl]
+    ) [MethodDeclLists]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListDef(
+        StatementListDef(
+          StatementListDef(
+            StatementListDef(
+              StatementListDef(
+                NoStatementList(
+                ) [NoStatementList]
+                DesignatorStmt(
+                  ErrorDesignatorStmtSEMI(
+                  ) [ErrorDesignatorStmtSEMI]
+                ) [DesignatorStmt]
+              ) [StatementListDef]
+              DesignatorStmt(
+                DesignatorStmtOptAssign(
+                  DesignatorIdent(
+                   b
+                  ) [DesignatorIdent]
+                  AssignOp(
+                  ) [AssignOp]
+                  ExprTerm(
+                    TermFactor(
+                      FactorNumber(
+                       123
+                      ) [FactorNumber]
+                    ) [TermFactor]
+                  ) [ExprTerm]
+                ) [DesignatorStmtOptAssign]
+              ) [DesignatorStmt]
+            ) [StatementListDef]
+            DesignatorStmt(
+              ErrorDesignatorStmtSEMI(
+              ) [ErrorDesignatorStmtSEMI]
+            ) [DesignatorStmt]
+          ) [StatementListDef]
+          ErrorStmtIFCondition(
+          ) [ErrorStmtIFCondition]
+        ) [StatementListDef]
+        StmtList(
+          StatementListDef(
+            NoStatementList(
+            ) [NoStatementList]
+            DesignatorStmt(
+              ErrorDesignatorStmtSEMI(
+              ) [ErrorDesignatorStmtSEMI]
+            ) [DesignatorStmt]
+          ) [StatementListDef]
+        ) [StmtList]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  20:06:59,132 - ===================================
+INFO  20:06:59,135 - Obradjuje se funkcija a na liniji 7
+INFO  20:06:59,135 - Obradjuje se funkcija main na liniji 8
+INFO  20:06:59,135 - Pronadjena globalna varijabla! - b na liniji 10
+INFO  20:06:59,135 -  Print count calls = 0
+INFO  20:06:59,135 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  20:06:59,135 - ===================================
+ERROR 20:06:59,136 - Parsiranje NIJE uspesno zavrseno.

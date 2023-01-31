@@ -1,0 +1,30 @@
+INFO  20:06:00,084 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  20:06:00,116 - #2 program
+INFO  20:06:00,116 - #46 syntax_errors
+INFO  20:06:00,116 - #46 int
+INFO  20:06:00,117 - #46 a
+INFO  20:06:00,117 - #17 +
+ERROR 20:06:00,117 - 
+Sintaksna greska na liniji 3
+INFO  20:06:00,118 - #37 ;
+INFO  20:06:00,118 - #46 int
+INFO  20:06:00,118 - #46 a
+INFO  20:06:00,118 - #17 +
+ERROR 20:06:00,118 - Izvrsen oporavak do ; (VarDeclEnd) u liniji 3
+ERROR 20:06:00,119 - 
+Sintaksna greska na liniji 4
+INFO  20:06:00,119 - #38 ,
+INFO  20:06:00,119 - #46 b
+INFO  20:06:00,120 - #37 ;
+INFO  20:06:00,120 - #4 class
+ERROR 20:06:00,120 - Izvrsen oporavak do , (VarDeclComma) u liniji 4
+INFO  20:06:00,121 - #46 A
+INFO  20:06:00,121 - #14 extends
+INFO  20:06:00,122 - #46 B
+INFO  20:06:00,122 - #25 {
+INFO  20:06:00,122 - #46 int
+INFO  20:06:00,122 - #46 a
+INFO  20:06:00,122 - #17 +
+ERROR 20:06:00,122 - 
+Sintaksna greska na liniji 7
+ERROR 20:06:00,122 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 7

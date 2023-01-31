@@ -55,7 +55,7 @@ import java_cup.runtime.Symbol;
 //"this"		{ return new_symbol(sym.THIS, yytext()); }
 "foreach"	{ return new_symbol(sym.FOREACH, yytext()); }
 
-'([a-z]|[A-Z])'		{ return new_symbol(sym.CHARCONST, Character.valueOf(yytext().charAt(1))); }
+"'"."'"	{ return new_symbol(sym.CHARCONST, Character.valueOf(yytext().charAt(1))); }
 "true" | "false"	{ return new_symbol(sym.BOOLCONST, Boolean.valueOf(yytext())); }
 ([a-z]|[A-Z])[a-zA-Z0-9_]*	{return new_symbol (sym.IDENT, yytext()); }
 [0-9]+  { return new_symbol(sym.NUMBER, Integer.valueOf(yytext())); }

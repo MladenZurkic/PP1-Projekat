@@ -1,0 +1,71 @@
+INFO  20:05:15,874 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  20:05:15,907 - #2 program
+INFO  20:05:15,908 - #46 syntax_errors
+INFO  20:05:15,908 - #46 int
+INFO  20:05:15,908 - #46 a
+INFO  20:05:15,909 - #17 +
+ERROR 20:05:15,909 - 
+Sintaksna greska na liniji 3
+INFO  20:05:15,909 - #37 ;
+INFO  20:05:15,909 - #46 int
+INFO  20:05:15,909 - #46 a
+INFO  20:05:15,909 - #17 +
+ERROR 20:05:15,910 - Izvrsen oporavak do ; (VarDeclEnd) u liniji 3
+ERROR 20:05:15,910 - 
+Sintaksna greska na liniji 4
+INFO  20:05:15,910 - #38 ,
+INFO  20:05:15,911 - #46 b
+INFO  20:05:15,911 - #37 ;
+INFO  20:05:15,911 - #25 {
+ERROR 20:05:15,911 - Izvrsen oporavak do , (VarDeclComma) u liniji 4
+INFO  20:05:15,912 - #26 }
+INFO  20:05:15,918 - Program(
+  ProgName(
+   syntax_errors
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      NoDeclarations(
+      ) [NoDeclarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclListEnd(
+            ErrorVarDeclEnd(
+            ) [ErrorVarDeclEnd]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         int
+        ) [Type]
+        GlobalVarDeclLists(
+          ErrorVarDeclComma(
+          ) [ErrorVarDeclComma]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               b
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  NoMethodDeclList(
+  ) [NoMethodDeclList]
+) [Program]
+INFO  20:05:15,918 - ===================================
+ERROR 20:05:15,921 - Greska: main metoda ne postoji!
+INFO  20:05:15,921 -  Print count calls = 0
+INFO  20:05:15,921 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  20:05:15,921 - ===================================
+ERROR 20:05:15,922 - Parsiranje NIJE uspesno zavrseno.

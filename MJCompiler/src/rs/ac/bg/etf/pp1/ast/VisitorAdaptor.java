@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/0/2023 22:36:59
+// 4/1/2023 3:12:38
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -17,13 +17,14 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(StatementList StatementList) { }
     public void visit(ClassConstrMethodDecl ClassConstrMethodDecl) { }
     public void visit(Factor Factor) { }
+    public void visit(CondTerm CondTerm) { }
     public void visit(AddOpTermList AddOpTermList) { }
-    public void visit(CondFactList CondFactList) { }
     public void visit(DesignatorCommaList DesignatorCommaList) { }
     public void visit(MoreVarDecls MoreVarDecls) { }
     public void visit(Designator Designator) { }
     public void visit(Term Term) { }
     public void visit(FormParsList FormParsList) { }
+    public void visit(Condition Condition) { }
     public void visit(FormParsOptional FormParsOptional) { }
     public void visit(MulOp MulOp) { }
     public void visit(DesignatorOptional DesignatorOptional) { }
@@ -64,6 +65,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(RelEQ RelEQ) { visit(); }
     public void visit(AssignOp AssignOp) { visit(); }
     public void visit(Label Label) { visit(); }
+    public void visit(DesignatorArrayHelp DesignatorArrayHelp) { visit(); }
     public void visit(DesignatorExpr DesignatorExpr) { visit(); }
     public void visit(DesignatorDotIdent DesignatorDotIdent) { visit(); }
     public void visit(DesignatorIdent DesignatorIdent) { visit(); }
@@ -92,17 +94,18 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ExprMinusTerm ExprMinusTerm) { visit(); }
     public void visit(CondFactExprRelOpExpr CondFactExprRelOpExpr) { visit(); }
     public void visit(CondFactExpr CondFactExpr) { visit(); }
-    public void visit(NoCondFactList NoCondFactList) { visit(); }
-    public void visit(CondFactListDef CondFactListDef) { visit(); }
-    public void visit(CondTerm CondTerm) { visit(); }
+    public void visit(CondTermAndCondFact CondTermAndCondFact) { visit(); }
+    public void visit(CondTermFact CondTermFact) { visit(); }
     public void visit(NoCondTermList NoCondTermList) { visit(); }
     public void visit(CondTermListDef CondTermListDef) { visit(); }
-    public void visit(Condition Condition) { visit(); }
+    public void visit(ConditionORCondTerm ConditionORCondTerm) { visit(); }
+    public void visit(ConditionCondTerm ConditionCondTerm) { visit(); }
     public void visit(NoExprCommaList NoExprCommaList) { visit(); }
     public void visit(ExprCommaListDef ExprCommaListDef) { visit(); }
     public void visit(ActParsExprList ActParsExprList) { visit(); }
     public void visit(ActParsExprOnly ActParsExprOnly) { visit(); }
     public void visit(NoDesignatorCommaList NoDesignatorCommaList) { visit(); }
+    public void visit(DesignatorCommaListSingle DesignatorCommaListSingle) { visit(); }
     public void visit(DesignatorCommaListDef DesignatorCommaListDef) { visit(); }
     public void visit(NoDesignatorOpt NoDesignatorOpt) { visit(); }
     public void visit(DesignatorOpt DesignatorOpt) { visit(); }
@@ -113,7 +116,6 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ElseStmtEpsilon ElseStmtEpsilon) { visit(); }
     public void visit(ElseStmtOpt ElseStmtOpt) { visit(); }
     public void visit(ErrorDesignatorStmtSEMI ErrorDesignatorStmtSEMI) { visit(); }
-    public void visit(DesignatorStmtAngleBrackNoDesig DesignatorStmtAngleBrackNoDesig) { visit(); }
     public void visit(DesignatorStmtAngleBrack DesignatorStmtAngleBrack) { visit(); }
     public void visit(DesignatorStmtOptDEC DesignatorStmtOptDEC) { visit(); }
     public void visit(DesignatorStmtOptINC DesignatorStmtOptINC) { visit(); }
@@ -123,7 +125,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(ErrorStmtIFCondition ErrorStmtIFCondition) { visit(); }
     public void visit(StmtList StmtList) { visit(); }
     public void visit(ForEachStmt ForEachStmt) { visit(); }
-    public void visit(PrintStmt PrintStmt) { visit(); }
+    public void visit(PrintStmtWithNum PrintStmtWithNum) { visit(); }
+    public void visit(PrintStmtNoNum PrintStmtNoNum) { visit(); }
     public void visit(ReadStmt ReadStmt) { visit(); }
     public void visit(ReturnNoExpr ReturnNoExpr) { visit(); }
     public void visit(ReturnExpr ReturnExpr) { visit(); }

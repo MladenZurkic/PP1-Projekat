@@ -1,20 +1,19 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/0/2023 22:36:58
+// 4/1/2023 3:12:38
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class PrintStmt extends Statement {
+public class PrintStmtWithNum extends Statement {
 
     private Expr Expr;
-    private NumConstOptional NumConstOptional;
+    private Integer N1;
 
-    public PrintStmt (Expr Expr, NumConstOptional NumConstOptional) {
+    public PrintStmtWithNum (Expr Expr, Integer N1) {
         this.Expr=Expr;
         if(Expr!=null) Expr.setParent(this);
-        this.NumConstOptional=NumConstOptional;
-        if(NumConstOptional!=null) NumConstOptional.setParent(this);
+        this.N1=N1;
     }
 
     public Expr getExpr() {
@@ -25,12 +24,12 @@ public class PrintStmt extends Statement {
         this.Expr=Expr;
     }
 
-    public NumConstOptional getNumConstOptional() {
-        return NumConstOptional;
+    public Integer getN1() {
+        return N1;
     }
 
-    public void setNumConstOptional(NumConstOptional NumConstOptional) {
-        this.NumConstOptional=NumConstOptional;
+    public void setN1(Integer N1) {
+        this.N1=N1;
     }
 
     public void accept(Visitor visitor) {
@@ -39,25 +38,22 @@ public class PrintStmt extends Statement {
 
     public void childrenAccept(Visitor visitor) {
         if(Expr!=null) Expr.accept(visitor);
-        if(NumConstOptional!=null) NumConstOptional.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(Expr!=null) Expr.traverseTopDown(visitor);
-        if(NumConstOptional!=null) NumConstOptional.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(Expr!=null) Expr.traverseBottomUp(visitor);
-        if(NumConstOptional!=null) NumConstOptional.traverseBottomUp(visitor);
         accept(visitor);
     }
 
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("PrintStmt(\n");
+        buffer.append("PrintStmtWithNum(\n");
 
         if(Expr!=null)
             buffer.append(Expr.toString("  "+tab));
@@ -65,14 +61,11 @@ public class PrintStmt extends Statement {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(NumConstOptional!=null)
-            buffer.append(NumConstOptional.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
+        buffer.append(" "+tab+N1);
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [PrintStmt]");
+        buffer.append(") [PrintStmtWithNum]");
         return buffer.toString();
     }
 }

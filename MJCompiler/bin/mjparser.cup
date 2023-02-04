@@ -63,13 +63,14 @@ nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
 nonterminal FormParsList, Statement, DesignatorStatement;
 nonterminal ElseStatementOptional, NumConstOptional;
 nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
-nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFactList, CondFact;
+nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFact;
 nonterminal AddOpTermList, MulOpFactorList, Label, AssignOp, RelOp, AddOp, MulOp;
 nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars;
 nonterminal GlobalVarDecl, FormParsEnd, FormParsIdent, ExtendsOptional, VarDeclList;
 nonterminal GlobalVarDeclList, VarDeclComma, VarDeclEnd, VarDeclIdent;
 nonterminal ConstructorDeclList, ClassMethodDeclList, GlobalVarDeclIdent, EnteredLoop;
-/*nonterminal DesignatorStatementOptional;*/
+nonterminal DesignatorArrayHelp;
+
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
@@ -211,7 +212,8 @@ Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt
 			| (ReturnExpr) RETURN Expr:expr SEMI
 			| (ReturnNoExpr) RETURN SEMI
 			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI
-			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI
+			| (PrintStmtNoNum) PRINT LPAREN Expr:expr RPAREN SEMI
+			| (PrintStmtWithNum) PRINT LPAREN Expr:expr COMMA NUMBER RPAREN SEMI
 			| (ForEachStmt) Designator:designator DOT EnteredLoop FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI
 			| (StmtList) LBRACE StatementList RBRACE
 			| (ErrorStmtIFCondition) IF LPAREN error:err RPAREN
@@ -224,8 +226,7 @@ DesignatorStatement ::= (DesignatorStmtOptAssign) Designator AssignOp Expr:expr 
 			| (DesignatorStmtActPars) DesignatorForActPars LPAREN ActParsOptional RPAREN SEMI
 			| (DesignatorStmtOptINC) Designator INC SEMI
 			| (DesignatorStmtOptDEC) Designator DEC SEMI
-			| (DesignatorStmtAngleBrack) LANGLE DesignatorForActPars DesignatorCommaList RANGLE EQUAL Designator SEMI
-			| (DesignatorStmtAngleBrackNoDesig) LANGLE DesignatorCommaList RANGLE EQUAL Designator SEMI
+			| (DesignatorStmtAngleBrack) LANGLE DesignatorCommaList RANGLE EQUAL Designator SEMI
 			| (ErrorDesignatorStmtSEMI) error:err SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :}
 			;
@@ -238,14 +239,6 @@ NumConstOptional ::= (NumConstOpt) COMMA NUMBER
 				| (NoNumConst) /* epsilon */
 				;
 
-/*
-DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
-							| (DesignatorStmtNoActPars) LPAREN ActPars RPAREN
-							| (DesignatorStmtActPars) LPAREN RPAREN
-							| (DesignatorStmtOptINC) INC
-							| (DesignatorStmtOptDEC) DEC;
-*/
-
 ActParsOptional ::= (ActParsOpt) ActPars
 				| (NoActParsOpt) /* epsilon */
 				;
@@ -255,6 +248,7 @@ DesignatorOptional ::= (DesignatorOpt) Designator
 					;
 
 DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList COMMA DesignatorOptional
+					| (DesignatorCommaListSingle) Designator
 					| (NoDesignatorCommaList) /* epsilon */
 					;
 
@@ -266,17 +260,17 @@ ExprCommaList ::= (ExprCommaListDef) ExprCommaList COMMA Expr:expr
 				| (NoExprCommaList) /* epsilon */
 				;
 
-Condition ::= (Condition) CondTerm CondTermList;
+Condition ::= (ConditionCondTerm) CondTerm
+			| (ConditionORCondTerm) Condition BITOR CondTerm
+			;
 
 CondTermList ::= (CondTermListDef) CondTermList BITOR CondTerm
 				| (NoCondTermList) /* epsilon */
 				;
 
-CondTerm ::= (CondTerm) CondFact CondFactList;
-
-CondFactList ::= (CondFactListDef) CondFactList BITAND CondFact
-				| (NoCondFactList) /* epsilon */
-				;
+CondTerm ::= (CondTermFact) CondFact
+			| (CondTermAndCondFact) CondTerm BITAND CondFact
+			;
 				
 CondFact ::= (CondFactExpr) Expr
 			| (CondFactExprRelOpExpr) Expr:expr1 RelOp Expr:expr2;
@@ -323,8 +317,10 @@ ExprOrActPars ::= (ExprOrActParsExpr) LANGLE Expr:expr RANGLE
 
 Designator ::= (DesignatorIdent) IDENT:ident
 			| (DesignatorDotIdent) Designator:designator DOT IDENT:ident
-			| (DesignatorExpr) Designator:designator LANGLE Expr RANGLE
+			| (DesignatorExpr) DesignatorArrayHelp LANGLE Expr RANGLE
 			;
+
+DesignatorArrayHelp ::= (DesignatorArrayHelp) Designator;
 
 Label ::= (Label) IDENT:ident;
 AssignOp ::= (AssignOp) EQUAL;

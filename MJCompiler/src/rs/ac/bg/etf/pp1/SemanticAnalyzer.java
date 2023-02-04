@@ -87,20 +87,34 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
 	}
 	
-    public void visit(PrintStmt print) {
+	
+    public void visit(PrintStmtWithNum print) {
 		printCallCount++;
 		int kind = print.getExpr().struct.getKind();
 		
-		/*System.out.println("PRINT EXPR: "+ print.getExpr());
-		System.out.println("TIP: " + kind);
-		System.out.println("Struct.Char je: " + Struct.Char);*/
+		//System.out.println("PRINT EXPR: "+ print.getExpr());
+		//System.out.println("TIP: " + kind);
+		//System.out.println("Struct.Char je: " + Struct.Char);
+		
+		if(!((kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool))) {
+			report_error("Expr u printu mora da bude tipa int, char ili bool!", print);
+		}
+	}    
+	
+    public void visit(PrintStmtNoNum print) {
+		printCallCount++;
+		int kind = print.getExpr().struct.getKind();
+		
+		//System.out.println("PRINT EXPR: "+ print.getExpr());
+		//System.out.println("TIP: " + kind);
+		//System.out.println("Struct.Char je: " + Struct.Char);
 		
 		if(!((kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool))) {
 			report_error("Expr u printu mora da bude tipa int, char ili bool!", print);
 		}
 	}
     
-    
+
     /*start*/
     
     /*
@@ -168,7 +182,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}*/
     	
     	if(currentClass != null) {
-    		//System.out.println("DESILOSE!");
+    		//System.out.println("DESILO SE, IMA KLASE!");
     		Obj temp = ExTab.insert(Obj.Var, "this", currentClass.getType());
     		temp.setFpPos(fPposLocal++);
     		
@@ -450,9 +464,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}
     	designatorIdent.obj = object;
     }
-    
+   
     public void visit(DesignatorExpr designatorExpr) {
-    	Obj designator = designatorExpr.getDesignator().obj;
+    	Obj designator = designatorExpr.getDesignatorArrayHelp().getDesignator().obj;
     	designatorExpr.obj = designator;
     	if(designator == ExTab.noObj) {
     		report_error("Greska - Ime " + designator.getName() + " nije pronadjeno (nije definisano)", designatorExpr);
@@ -619,6 +633,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     public void visit(DesignatorStmtOptAssign designatorStmtOptAssign) {
     	Obj designator = designatorStmtOptAssign.getDesignator().obj;
     	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
+    		//System.out.println(designatorStmtOptAssign.getExpr().struct.getKind());
+    		//System.out.println(designator.getType().getKind());
     		if(!designatorStmtOptAssign.getExpr().struct.assignableTo(designator.getType())) {
     			report_error("Greska - izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign", designatorStmtOptAssign);
     		}
@@ -667,11 +683,18 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	designators.add(designatorOpt.getDesignator().obj);
     }
     
+    
+    public void visit(DesignatorCommaListSingle desSingle) {
+    	designators.add(desSingle.getDesignator().obj);
+    }
+    
     public void visit(DesignatorStmtAngleBrack desigStmtAngleBrack) {
     	Collections.reverse(designators);
     	//designators.add(0, designatorForActPars);
-    	designators.add(0, designatorsListForActpars.get(designatorsListForActpars.size() - 1));
-    	designatorsListForActpars.remove(designatorsListForActpars.size() - 1);
+    	if(designatorsListForActpars.size() != 0) {
+        	designators.add(0, designatorsListForActpars.get(designatorsListForActpars.size() - 1));
+        	designatorsListForActpars.remove(designatorsListForActpars.size() - 1);
+    	}
     	designatorForActPars = null;
     	boolean firstError = false;
     	for (Obj designator : designators) {
@@ -691,8 +714,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			boolean secondError = false;
     			for (Obj designator : designators) {
     				if(!rightDesignator.getType().getElemType().assignableTo(designator.getType())) {
-    					System.out.println("Right - " + rightDesignator.getType().getKind());
-    					System.out.println("left? - " + designator.getType().getKind());
+    					//System.out.println("Right - " + rightDesignator.getType().getKind());
+    					//System.out.println("left? - " + designator.getType().getKind());
     					secondError = true;
     					report_error("Greska - Niz sa desne strane nije moguce dodeliti vrednostima sa leve strane!", desigStmtAngleBrack);
     					break;

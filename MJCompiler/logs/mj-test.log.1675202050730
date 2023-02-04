@@ -1,0 +1,90 @@
+INFO  22:47:40,862 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  22:47:42,366 - #2 program
+INFO  22:47:42,366 - #46 test302
+INFO  22:47:42,366 - #46 int
+INFO  22:47:42,389 - #46 niz
+INFO  22:47:42,395 - #42 [
+INFO  22:47:42,395 - #24 ]
+INFO  22:47:42,395 - #37 ;
+INFO  22:47:42,427 - #25 {
+INFO  22:47:42,433 - #13 void
+INFO  22:47:42,459 - #46 main
+INFO  22:47:42,464 - #40 (
+INFO  22:47:42,471 - #41 )
+INFO  22:47:42,471 - #25 {
+INFO  22:47:42,495 - #46 int
+INFO  22:47:42,501 - #34 =
+INFO  22:47:42,501 - #46 niz
+INFO  22:47:42,531 - #37 ;
+INFO  22:47:42,531 - #26 }
+INFO  22:47:42,531 - #26 }
+INFO  22:47:42,579 - Program(
+  ProgName(
+   test302
+  ) [ProgName]
+  Declarations(
+    NoDeclarations(
+    ) [NoDeclarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         int
+        ) [Type]
+        GlobalVarDeclListEnd(
+          VarDeclEndDef(
+            GlobalVarDeclIdent(
+             niz
+              AngleBrackets(
+              ) [AngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclEndDef]
+        ) [GlobalVarDeclListEnd]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListDef(
+        NoStatementList(
+        ) [NoStatementList]
+        DesignatorStmt(
+          DesignatorStmtOptAssign(
+            DesignatorIdent(
+             int
+            ) [DesignatorIdent]
+            AssignOp(
+            ) [AssignOp]
+            ExprTerm(
+              TermFactor(
+                FactorDesignator(
+                  DesignatorIdent(
+                   niz
+                  ) [DesignatorIdent]
+                ) [FactorDesignator]
+              ) [TermFactor]
+            ) [ExprTerm]
+          ) [DesignatorStmtOptAssign]
+        ) [DesignatorStmt]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  22:47:42,580 - ===================================
+INFO  22:47:42,646 - Obradjuje se funkcija main na liniji 4
+INFO  22:47:42,646 - Pronadjena globalna varijabla! - niz na liniji 6
+ERROR 22:47:42,646 - Greska - pogresan podatak pri dodeli vrednosti! - desigAssign na liniji 6
+INFO  22:47:42,646 -  Print count calls = 0
+INFO  22:47:42,646 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  22:47:42,646 - ===================================
+ERROR 22:47:42,647 - Parsiranje NIJE uspesno zavrseno.

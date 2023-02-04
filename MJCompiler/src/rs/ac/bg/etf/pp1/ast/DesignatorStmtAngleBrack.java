@@ -1,31 +1,20 @@
 // generated with ast extension for cup
 // version 0.8
-// 29/0/2023 22:36:58
+// 4/1/2023 3:12:38
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class DesignatorStmtAngleBrack extends DesignatorStatement {
 
-    private DesignatorForActPars DesignatorForActPars;
     private DesignatorCommaList DesignatorCommaList;
     private Designator Designator;
 
-    public DesignatorStmtAngleBrack (DesignatorForActPars DesignatorForActPars, DesignatorCommaList DesignatorCommaList, Designator Designator) {
-        this.DesignatorForActPars=DesignatorForActPars;
-        if(DesignatorForActPars!=null) DesignatorForActPars.setParent(this);
+    public DesignatorStmtAngleBrack (DesignatorCommaList DesignatorCommaList, Designator Designator) {
         this.DesignatorCommaList=DesignatorCommaList;
         if(DesignatorCommaList!=null) DesignatorCommaList.setParent(this);
         this.Designator=Designator;
         if(Designator!=null) Designator.setParent(this);
-    }
-
-    public DesignatorForActPars getDesignatorForActPars() {
-        return DesignatorForActPars;
-    }
-
-    public void setDesignatorForActPars(DesignatorForActPars DesignatorForActPars) {
-        this.DesignatorForActPars=DesignatorForActPars;
     }
 
     public DesignatorCommaList getDesignatorCommaList() {
@@ -49,20 +38,17 @@ public class DesignatorStmtAngleBrack extends DesignatorStatement {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(DesignatorForActPars!=null) DesignatorForActPars.accept(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.accept(visitor);
         if(Designator!=null) Designator.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(DesignatorForActPars!=null) DesignatorForActPars.traverseTopDown(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.traverseTopDown(visitor);
         if(Designator!=null) Designator.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(DesignatorForActPars!=null) DesignatorForActPars.traverseBottomUp(visitor);
         if(DesignatorCommaList!=null) DesignatorCommaList.traverseBottomUp(visitor);
         if(Designator!=null) Designator.traverseBottomUp(visitor);
         accept(visitor);
@@ -72,12 +58,6 @@ public class DesignatorStmtAngleBrack extends DesignatorStatement {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("DesignatorStmtAngleBrack(\n");
-
-        if(DesignatorForActPars!=null)
-            buffer.append(DesignatorForActPars.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
 
         if(DesignatorCommaList!=null)
             buffer.append(DesignatorCommaList.toString("  "+tab));

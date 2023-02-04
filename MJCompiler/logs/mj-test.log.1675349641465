@@ -1,0 +1,590 @@
+INFO  15:51:47,111 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  15:51:47,141 - #2 program
+INFO  15:51:47,141 - #46 p
+INFO  15:51:47,141 - #6 const
+INFO  15:51:47,142 - #46 int
+INFO  15:51:47,142 - #46 size
+INFO  15:51:47,142 - #34 =
+INFO  15:51:47,143 - #47 10
+INFO  15:51:47,143 - #37 ;
+INFO  15:51:47,143 - #4 class
+INFO  15:51:47,144 - #46 Table
+INFO  15:51:47,144 - #25 {
+INFO  15:51:47,144 - #46 int
+INFO  15:51:47,145 - #46 pos
+INFO  15:51:47,145 - #42 [
+INFO  15:51:47,145 - #24 ]
+INFO  15:51:47,145 - #38 ,
+INFO  15:51:47,146 - #46 neg
+INFO  15:51:47,146 - #42 [
+INFO  15:51:47,146 - #24 ]
+INFO  15:51:47,146 - #38 ,
+INFO  15:51:47,146 - #46 factor
+INFO  15:51:47,146 - #37 ;
+INFO  15:51:47,147 - #25 {
+INFO  15:51:47,148 - #13 void
+INFO  15:51:47,148 - #46 putp
+INFO  15:51:47,148 - #40 (
+INFO  15:51:47,148 - #46 int
+INFO  15:51:47,148 - #46 a
+INFO  15:51:47,149 - #38 ,
+INFO  15:51:47,149 - #46 int
+INFO  15:51:47,149 - #46 idx
+INFO  15:51:47,149 - #41 )
+INFO  15:51:47,149 - #25 {
+INFO  15:51:47,149 - #46 this
+INFO  15:51:47,149 - #39 .
+INFO  15:51:47,150 - #46 pos
+INFO  15:51:47,150 - #42 [
+INFO  15:51:47,150 - #46 idx
+INFO  15:51:47,150 - #24 ]
+INFO  15:51:47,150 - #34 =
+INFO  15:51:47,150 - #46 a
+INFO  15:51:47,150 - #37 ;
+INFO  15:51:47,151 - #26 }
+INFO  15:51:47,151 - #13 void
+INFO  15:51:47,151 - #46 putn
+INFO  15:51:47,151 - #40 (
+INFO  15:51:47,151 - #46 int
+INFO  15:51:47,152 - #46 a
+INFO  15:51:47,152 - #38 ,
+INFO  15:51:47,152 - #46 int
+INFO  15:51:47,152 - #46 idx
+INFO  15:51:47,152 - #41 )
+INFO  15:51:47,152 - #25 {
+INFO  15:51:47,152 - #46 this
+INFO  15:51:47,152 - #39 .
+INFO  15:51:47,152 - #46 neg
+INFO  15:51:47,152 - #42 [
+INFO  15:51:47,152 - #46 idx
+INFO  15:51:47,152 - #24 ]
+INFO  15:51:47,152 - #34 =
+INFO  15:51:47,152 - #46 a
+INFO  15:51:47,152 - #37 ;
+INFO  15:51:47,152 - #26 }
+INFO  15:51:47,152 - #46 int
+INFO  15:51:47,153 - #46 getp
+INFO  15:51:47,153 - #40 (
+INFO  15:51:47,153 - #46 int
+INFO  15:51:47,153 - #46 idx
+INFO  15:51:47,153 - #41 )
+INFO  15:51:47,153 - #25 {
+INFO  15:51:47,153 - #12 return
+INFO  15:51:47,153 - #46 pos
+INFO  15:51:47,153 - #42 [
+INFO  15:51:47,153 - #46 idx
+INFO  15:51:47,153 - #24 ]
+INFO  15:51:47,153 - #37 ;
+INFO  15:51:47,153 - #26 }
+INFO  15:51:47,153 - #46 int
+INFO  15:51:47,153 - #46 getn
+INFO  15:51:47,154 - #40 (
+INFO  15:51:47,154 - #46 int
+INFO  15:51:47,154 - #46 idx
+INFO  15:51:47,154 - #41 )
+INFO  15:51:47,154 - #25 {
+INFO  15:51:47,154 - #12 return
+INFO  15:51:47,154 - #46 neg
+INFO  15:51:47,154 - #42 [
+INFO  15:51:47,154 - #46 idx
+INFO  15:51:47,154 - #24 ]
+INFO  15:51:47,154 - #37 ;
+INFO  15:51:47,154 - #26 }
+INFO  15:51:47,154 - #26 }
+INFO  15:51:47,154 - #26 }
+INFO  15:51:47,154 - #46 Table
+INFO  15:51:47,155 - #46 val
+INFO  15:51:47,155 - #37 ;
+INFO  15:51:47,155 - #46 Int
+INFO  15:51:47,156 - #46 rows
+INFO  15:51:47,156 - #38 ,
+INFO  15:51:47,156 - #46 columns
+INFO  15:51:47,156 - #37 ;
+INFO  15:51:47,157 - #25 {
+INFO  15:51:47,157 - #13 void
+INFO  15:51:47,157 - #46 f
+INFO  15:51:47,157 - #40 (
+INFO  15:51:47,157 - #46 char
+INFO  15:51:47,157 - #46 ch
+INFO  15:51:47,157 - #38 ,
+INFO  15:51:47,157 - #46 int
+INFO  15:51:47,157 - #46 a
+INFO  15:51:47,157 - #38 ,
+INFO  15:51:47,157 - #46 int
+INFO  15:51:47,157 - #46 arg
+INFO  15:51:47,158 - #41 )
+INFO  15:51:47,158 - #46 int
+INFO  15:51:47,158 - #46 x
+INFO  15:51:47,158 - #37 ;
+INFO  15:51:47,158 - #25 {
+INFO  15:51:47,158 - #46 x
+INFO  15:51:47,158 - #34 =
+INFO  15:51:47,158 - #46 arg
+INFO  15:51:47,158 - #37 ;
+INFO  15:51:47,158 - #26 }
+INFO  15:51:47,158 - #26 }
+INFO  15:51:47,163 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        Declarations(
+          NoDeclarations(
+          ) [NoDeclarations]
+          DeclsConstDecl(
+            ConstDecl(
+              Type(
+               int
+              ) [Type]
+              ConstsListSingle(
+                ConstsListElem(
+                 size
+                  NumberConst(
+                   10
+                  ) [NumberConst]
+                ) [ConstsListElem]
+              ) [ConstsListSingle]
+            ) [ConstDecl]
+          ) [DeclsConstDecl]
+        ) [Declarations]
+        DeclsClassDecl(
+          ClassDecl(
+            ClassDeclName(
+             Table
+            ) [ClassDeclName]
+            NoExtendsOptional(
+            ) [NoExtendsOptional]
+            VarDeclLists(
+              NoVarDeclList(
+              ) [NoVarDeclList]
+              VarDecl(
+                Type(
+                 int
+                ) [Type]
+                VarDeclIdent(
+                 pos
+                  AngleBrackets(
+                  ) [AngleBrackets]
+                ) [VarDeclIdent]
+                MoreVarDeclsDef(
+                  MoreVarDeclsDef(
+                    NoMoreVarDecls(
+                    ) [NoMoreVarDecls]
+                    VarDeclIdent(
+                     neg
+                      AngleBrackets(
+                      ) [AngleBrackets]
+                    ) [VarDeclIdent]
+                  ) [MoreVarDeclsDef]
+                  VarDeclIdent(
+                   factor
+                    NoAngleBrackets(
+                    ) [NoAngleBrackets]
+                  ) [VarDeclIdent]
+                ) [MoreVarDeclsDef]
+              ) [VarDecl]
+            ) [VarDeclLists]
+            ClassConstrMethodDecOnlyMethod(
+              ClassMethodDeclListDef(
+                ClassMethodDeclListDef(
+                  ClassMethodDeclListDef(
+                    ClassMethodDeclListSingle(
+                      MethodDecl(
+                        MethodTypeName(
+                          TypeOrVoidVoid(
+                          ) [TypeOrVoidVoid]
+                         putp
+                        ) [MethodTypeName]
+                        FormParsOptionalPars(
+                          FormParsWithList(
+                            FormParsListWithCOMMA(
+                              FormParsIdentNoBrackets(
+                                Type(
+                                 int
+                                ) [Type]
+                               a
+                              ) [FormParsIdentNoBrackets]
+                            ) [FormParsListWithCOMMA]
+                            FormParsListEnd(
+                              FormParsEndWithRPAREN(
+                                FormParsIdentNoBrackets(
+                                  Type(
+                                   int
+                                  ) [Type]
+                                 idx
+                                ) [FormParsIdentNoBrackets]
+                              ) [FormParsEndWithRPAREN]
+                            ) [FormParsListEnd]
+                          ) [FormParsWithList]
+                        ) [FormParsOptionalPars]
+                        NoVarDeclList(
+                        ) [NoVarDeclList]
+                        StatementListDef(
+                          NoStatementList(
+                          ) [NoStatementList]
+                          DesignatorStmt(
+                            DesignatorStmtOptAssign(
+                              DesignatorExpr(
+                                DesignatorDotIdent(
+                                  DesignatorIdent(
+                                   this
+                                  ) [DesignatorIdent]
+                                 pos
+                                ) [DesignatorDotIdent]
+                                ExprTerm(
+                                  TermFactor(
+                                    FactorDesignator(
+                                      DesignatorIdent(
+                                       idx
+                                      ) [DesignatorIdent]
+                                    ) [FactorDesignator]
+                                  ) [TermFactor]
+                                ) [ExprTerm]
+                              ) [DesignatorExpr]
+                              AssignOp(
+                              ) [AssignOp]
+                              ExprTerm(
+                                TermFactor(
+                                  FactorDesignator(
+                                    DesignatorIdent(
+                                     a
+                                    ) [DesignatorIdent]
+                                  ) [FactorDesignator]
+                                ) [TermFactor]
+                              ) [ExprTerm]
+                            ) [DesignatorStmtOptAssign]
+                          ) [DesignatorStmt]
+                        ) [StatementListDef]
+                      ) [MethodDecl]
+                    ) [ClassMethodDeclListSingle]
+                    MethodDecl(
+                      MethodTypeName(
+                        TypeOrVoidVoid(
+                        ) [TypeOrVoidVoid]
+                       putn
+                      ) [MethodTypeName]
+                      FormParsOptionalPars(
+                        FormParsWithList(
+                          FormParsListWithCOMMA(
+                            FormParsIdentNoBrackets(
+                              Type(
+                               int
+                              ) [Type]
+                             a
+                            ) [FormParsIdentNoBrackets]
+                          ) [FormParsListWithCOMMA]
+                          FormParsListEnd(
+                            FormParsEndWithRPAREN(
+                              FormParsIdentNoBrackets(
+                                Type(
+                                 int
+                                ) [Type]
+                               idx
+                              ) [FormParsIdentNoBrackets]
+                            ) [FormParsEndWithRPAREN]
+                          ) [FormParsListEnd]
+                        ) [FormParsWithList]
+                      ) [FormParsOptionalPars]
+                      NoVarDeclList(
+                      ) [NoVarDeclList]
+                      StatementListDef(
+                        NoStatementList(
+                        ) [NoStatementList]
+                        DesignatorStmt(
+                          DesignatorStmtOptAssign(
+                            DesignatorExpr(
+                              DesignatorDotIdent(
+                                DesignatorIdent(
+                                 this
+                                ) [DesignatorIdent]
+                               neg
+                              ) [DesignatorDotIdent]
+                              ExprTerm(
+                                TermFactor(
+                                  FactorDesignator(
+                                    DesignatorIdent(
+                                     idx
+                                    ) [DesignatorIdent]
+                                  ) [FactorDesignator]
+                                ) [TermFactor]
+                              ) [ExprTerm]
+                            ) [DesignatorExpr]
+                            AssignOp(
+                            ) [AssignOp]
+                            ExprTerm(
+                              TermFactor(
+                                FactorDesignator(
+                                  DesignatorIdent(
+                                   a
+                                  ) [DesignatorIdent]
+                                ) [FactorDesignator]
+                              ) [TermFactor]
+                            ) [ExprTerm]
+                          ) [DesignatorStmtOptAssign]
+                        ) [DesignatorStmt]
+                      ) [StatementListDef]
+                    ) [MethodDecl]
+                  ) [ClassMethodDeclListDef]
+                  MethodDecl(
+                    MethodTypeName(
+                      TypeOrVoidType(
+                        Type(
+                         int
+                        ) [Type]
+                      ) [TypeOrVoidType]
+                     getp
+                    ) [MethodTypeName]
+                    FormParsOptionalPars(
+                      FormParsListEnd(
+                        FormParsEndWithRPAREN(
+                          FormParsIdentNoBrackets(
+                            Type(
+                             int
+                            ) [Type]
+                           idx
+                          ) [FormParsIdentNoBrackets]
+                        ) [FormParsEndWithRPAREN]
+                      ) [FormParsListEnd]
+                    ) [FormParsOptionalPars]
+                    NoVarDeclList(
+                    ) [NoVarDeclList]
+                    StatementListDef(
+                      NoStatementList(
+                      ) [NoStatementList]
+                      ReturnExpr(
+                        ExprTerm(
+                          TermFactor(
+                            FactorDesignator(
+                              DesignatorExpr(
+                                DesignatorIdent(
+                                 pos
+                                ) [DesignatorIdent]
+                                ExprTerm(
+                                  TermFactor(
+                                    FactorDesignator(
+                                      DesignatorIdent(
+                                       idx
+                                      ) [DesignatorIdent]
+                                    ) [FactorDesignator]
+                                  ) [TermFactor]
+                                ) [ExprTerm]
+                              ) [DesignatorExpr]
+                            ) [FactorDesignator]
+                          ) [TermFactor]
+                        ) [ExprTerm]
+                      ) [ReturnExpr]
+                    ) [StatementListDef]
+                  ) [MethodDecl]
+                ) [ClassMethodDeclListDef]
+                MethodDecl(
+                  MethodTypeName(
+                    TypeOrVoidType(
+                      Type(
+                       int
+                      ) [Type]
+                    ) [TypeOrVoidType]
+                   getn
+                  ) [MethodTypeName]
+                  FormParsOptionalPars(
+                    FormParsListEnd(
+                      FormParsEndWithRPAREN(
+                        FormParsIdentNoBrackets(
+                          Type(
+                           int
+                          ) [Type]
+                         idx
+                        ) [FormParsIdentNoBrackets]
+                      ) [FormParsEndWithRPAREN]
+                    ) [FormParsListEnd]
+                  ) [FormParsOptionalPars]
+                  NoVarDeclList(
+                  ) [NoVarDeclList]
+                  StatementListDef(
+                    NoStatementList(
+                    ) [NoStatementList]
+                    ReturnExpr(
+                      ExprTerm(
+                        TermFactor(
+                          FactorDesignator(
+                            DesignatorExpr(
+                              DesignatorIdent(
+                               neg
+                              ) [DesignatorIdent]
+                              ExprTerm(
+                                TermFactor(
+                                  FactorDesignator(
+                                    DesignatorIdent(
+                                     idx
+                                    ) [DesignatorIdent]
+                                  ) [FactorDesignator]
+                                ) [TermFactor]
+                              ) [ExprTerm]
+                            ) [DesignatorExpr]
+                          ) [FactorDesignator]
+                        ) [TermFactor]
+                      ) [ExprTerm]
+                    ) [ReturnExpr]
+                  ) [StatementListDef]
+                ) [MethodDecl]
+              ) [ClassMethodDeclListDef]
+            ) [ClassConstrMethodDecOnlyMethod]
+          ) [ClassDecl]
+        ) [DeclsClassDecl]
+      ) [Declarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           Table
+          ) [Type]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               val
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         Int
+        ) [Type]
+        GlobalVarDeclLists(
+          VarDeclCommaDef(
+            GlobalVarDeclIdent(
+             rows
+              NoAngleBrackets(
+              ) [NoAngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclCommaDef]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               columns
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       f
+      ) [MethodTypeName]
+      FormParsOptionalPars(
+        FormParsWithList(
+          FormParsListWithCOMMA(
+            FormParsIdentNoBrackets(
+              Type(
+               char
+              ) [Type]
+             ch
+            ) [FormParsIdentNoBrackets]
+          ) [FormParsListWithCOMMA]
+          FormParsWithList(
+            FormParsListWithCOMMA(
+              FormParsIdentNoBrackets(
+                Type(
+                 int
+                ) [Type]
+               a
+              ) [FormParsIdentNoBrackets]
+            ) [FormParsListWithCOMMA]
+            FormParsListEnd(
+              FormParsEndWithRPAREN(
+                FormParsIdentNoBrackets(
+                  Type(
+                   int
+                  ) [Type]
+                 arg
+                ) [FormParsIdentNoBrackets]
+              ) [FormParsEndWithRPAREN]
+            ) [FormParsListEnd]
+          ) [FormParsWithList]
+        ) [FormParsWithList]
+      ) [FormParsOptionalPars]
+      VarDeclLists(
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        VarDecl(
+          Type(
+           int
+          ) [Type]
+          VarDeclIdent(
+           x
+            NoAngleBrackets(
+            ) [NoAngleBrackets]
+          ) [VarDeclIdent]
+          NoMoreVarDecls(
+          ) [NoMoreVarDecls]
+        ) [VarDecl]
+      ) [VarDeclLists]
+      StatementListDef(
+        NoStatementList(
+        ) [NoStatementList]
+        DesignatorStmt(
+          DesignatorStmtOptAssign(
+            DesignatorIdent(
+             x
+            ) [DesignatorIdent]
+            AssignOp(
+            ) [AssignOp]
+            ExprTerm(
+              TermFactor(
+                FactorDesignator(
+                  DesignatorIdent(
+                   arg
+                  ) [DesignatorIdent]
+                ) [FactorDesignator]
+              ) [TermFactor]
+            ) [ExprTerm]
+          ) [DesignatorStmtOptAssign]
+        ) [DesignatorStmt]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  15:51:47,164 - ===================================
+INFO  15:51:47,167 - Obradjuje se funkcija putp na liniji 7
+INFO  15:51:47,167 - Pronadjena lokalna varijabla! - this na liniji 7
+ERROR 15:51:47,167 - Greska na 7 : pos ne postoji kao polje ili metoda klase!
+INFO  15:51:47,167 - Pronadjena lokalna varijabla! - idx na liniji 7
+ERROR 15:51:47,167 - Greska - Ime noObj nije pronadjeno (nije definisano) na liniji 7
+INFO  15:51:47,167 - Pronadjena lokalna varijabla! - a na liniji 7
+ERROR 15:51:47,167 - Greska - izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign na liniji 7
+INFO  15:51:47,167 - Obradjuje se funkcija putn na liniji 8
+INFO  15:51:47,167 - Pronadjena lokalna varijabla! - this na liniji 8
+ERROR 15:51:47,167 - Greska na 8 : neg ne postoji kao polje ili metoda klase!
+INFO  15:51:47,167 - Pronadjena lokalna varijabla! - idx na liniji 8
+ERROR 15:51:47,168 - Greska - Ime noObj nije pronadjeno (nije definisano) na liniji 8
+INFO  15:51:47,168 - Pronadjena lokalna varijabla! - a na liniji 8
+ERROR 15:51:47,168 - Greska - izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign na liniji 8
+INFO  15:51:47,168 - Obradjuje se funkcija getp na liniji 9
+INFO  15:51:47,168 - Pronadjena lokalna varijabla! - idx na liniji 9
+INFO  15:51:47,168 - Pristup elementu niza - pos na liniji 9
+INFO  15:51:47,168 - Obradjuje se funkcija getn na liniji 10
+INFO  15:51:47,168 - Pronadjena lokalna varijabla! - idx na liniji 10
+INFO  15:51:47,168 - Pristup elementu niza - neg na liniji 10
+ERROR 15:51:47,168 - Nije pronadjen tip Int u tabeli simbola!
+INFO  15:51:47,168 - Obradjuje se funkcija f na liniji 17
+INFO  15:51:47,168 - Pronadjena lokalna varijabla! - x na liniji 20
+INFO  15:51:47,168 - Pronadjena lokalna varijabla! - arg na liniji 20
+ERROR 15:51:47,168 - Greska: main metoda ne postoji!
+INFO  15:51:47,168 -  Print count calls = 0
+INFO  15:51:47,168 -  Lokalno deklarisanih promenljivih ima = 4
+INFO  15:51:47,168 - ===================================
+ERROR 15:51:47,169 - Parsiranje NIJE uspesno zavrseno.

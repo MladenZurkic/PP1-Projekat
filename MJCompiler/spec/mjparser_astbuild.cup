@@ -83,7 +83,6 @@ nonterminal ExprCommaList ExprCommaList;
 nonterminal Condition Condition;
 nonterminal CondTermList CondTermList;
 nonterminal CondTerm CondTerm;
-nonterminal CondFactList CondFactList;
 nonterminal CondFact CondFact;
 nonterminal AddOpTermList AddOpTermList;
 nonterminal MulOpFactorList MulOpFactorList;
@@ -108,7 +107,8 @@ nonterminal ConstructorDeclList ConstructorDeclList;
 nonterminal ClassMethodDeclList ClassMethodDeclList;
 nonterminal GlobalVarDeclIdent GlobalVarDeclIdent;
 nonterminal EnteredLoop EnteredLoop;
-/*nonterminal DesignatorStatementOptional;*/
+nonterminal DesignatorArrayHelp DesignatorArrayHelp;
+
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
@@ -250,7 +250,8 @@ Statement ::= (DesignatorStmt) DesignatorStatement:designatorStmt {: RESULT=new 
 			| (ReturnExpr) RETURN Expr:expr SEMI {: RESULT=new ReturnExpr(expr); RESULT.setLine(exprleft); :}
 			| (ReturnNoExpr) RETURN SEMI {: RESULT=new ReturnNoExpr(); :}
 			| (ReadStmt) READ LPAREN Designator:designator RPAREN SEMI {: RESULT=new ReadStmt(designator); RESULT.setLine(designatorleft); :}
-			| (PrintStmt) PRINT LPAREN Expr:expr NumConstOptional:numOpt RPAREN SEMI {: RESULT=new PrintStmt(expr, numOpt); RESULT.setLine(exprleft); :}
+			| (PrintStmtNoNum) PRINT LPAREN Expr:expr RPAREN SEMI {: RESULT=new PrintStmtNoNum(expr); RESULT.setLine(exprleft); :}
+			| (PrintStmtWithNum) PRINT LPAREN Expr:expr COMMA NUMBER:N1 RPAREN SEMI {: RESULT=new PrintStmtWithNum(expr, N1); RESULT.setLine(exprleft); :}
 			| (ForEachStmt) Designator:designator DOT EnteredLoop:E1 FOREACH LPAREN IDENT:ident LAMBDAOP Statement:stmt RPAREN SEMI {: RESULT=new ForEachStmt(designator, E1, ident, stmt); RESULT.setLine(designatorleft); :}
 			| (StmtList) LBRACE StatementList:S1 RBRACE {: RESULT=new StmtList(S1); RESULT.setLine(S1left); :}
 			| (ErrorStmtIFCondition) IF LPAREN error:err RPAREN
@@ -263,8 +264,7 @@ DesignatorStatement ::= (DesignatorStmtOptAssign) Designator:D1 AssignOp:A2 Expr
 			| (DesignatorStmtActPars) DesignatorForActPars:D1 LPAREN ActParsOptional:A2 RPAREN SEMI {: RESULT=new DesignatorStmtActPars(D1, A2); RESULT.setLine(D1left); :}
 			| (DesignatorStmtOptINC) Designator:D1 INC SEMI {: RESULT=new DesignatorStmtOptINC(D1); RESULT.setLine(D1left); :}
 			| (DesignatorStmtOptDEC) Designator:D1 DEC SEMI {: RESULT=new DesignatorStmtOptDEC(D1); RESULT.setLine(D1left); :}
-			| (DesignatorStmtAngleBrack) LANGLE DesignatorForActPars:D1 DesignatorCommaList:D2 RANGLE EQUAL Designator:D3 SEMI {: RESULT=new DesignatorStmtAngleBrack(D1, D2, D3); RESULT.setLine(D1left); :}
-			| (DesignatorStmtAngleBrackNoDesig) LANGLE DesignatorCommaList:D1 RANGLE EQUAL Designator:D2 SEMI {: RESULT=new DesignatorStmtAngleBrackNoDesig(D1, D2); RESULT.setLine(D1left); :}
+			| (DesignatorStmtAngleBrack) LANGLE DesignatorCommaList:D1 RANGLE EQUAL Designator:D2 SEMI {: RESULT=new DesignatorStmtAngleBrack(D1, D2); RESULT.setLine(D1left); :}
 			| (ErrorDesignatorStmtSEMI) error:err SEMI
 			{: parser.report_error("Izvrsen oporavak do ; (DesignatorStmt) u liniji " + errleft, null);  :} {: RESULT=new ErrorDesignatorStmtSEMI(); :}
 			;
@@ -277,14 +277,6 @@ NumConstOptional ::= (NumConstOpt) COMMA NUMBER:N1 {: RESULT=new NumConstOpt(N1)
 				| (NoNumConst) {: RESULT=new NoNumConst(); :} /* epsilon */
 				;
 
-/*
-DesignatorStatementOptional ::= (DesignatorStmtOptAssign) AssignOp Expr:expr
-							| (DesignatorStmtNoActPars) LPAREN ActPars RPAREN
-							| (DesignatorStmtActPars) LPAREN RPAREN
-							| (DesignatorStmtOptINC) INC
-							| (DesignatorStmtOptDEC) DEC;
-*/
-
 ActParsOptional ::= (ActParsOpt) ActPars:A1 {: RESULT=new ActParsOpt(A1); RESULT.setLine(A1left); :}
 				| (NoActParsOpt) {: RESULT=new NoActParsOpt(); :} /* epsilon */
 				;
@@ -294,6 +286,7 @@ DesignatorOptional ::= (DesignatorOpt) Designator:D1 {: RESULT=new DesignatorOpt
 					;
 
 DesignatorCommaList ::= (DesignatorCommaListDef) DesignatorCommaList:D1 COMMA DesignatorOptional:D2 {: RESULT=new DesignatorCommaListDef(D1, D2); RESULT.setLine(D1left); :}
+					| (DesignatorCommaListSingle) Designator:D1 {: RESULT=new DesignatorCommaListSingle(D1); RESULT.setLine(D1left); :}
 					| (NoDesignatorCommaList) {: RESULT=new NoDesignatorCommaList(); :} /* epsilon */
 					;
 
@@ -305,17 +298,17 @@ ExprCommaList ::= (ExprCommaListDef) ExprCommaList:E1 COMMA Expr:expr {: RESULT=
 				| (NoExprCommaList) {: RESULT=new NoExprCommaList(); :} /* epsilon */
 				;
 
-Condition ::= (Condition) CondTerm:C1 CondTermList:C2 {: RESULT=new Condition(C1, C2); RESULT.setLine(C1left); :};
+Condition ::= (ConditionCondTerm) CondTerm:C1 {: RESULT=new ConditionCondTerm(C1); RESULT.setLine(C1left); :}
+			| (ConditionORCondTerm) Condition:C1 BITOR CondTerm:C2 {: RESULT=new ConditionORCondTerm(C1, C2); RESULT.setLine(C1left); :}
+			;
 
 CondTermList ::= (CondTermListDef) CondTermList:C1 BITOR CondTerm:C2 {: RESULT=new CondTermListDef(C1, C2); RESULT.setLine(C1left); :}
 				| (NoCondTermList) {: RESULT=new NoCondTermList(); :} /* epsilon */
 				;
 
-CondTerm ::= (CondTerm) CondFact:C1 CondFactList:C2 {: RESULT=new CondTerm(C1, C2); RESULT.setLine(C1left); :};
-
-CondFactList ::= (CondFactListDef) CondFactList:C1 BITAND CondFact:C2 {: RESULT=new CondFactListDef(C1, C2); RESULT.setLine(C1left); :}
-				| (NoCondFactList) {: RESULT=new NoCondFactList(); :} /* epsilon */
-				;
+CondTerm ::= (CondTermFact) CondFact:C1 {: RESULT=new CondTermFact(C1); RESULT.setLine(C1left); :}
+			| (CondTermAndCondFact) CondTerm:C1 BITAND CondFact:C2 {: RESULT=new CondTermAndCondFact(C1, C2); RESULT.setLine(C1left); :}
+			;
 				
 CondFact ::= (CondFactExpr) Expr:E1 {: RESULT=new CondFactExpr(E1); RESULT.setLine(E1left); :}
 			| (CondFactExprRelOpExpr) Expr:expr1 RelOp:R1 Expr:expr2 {: RESULT=new CondFactExprRelOpExpr(expr1, R1, expr2); RESULT.setLine(expr1left); :};
@@ -362,8 +355,10 @@ ExprOrActPars ::= (ExprOrActParsExpr) LANGLE Expr:expr RANGLE {: RESULT=new Expr
 
 Designator ::= (DesignatorIdent) IDENT:ident {: RESULT=new DesignatorIdent(ident); RESULT.setLine(identleft); :}
 			| (DesignatorDotIdent) Designator:designator DOT IDENT:ident {: RESULT=new DesignatorDotIdent(designator, ident); RESULT.setLine(designatorleft); :}
-			| (DesignatorExpr) Designator:designator LANGLE Expr:E1 RANGLE {: RESULT=new DesignatorExpr(designator, E1); RESULT.setLine(designatorleft); :}
+			| (DesignatorExpr) DesignatorArrayHelp:D1 LANGLE Expr:E2 RANGLE {: RESULT=new DesignatorExpr(D1, E2); RESULT.setLine(D1left); :}
 			;
+
+DesignatorArrayHelp ::= (DesignatorArrayHelp) Designator:D1 {: RESULT=new DesignatorArrayHelp(D1); RESULT.setLine(D1left); :};
 
 Label ::= (Label) IDENT:ident {: RESULT=new Label(ident); RESULT.setLine(identleft); :};
 AssignOp ::= (AssignOp) EQUAL {: RESULT=new AssignOp(); :};

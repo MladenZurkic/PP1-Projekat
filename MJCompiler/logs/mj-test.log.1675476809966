@@ -1,0 +1,49 @@
+INFO  03:12:51,910 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  03:12:51,942 - #2 program
+INFO  03:12:51,942 - #46 test_A_successful
+INFO  03:12:51,942 - #25 {
+INFO  03:12:51,943 - #13 void
+INFO  03:12:51,943 - #46 main
+INFO  03:12:51,943 - #40 (
+INFO  03:12:51,944 - #41 )
+INFO  03:12:51,944 - #25 {
+INFO  03:12:51,944 - #25 {
+INFO  03:12:51,945 - #26 }
+INFO  03:12:51,945 - #26 }
+INFO  03:12:51,945 - #26 }
+INFO  03:12:51,949 - Program(
+  ProgName(
+   test_A_successful
+  ) [ProgName]
+  NoDeclarations(
+  ) [NoDeclarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      StatementListDef(
+        NoStatementList(
+        ) [NoStatementList]
+        StmtList(
+          NoStatementList(
+          ) [NoStatementList]
+        ) [StmtList]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  03:12:51,949 - ===================================
+INFO  03:12:51,952 - Obradjuje se funkcija main na liniji 4
+INFO  03:12:51,952 -  Print count calls = 0
+INFO  03:12:51,952 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  03:12:51,952 - ===================================
+INFO  03:12:51,954 - Parisanje uspesno zavrseno!

@@ -60,9 +60,9 @@ terminal Boolean BOOLCONST;
 nonterminal DeclsList, Decls, MethodDeclList, ConstDecl, ConstsList;
 nonterminal VarDecl, AngleBrackets, MoreVarDecls, ClassConstrMethodDecl;
 nonterminal ConstructorDecl, FormParsOptional, StatementList, FormPars;
-nonterminal FormParsList, Statement, DesignatorStatement;
+nonterminal FormParsList, Statement;
 nonterminal ElseStatementOptional, NumConstOptional;
-nonterminal ActParsOptional, DesignatorOptional, DesignatorCommaList, ActPars;
+nonterminal ActParsOptional, ActPars;
 nonterminal ExprCommaList, Condition, CondTermList, CondTerm, CondFact;
 nonterminal AddOpTermList, MulOpFactorList, Label, AssignOp, RelOp, AddOp, MulOp;
 nonterminal ActParsParen, ActParsParenOptional, ExprOrActPars;
@@ -73,8 +73,9 @@ nonterminal DesignatorArrayHelp;
 
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName, DesignatorOptional;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator, DesignatorForActPars;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj DesignatorStatement, DesignatorCommaList;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 

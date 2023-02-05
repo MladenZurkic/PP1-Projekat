@@ -57,6 +57,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Obj currentClass = null;
 	int fPposLocal = 0;
 	
+	int numDesArray = 0;
     public boolean passed() {
     	return !errorDetected;
     }
@@ -484,6 +485,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
         		else {
         			report_info("Pristup elementu niza - " + designator.getName(), designatorExpr);
         			designatorExpr.obj = new Obj(Obj.Elem, "Elem - " + designator.getName(), designator.getType().getElemType());
+        			//designatorExpr.obj.setLevel(designator.getLevel());
         		}
         	}
     	}
@@ -680,12 +682,27 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     }
     
     public void visit(DesignatorOpt designatorOpt) {
-    	designators.add(designatorOpt.getDesignator().obj);
+    	Obj designator = designatorOpt.getDesignator().obj;
+    	//added for array after, for counting
+    	designators.add(designator);
+    	numDesArray++;
+    }
+
+    public void visit(DesignatorCommaListSingle desSingle) {
+    	Obj designator = desSingle.getDesignator().obj;
+    	designators.add(designator);
+    	//added for array
+    	numDesArray++;
     }
     
+    public void visit(NoDesignatorOpt noDesignatorOpt) {
+    	//Between two non-first-elem COMMA
+    	numDesArray++;
+    }
     
-    public void visit(DesignatorCommaListSingle desSingle) {
-    	designators.add(desSingle.getDesignator().obj);
+    public void visit(NoDesignatorCommaList noDesignatorFirst) {
+    	// example: [ *, ..., ..., ... ]
+    	numDesArray++;
     }
     
     public void visit(DesignatorStmtAngleBrack desigStmtAngleBrack) {
@@ -695,6 +712,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
         	designators.add(0, designatorsListForActpars.get(designatorsListForActpars.size() - 1));
         	designatorsListForActpars.remove(designatorsListForActpars.size() - 1);
     	}
+    	
+    	//System.out.println("DUZINA: " + designators.size());
+    	//System.err.println("DUZINA REAL:" + numDesArray);
+    	
+
     	designatorForActPars = null;
     	boolean firstError = false;
     	for (Obj designator : designators) {
@@ -725,6 +747,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			
     		}
     	}
+    	desigStmtAngleBrack.obj = new Obj(Obj.NO_VALUE,"DesignatorArrayAssign", new Struct(Struct.None));
+    	desigStmtAngleBrack.obj.setLevel(numDesArray);
+    	numDesArray = 0;
+    	designators.clear();
     }
     
     public void visit(EnteredLoop enteredLoop) {

@@ -72,12 +72,9 @@ nonterminal StatementList StatementList;
 nonterminal FormPars FormPars;
 nonterminal FormParsList FormParsList;
 nonterminal Statement Statement;
-nonterminal DesignatorStatement DesignatorStatement;
 nonterminal ElseStatementOptional ElseStatementOptional;
 nonterminal NumConstOptional NumConstOptional;
 nonterminal ActParsOptional ActParsOptional;
-nonterminal DesignatorOptional DesignatorOptional;
-nonterminal DesignatorCommaList DesignatorCommaList;
 nonterminal ActPars ActPars;
 nonterminal ExprCommaList ExprCommaList;
 nonterminal Condition Condition;
@@ -111,8 +108,9 @@ nonterminal DesignatorArrayHelp DesignatorArrayHelp;
 
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ProgName, Program, MethodTypeName, MethodDecl;
-nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassDecl, ClassDeclName, DesignatorOptional;
 nonterminal rs.etf.pp1.symboltable.concepts.Obj ConstsListElem, Designator, DesignatorForActPars;
+nonterminal rs.etf.pp1.symboltable.concepts.Obj DesignatorStatement, DesignatorCommaList;
 nonterminal rs.etf.pp1.symboltable.concepts.Struct TypeOrVoid, Type, Expr, Factor, Consts, Term;
 precedence left ELSE;
 

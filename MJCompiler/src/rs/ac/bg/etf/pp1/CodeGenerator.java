@@ -1,15 +1,23 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import rs.ac.bg.etf.pp1.CounterVisitor.FormParamCounter;
 import rs.ac.bg.etf.pp1.CounterVisitor.VarCounter;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Struct;
 
 public class CodeGenerator extends VisitorAdaptor {
 
 	
 	private int mainPc;
+	
+	List<Obj> designatorsForArrayAssign = new ArrayList<Obj>();
+	Obj NoDesignator = new Obj(Obj.Var, "noDesignator", new Struct(Struct.None));
 	
 	public int getMainPc() {
 		return mainPc;
@@ -295,12 +303,65 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	*/
 	
+	
+	
 	public void visit(DesignatorCommaListSingle singleOrFirstDesignator) {
-		//Using?
+		designatorsForArrayAssign.add(singleOrFirstDesignator.getDesignator().obj);
 	}
 	
 	public void visit(NoDesignatorCommaList noDesignatorCommaList) {
-		//Using?
+		designatorsForArrayAssign.add(this.NoDesignator);
+	}
+	
+	
+	public void visit(DesignatorOpt designatorOpt) {
+		designatorsForArrayAssign.add(designatorOpt.getDesignator().obj);
+	}
+	
+	public void visit(NoDesignatorOpt noDesignatorOpt) {
+		designatorsForArrayAssign.add(this.NoDesignator);
+	}
+	
+	//important
+	public void visit(DesignatorStmtAngleBrack arrayAssign) {
+		int numOfItems = arrayAssign.obj.getLevel();
+
+		Obj array = arrayAssign.getDesignator().obj;
+		
+		System.out.println("BROJ:" + numOfItems);
+		System.out.println("NIZ: " + array.getName());
+		
+		
+		Code.loadConst(numOfItems);
+
+		Code.load(array);
+		Code.put(Code.arraylength);
+		
+		int jump = Code.pc + 1;
+		
+		Code.putFalseJump(Code.gt, 0);
+		
+		Code.put(Code.trap);
+		Code.fixup(jump);
+		
+		//Collections.reverse(designatorsForArrayAssign);
+		
+		//PROBLEM WITH ARRAY ?
+		//nizTmp[2], nizTmp[1], nizTmp[0]
+		// stack example: 8 2 8 1 8 0 - addresses and index
+		//nizTmp[0] gets first value, but it should be last?
+		//reverse for?
+		
+		for(int i = numOfItems - 1; i >= 0 ; i--) {
+			if(designatorsForArrayAssign.get(i).getName() == "noDesignator") continue;
+
+			Code.load(array);
+			Code.loadConst(i);
+			Code.put(Code.aload);
+			Code.store(designatorsForArrayAssign.get(i));
+		}
+		designatorsForArrayAssign = new ArrayList<Obj>();
+		
 	}
 	
 }

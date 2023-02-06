@@ -49,10 +49,21 @@ public class Compiler {
 			SemanticAnalyzer v = new SemanticAnalyzer();
 			prog.traverseBottomUp(v); 
 	      
+			log.info("");
+			log.info("==============SUMMARY==============");
+			
+			
+			//print deo
 			log.info(" Print count calls = " + v.printCallCount);
-
+			log.info(" Deklarisanih kostanti ima = " + v.constCount);
 			log.info(" Lokalno deklarisanih promenljivih ima = " + v.localVarDeclCount);
-			log.info("===================================");
+			log.info(" Globalno deklarisanih promenljivih ima = " + v.globalVarDeclCount);
+			log.info(" Deklarisanih metoda ima = " + v.methodCount);
+			log.info(" Deklarisanih klasa ima = " + v.classCount);
+			log.info(" Deklarisanih nizova ima = " + v.arraysCount);
+			log.info(" Deklarisanih statementa ima = " + v.statementCount);
+			
+			//log.info("===================================");
 			
 			ExTab.dump();
 			
@@ -61,7 +72,7 @@ public class Compiler {
 			
 			if(!p.errorDetected && v.passed()) {
 				
-				File objFile = new File("test/program.obj");
+				File objFile = new File(args[1]);
 				if(objFile.exists()) objFile.delete();
 				
 				CodeGenerator codeGenerator = new CodeGenerator();

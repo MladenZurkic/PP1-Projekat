@@ -328,8 +328,9 @@ public class CodeGenerator extends VisitorAdaptor {
 
 		Obj array = arrayAssign.getDesignator().obj;
 		
-		System.out.println("BROJ:" + numOfItems);
-		System.out.println("NIZ: " + array.getName());
+		//testing
+		//System.out.println("BROJ:" + numOfItems);
+		//System.out.println("NIZ: " + array.getName());
 		
 		
 		Code.loadConst(numOfItems);
@@ -360,6 +361,7 @@ public class CodeGenerator extends VisitorAdaptor {
 			Code.put(Code.aload);
 			Code.store(designatorsForArrayAssign.get(i));
 		}
+		
 		designatorsForArrayAssign = new ArrayList<Obj>();
 		
 	}

@@ -1,0 +1,74 @@
+
+load array - loadujemo niz - STACK: array
+loadujemo konstantu 0 - STACK: array, 0
+uradimo aload - ucitamo array[0] - STACK: array[0]
+
+storeujemo maxTemp - sacuvamo nulti element - STACK: /
+
+load array - loadujemo niz - STACK: array
+loadujemo konstantu 0 - STACK: array, 0 // ODAVDE BROJIMO
+
+loopAdresa - cuvamo Code.pc ovde
+
+Loadujemo CONST_1 - STACK: STACK: array, 0, 1
+addujemo dva broja - STACK: array, 1
+dup2 - STACK: array, 1(i), array, 1(i)
+popujemo i - STACK: array, 1(i), array
+
+// vrh je array
+
+arraylength - - STACK: array, 1(i), arrlen
+
+dup2 - STACK: array, 1(i), arrlen, 1(i), arrlen
+pop - STACK: array, 1(i), arrlen, 1(i)
+
+dup_x1  - STACK: array, 1(i), 1(i), arrlen, 1(i)
+pop  - - STACK: array, 1(i), 1(i), arrlen
+
+sacuvamo zavrsenopass = Code.pc + 1
+falsejump od lt, 0
+
+
+STACK: array, 1(i)
+/*BODY IDE */
+
+dup2 - STACK: array, 1(i), array, 1(i)
+aload -  STACK: array, 1(i), arr[i]
+loadujemo maxTemp - STACK: array, 1(i), arr[i], maxTemp
+
+dup2 - STACK: array, 1(i), arr[i], maxTemp, arr[i], maxTemp
+
+//deo za vece
+
+sacuvamo jmp -  Code.pc + 1;
+falseJump gt, 0
+
+
+STACK: array, 1(i), arr[i], maxTemp
+
+//OVDE SMO AKO JE PRVI VECI OD DRUGOG
+popujemo STACK: array, 1(i), arr[i] 
+
+jmp2 je Code.pc + 1;
+putJump(0) 
+
+fixup(jmp) - OVDE SMO AKO JE DRUGI VECI OD PRVOG
+STACK: array, 1(i), arr[i], maxTemp
+dup_x1 - STACK: array, 1(i), maxTemp, arr[i], maxTemp
+pop - STACK: array, 1(i), maxTemp, arr[i]
+pop - STACK: array, 1(i), maxTemp
+
+fixup(jmp2) - SKACEMO KAD JE PRVI VECI
+
+store(maxTemp) - sacuvamo taj max element ovde jer je na vrhu steka posle - STACK: array, 1(i)
+
+/* END BODY IDE*/
+
+putJump(loopAdresa)
+fixup (zavrsenopass)
+pop
+pop
+
+I TO JE KRAJ, MI SMO SAD OVDE RADILI LOAD da imamo tu vrednost na steku
+load od maxTemp;
+}

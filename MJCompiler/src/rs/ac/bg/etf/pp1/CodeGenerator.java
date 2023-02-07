@@ -353,9 +353,11 @@ public class CodeGenerator extends VisitorAdaptor {
 		//nizTmp[0] gets first value, but it should be last?
 		//reverse for?
 		
+		//Yes, mora reverse da ide
 		for(int i = numOfItems - 1; i >= 0 ; i--) {
-			if(designatorsForArrayAssign.get(i).getName() == "noDesignator") continue;
-
+			if(designatorsForArrayAssign.get(i).getName() == "noDesignator") {
+				continue;
+			}
 			Code.load(array);
 			Code.loadConst(i);
 			Code.put(Code.aload);

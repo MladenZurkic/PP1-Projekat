@@ -64,7 +64,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	int fPposLocal = 0;
 	
 	int numDesArray = 0;
-    public boolean passed() {
+    
+	public boolean passed() {
     	return !errorDetected;
     }
     

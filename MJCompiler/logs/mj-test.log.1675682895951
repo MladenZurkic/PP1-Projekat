@@ -1,0 +1,153 @@
+INFO  12:22:13,737 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  12:22:13,768 - #2 program
+INFO  12:22:13,768 - #46 p
+INFO  12:22:13,768 - #6 const
+INFO  12:22:13,768 - #46 char
+INFO  12:22:13,768 - #46 size
+INFO  12:22:13,769 - #34 =
+INFO  12:22:13,769 - #48 a
+INFO  12:22:13,769 - #37 ;
+INFO  12:22:13,770 - #46 int
+INFO  12:22:13,770 - #46 pos
+INFO  12:22:13,771 - #42 [
+INFO  12:22:13,771 - #24 ]
+INFO  12:22:13,771 - #38 ,
+INFO  12:22:13,771 - #46 pos2
+INFO  12:22:13,771 - #37 ;
+INFO  12:22:13,772 - #46 char
+INFO  12:22:13,772 - #46 niz
+INFO  12:22:13,773 - #42 [
+INFO  12:22:13,773 - #24 ]
+INFO  12:22:13,773 - #38 ,
+INFO  12:22:13,773 - #46 niz3
+INFO  12:22:13,773 - #42 [
+INFO  12:22:13,773 - #24 ]
+INFO  12:22:13,773 - #37 ;
+INFO  12:22:13,773 - #25 {
+INFO  12:22:13,773 - #13 void
+INFO  12:22:13,774 - #46 main
+INFO  12:22:13,774 - #40 (
+INFO  12:22:13,774 - #46 int
+INFO  12:22:13,774 - #46 x
+INFO  12:22:13,774 - #41 )
+INFO  12:22:13,774 - #25 {
+INFO  12:22:13,775 - #26 }
+INFO  12:22:13,775 - #26 }
+INFO  12:22:13,779 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        NoDeclarations(
+        ) [NoDeclarations]
+        DeclsConstDecl(
+          ConstDecl(
+            Type(
+             char
+            ) [Type]
+            ConstsListSingle(
+              ConstsListElem(
+               size
+                CharConst(
+                 a
+                ) [CharConst]
+              ) [ConstsListElem]
+            ) [ConstsListSingle]
+          ) [ConstDecl]
+        ) [DeclsConstDecl]
+      ) [Declarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclLists(
+            VarDeclCommaDef(
+              GlobalVarDeclIdent(
+               pos
+                AngleBrackets(
+                ) [AngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclCommaDef]
+            GlobalVarDeclListEnd(
+              VarDeclEndDef(
+                GlobalVarDeclIdent(
+                 pos2
+                  NoAngleBrackets(
+                  ) [NoAngleBrackets]
+                ) [GlobalVarDeclIdent]
+              ) [VarDeclEndDef]
+            ) [GlobalVarDeclListEnd]
+          ) [GlobalVarDeclLists]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         char
+        ) [Type]
+        GlobalVarDeclLists(
+          VarDeclCommaDef(
+            GlobalVarDeclIdent(
+             niz
+              AngleBrackets(
+              ) [AngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclCommaDef]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               niz3
+                AngleBrackets(
+                ) [AngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalPars(
+        FormParsListEnd(
+          FormParsEndWithRPAREN(
+            FormParsIdentNoBrackets(
+              Type(
+               int
+              ) [Type]
+             x
+            ) [FormParsIdentNoBrackets]
+          ) [FormParsEndWithRPAREN]
+        ) [FormParsListEnd]
+      ) [FormParsOptionalPars]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      NoStatementList(
+      ) [NoStatementList]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  12:22:13,780 - ===================================
+INFO  12:22:13,783 - Obradjuje se funkcija main na liniji 8
+INFO  12:22:13,783 - 
+INFO  12:22:13,783 - ==============SUMMARY==============
+INFO  12:22:13,783 -  Print count calls = 0
+INFO  12:22:13,783 -  Deklarisanih kostanti ima = 1
+INFO  12:22:13,783 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  12:22:13,783 -  Globalno deklarisanih promenljivih ima = 4
+INFO  12:22:13,783 -  Deklarisanih metoda ima = 1
+INFO  12:22:13,783 -  Deklarisanih klasa ima = 0
+INFO  12:22:13,783 -  Deklarisanih nizova ima = 3
+INFO  12:22:13,783 -  Deklarisanih statementa ima = 0
+INFO  12:22:13,786 - Parisanje uspesno zavrseno!

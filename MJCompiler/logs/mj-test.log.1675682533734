@@ -1,0 +1,141 @@
+INFO  12:20:25,620 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  12:20:25,652 - #2 program
+INFO  12:20:25,652 - #46 p
+INFO  12:20:25,652 - #6 const
+INFO  12:20:25,652 - #46 char
+INFO  12:20:25,653 - #46 size
+INFO  12:20:25,653 - #34 =
+INFO  12:20:25,653 - #48 a
+INFO  12:20:25,653 - #37 ;
+INFO  12:20:25,654 - #46 int
+INFO  12:20:25,654 - #46 pos
+INFO  12:20:25,654 - #42 [
+INFO  12:20:25,654 - #24 ]
+INFO  12:20:25,654 - #38 ,
+INFO  12:20:25,655 - #46 pos2
+INFO  12:20:25,655 - #37 ;
+INFO  12:20:25,655 - #46 char
+INFO  12:20:25,656 - #46 niz
+INFO  12:20:25,656 - #42 [
+INFO  12:20:25,656 - #24 ]
+INFO  12:20:25,656 - #38 ,
+INFO  12:20:25,656 - #46 niz3
+INFO  12:20:25,656 - #42 [
+INFO  12:20:25,657 - #24 ]
+INFO  12:20:25,657 - #37 ;
+INFO  12:20:25,657 - #25 {
+INFO  12:20:25,657 - #13 void
+INFO  12:20:25,657 - #46 main
+INFO  12:20:25,657 - #40 (
+INFO  12:20:25,658 - #41 )
+INFO  12:20:25,658 - #25 {
+INFO  12:20:25,658 - #26 }
+INFO  12:20:25,659 - #26 }
+INFO  12:20:25,663 - Program(
+  ProgName(
+   p
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        NoDeclarations(
+        ) [NoDeclarations]
+        DeclsConstDecl(
+          ConstDecl(
+            Type(
+             char
+            ) [Type]
+            ConstsListSingle(
+              ConstsListElem(
+               size
+                CharConst(
+                 a
+                ) [CharConst]
+              ) [ConstsListElem]
+            ) [ConstsListSingle]
+          ) [ConstDecl]
+        ) [DeclsConstDecl]
+      ) [Declarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclLists(
+            VarDeclCommaDef(
+              GlobalVarDeclIdent(
+               pos
+                AngleBrackets(
+                ) [AngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclCommaDef]
+            GlobalVarDeclListEnd(
+              VarDeclEndDef(
+                GlobalVarDeclIdent(
+                 pos2
+                  NoAngleBrackets(
+                  ) [NoAngleBrackets]
+                ) [GlobalVarDeclIdent]
+              ) [VarDeclEndDef]
+            ) [GlobalVarDeclListEnd]
+          ) [GlobalVarDeclLists]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         char
+        ) [Type]
+        GlobalVarDeclLists(
+          VarDeclCommaDef(
+            GlobalVarDeclIdent(
+             niz
+              AngleBrackets(
+              ) [AngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclCommaDef]
+          GlobalVarDeclListEnd(
+            VarDeclEndDef(
+              GlobalVarDeclIdent(
+               niz3
+                AngleBrackets(
+                ) [AngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclEndDef]
+          ) [GlobalVarDeclListEnd]
+        ) [GlobalVarDeclLists]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      NoVarDeclList(
+      ) [NoVarDeclList]
+      NoStatementList(
+      ) [NoStatementList]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  12:20:25,663 - ===================================
+INFO  12:20:25,665 - Obradjuje se funkcija main na liniji 8
+INFO  12:20:25,666 - 
+INFO  12:20:25,666 - ==============SUMMARY==============
+INFO  12:20:25,666 -  Print count calls = 0
+INFO  12:20:25,666 -  Deklarisanih kostanti ima = 1
+INFO  12:20:25,666 -  Lokalno deklarisanih promenljivih ima = 0
+INFO  12:20:25,666 -  Globalno deklarisanih promenljivih ima = 4
+INFO  12:20:25,666 -  Deklarisanih metoda ima = 1
+INFO  12:20:25,666 -  Deklarisanih klasa ima = 0
+INFO  12:20:25,666 -  Deklarisanih nizova ima = 3
+INFO  12:20:25,666 -  Deklarisanih statementa ima = 0
+INFO  12:20:25,669 - Parisanje uspesno zavrseno!

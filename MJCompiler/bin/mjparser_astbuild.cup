@@ -51,7 +51,7 @@ scan with {:
 terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
 terminal FOREACH, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ, RANGLE, LBRACE, RBRACE, LAMBDAOP;
 terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
-terminal COLON, DO, ENUM;
+terminal COLON, DO, ENUM, KAPA;
 terminal String IDENT;
 terminal Integer NUMBER;
 terminal Character CHARCONST;
@@ -336,7 +336,8 @@ Factor ::= (FactorDesignator) Designator:designator {: RESULT=new FactorDesignat
 		| (FactorBool) BOOLCONST:bool {: RESULT=new FactorBool(bool); RESULT.setLine(boolleft); :}
 		| (FactorNewExpr) NEW Type:typeName LANGLE Expr:expr RANGLE {: RESULT=new FactorNewExpr(typeName, expr); RESULT.setLine(typeNameleft); :}
 		| (FactorNewActPars) NEW Type:typeName LPAREN ActParsOptional:A1 RPAREN {: RESULT=new FactorNewActPars(typeName, A1); RESULT.setLine(typeNameleft); :}
-		| (FactorExpr) LPAREN Expr:expr RPAREN {: RESULT=new FactorExpr(expr); RESULT.setLine(exprleft); :};
+		| (FactorExpr) LPAREN Expr:expr RPAREN {: RESULT=new FactorExpr(expr); RESULT.setLine(exprleft); :}
+		| (KapaDesignator) KAPA Designator:D1 {: RESULT=new KapaDesignator(D1); RESULT.setLine(D1left); :};
 
 
 DesignatorForActPars ::= (DesignatorForActPars) Designator:D1 {: RESULT=new DesignatorForActPars(D1); RESULT.setLine(D1left); :};

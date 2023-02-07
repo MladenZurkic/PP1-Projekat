@@ -878,4 +878,25 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     public void visit(WhileStmt whileStmt) {
     	statementCount++;
     }
+    
+    public void visit(KapaDesignator kapaDes) {
+    	Obj designator = kapaDes.getDesignator().obj;
+    	
+    	if(designator.getKind() != Obj.Var && designator.getKind() != Obj.Var) {
+    		report_error("Moguce je iskoristiti VAR ili CONST!", null);
+    	}
+    	else {
+    		if(designator.getType().getKind() != Struct.Array) {
+    			report_error("Desna strana nije Array!", null);
+    		}
+    		else {
+    			if(designator.getType().getElemType().getKind() != Struct.Int) {
+    				report_error("Moze se samo gledati int za sada.", null);
+    			}
+    			else {
+    				kapaDes.struct = designator.getType().getElemType();
+    			}
+    		}
+    	}
+    }
 }

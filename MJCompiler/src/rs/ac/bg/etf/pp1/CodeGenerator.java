@@ -366,4 +366,76 @@ public class CodeGenerator extends VisitorAdaptor {
 		
 	}
 	
+	
+	public void visit(KapaDesignator kapaDes) {
+		Obj array = kapaDes.getDesignator().obj;
+		Obj maxTemp = new Obj(Obj.Var, "max", ExTab.intType);
+		
+		Code.load(array);
+		Code.loadConst(0);
+		Code.put(Code.aload);
+		
+		Code.store(maxTemp);
+		
+		Code.load(array);
+		Code.loadConst(0);
+		
+		int loopIncrement = Code.pc;
+		
+		Code.loadConst(1);
+		Code.put(Code.add);
+		Code.put(Code.dup2);
+		Code.put(Code.pop);
+		
+		// vrh je array
+		
+		Code.put(Code.arraylength);
+		
+		Code.put(Code.dup2);
+		Code.put(Code.pop);
+		
+		Code.put(Code.dup_x1);
+    	Code.put(Code.pop);
+    	
+    	int passLoop = Code.pc + 1;
+    	Code.putFalseJump(Code.lt, 0);
+    	
+    	/*BODY*/
+    	
+    	Code.put(Code.dup2);
+    	Code.put(Code.aload); // arr[i]
+    	Code.load(maxTemp);  // arr[i], max
+    	
+    	Code.put(Code.dup2);
+    	
+    	//deo za vece
+    	
+    	int jmp = Code.pc + 1;
+        Code.putFalseJump(Code.gt, 0);
+        
+        Code.put(Code.pop);
+        
+        int jmp2 = Code.pc + 1;
+        Code.putJump(0);
+        
+        Code.fixup(jmp);
+        
+        Code.put(Code.dup_x1);
+        Code.put(Code.pop);
+        Code.put(Code.pop);
+        
+        Code.fixup(jmp2);
+    	
+        Code.store(maxTemp);
+        
+        /* END BODY */
+        
+        Code.putJump(loopIncrement);
+        Code.fixup(passLoop);
+        Code.put(Code.pop);
+        Code.put(Code.pop);
+        
+        
+        Code.load(maxTemp);
+	}
 }

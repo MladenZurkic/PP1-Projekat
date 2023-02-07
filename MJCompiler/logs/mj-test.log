@@ -1,130 +1,77 @@
-INFO  14:32:09,799 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
-INFO  14:32:09,829 - #2 program
-INFO  14:32:09,829 - #47 mytest
-INFO  14:32:09,829 - #6 const
-INFO  14:32:09,830 - #47 int
-INFO  14:32:09,830 - #47 y
-INFO  14:32:09,831 - #34 =
-INFO  14:32:09,831 - #48 5
-INFO  14:32:09,831 - #37 ;
-INFO  14:32:09,831 - #47 int
-INFO  14:32:09,832 - #47 i
-INFO  14:32:09,832 - #38 ,
-INFO  14:32:09,832 - #47 curr
-INFO  14:32:09,833 - #37 ;
-INFO  14:32:09,833 - #47 int
-INFO  14:32:09,833 - #47 niz
-INFO  14:32:09,833 - #42 [
-INFO  14:32:09,834 - #24 ]
-INFO  14:32:09,834 - #37 ;
-INFO  14:32:09,834 - #25 {
-INFO  14:32:09,834 - #13 void
-INFO  14:32:09,834 - #47 main
-INFO  14:32:09,834 - #40 (
-INFO  14:32:09,835 - #41 )
-INFO  14:32:09,835 - #47 int
-INFO  14:32:09,835 - #47 x
-INFO  14:32:09,836 - #38 ,
-INFO  14:32:09,836 - #47 z
-INFO  14:32:09,836 - #37 ;
-INFO  14:32:09,836 - #25 {
-INFO  14:32:09,837 - #47 x
-INFO  14:32:09,837 - #34 =
-INFO  14:32:09,837 - #48 5
-INFO  14:32:09,837 - #37 ;
-INFO  14:32:09,838 - #47 z
-INFO  14:32:09,838 - #34 =
-INFO  14:32:09,838 - #48 3
-INFO  14:32:09,838 - #37 ;
-INFO  14:32:09,838 - #46 skip
-INFO  14:32:09,838 - #48 3
-INFO  14:32:09,838 - #37 ;
-INFO  14:32:09,838 - #7 if
-INFO  14:32:09,838 - #40 (
-INFO  14:32:09,839 - #47 x
-INFO  14:32:09,839 - #28 >
-INFO  14:32:09,839 - #47 z
-INFO  14:32:09,839 - #33 ||
-INFO  14:32:09,839 - #47 x
-INFO  14:32:09,840 - #28 >
-INFO  14:32:09,840 - #48 5
-INFO  14:32:09,840 - #41 )
-INFO  14:32:09,840 - #25 {
-INFO  14:32:09,840 - #10 print
-INFO  14:32:09,840 - #40 (
-INFO  14:32:09,840 - #48 1
-INFO  14:32:09,840 - #41 )
-INFO  14:32:09,840 - #37 ;
-INFO  14:32:09,840 - #10 print
-INFO  14:32:09,840 - #40 (
-INFO  14:32:09,840 - #48 2
-INFO  14:32:09,840 - #41 )
-INFO  14:32:09,840 - #37 ;
-INFO  14:32:09,840 - #26 }
-INFO  14:32:09,840 - #5 else
-INFO  14:32:09,841 - #25 {
-INFO  14:32:09,841 - #10 print
-INFO  14:32:09,841 - #40 (
-INFO  14:32:09,841 - #48 3
-INFO  14:32:09,841 - #41 )
-INFO  14:32:09,841 - #37 ;
-INFO  14:32:09,841 - #26 }
-INFO  14:32:09,841 - #47 i
-INFO  14:32:09,841 - #34 =
-INFO  14:32:09,841 - #48 0
-INFO  14:32:09,841 - #37 ;
-INFO  14:32:09,841 - #8 while
-INFO  14:32:09,842 - #40 (
-INFO  14:32:09,842 - #47 i
-INFO  14:32:09,842 - #30 <
-INFO  14:32:09,842 - #48 5
-INFO  14:32:09,842 - #41 )
-INFO  14:32:09,842 - #25 {
-INFO  14:32:09,842 - #7 if
-INFO  14:32:09,842 - #40 (
-INFO  14:32:09,842 - #47 i
-INFO  14:32:09,842 - #22 ==
-INFO  14:32:09,842 - #48 3
-INFO  14:32:09,843 - #41 )
-INFO  14:32:09,843 - #25 {
-INFO  14:32:09,843 - #10 print
-INFO  14:32:09,843 - #40 (
-INFO  14:32:09,843 - #49 a
-INFO  14:32:09,843 - #41 )
-INFO  14:32:09,843 - #37 ;
-INFO  14:32:09,843 - #47 i
-INFO  14:32:09,843 - #35 ++
-INFO  14:32:09,843 - #37 ;
-INFO  14:32:09,844 - #15 continue
-INFO  14:32:09,844 - #37 ;
-INFO  14:32:09,844 - #26 }
-INFO  14:32:09,844 - #7 if
-INFO  14:32:09,845 - #40 (
-INFO  14:32:09,845 - #47 i
-INFO  14:32:09,845 - #22 ==
-INFO  14:32:09,845 - #48 4
-INFO  14:32:09,845 - #41 )
-INFO  14:32:09,845 - #3 break
-INFO  14:32:09,845 - #37 ;
-INFO  14:32:09,845 - #10 print
-INFO  14:32:09,845 - #40 (
-INFO  14:32:09,845 - #49 c
-INFO  14:32:09,845 - #41 )
-INFO  14:32:09,845 - #37 ;
-INFO  14:32:09,845 - #47 i
-INFO  14:32:09,845 - #35 ++
-INFO  14:32:09,846 - #37 ;
-INFO  14:32:09,846 - #26 }
-INFO  14:32:09,846 - #10 print
-INFO  14:32:09,846 - #40 (
-INFO  14:32:09,846 - #47 x
-INFO  14:32:09,846 - #41 )
-INFO  14:32:09,846 - #37 ;
-INFO  14:32:09,846 - #12 return
-INFO  14:32:09,846 - #37 ;
-INFO  14:32:09,846 - #26 }
-INFO  14:32:09,846 - #26 }
-INFO  14:32:09,852 - Program(
+INFO  18:06:03,947 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  18:06:03,978 - #2 program
+INFO  18:06:03,978 - #47 mytest
+INFO  18:06:03,978 - #6 const
+INFO  18:06:03,979 - #47 int
+INFO  18:06:03,979 - #47 y
+INFO  18:06:03,979 - #34 =
+INFO  18:06:03,979 - #48 5
+INFO  18:06:03,979 - #37 ;
+INFO  18:06:03,980 - #47 int
+INFO  18:06:03,980 - #47 i
+INFO  18:06:03,980 - #38 ,
+INFO  18:06:03,981 - #47 curr
+INFO  18:06:03,981 - #37 ;
+INFO  18:06:03,981 - #47 int
+INFO  18:06:03,982 - #47 niz
+INFO  18:06:03,982 - #42 [
+INFO  18:06:03,982 - #24 ]
+INFO  18:06:03,982 - #37 ;
+INFO  18:06:03,982 - #25 {
+INFO  18:06:03,982 - #13 void
+INFO  18:06:03,983 - #47 main
+INFO  18:06:03,983 - #40 (
+INFO  18:06:03,984 - #41 )
+INFO  18:06:03,984 - #47 int
+INFO  18:06:03,984 - #47 x
+INFO  18:06:03,984 - #38 ,
+INFO  18:06:03,985 - #47 z
+INFO  18:06:03,985 - #37 ;
+INFO  18:06:03,985 - #25 {
+INFO  18:06:03,986 - #47 niz
+INFO  18:06:03,986 - #34 =
+INFO  18:06:03,986 - #9 new
+INFO  18:06:03,987 - #47 int
+INFO  18:06:03,987 - #42 [
+INFO  18:06:03,987 - #48 3
+INFO  18:06:03,987 - #24 ]
+INFO  18:06:03,987 - #37 ;
+INFO  18:06:03,987 - #47 niz
+INFO  18:06:03,987 - #42 [
+INFO  18:06:03,988 - #48 0
+INFO  18:06:03,988 - #24 ]
+INFO  18:06:03,988 - #34 =
+INFO  18:06:03,988 - #48 10
+INFO  18:06:03,988 - #37 ;
+INFO  18:06:03,988 - #47 niz
+INFO  18:06:03,988 - #42 [
+INFO  18:06:03,988 - #48 1
+INFO  18:06:03,988 - #24 ]
+INFO  18:06:03,989 - #34 =
+INFO  18:06:03,989 - #48 30
+INFO  18:06:03,989 - #37 ;
+INFO  18:06:03,989 - #47 niz
+INFO  18:06:03,989 - #42 [
+INFO  18:06:03,989 - #48 2
+INFO  18:06:03,989 - #24 ]
+INFO  18:06:03,989 - #34 =
+INFO  18:06:03,989 - #48 3
+INFO  18:06:03,989 - #37 ;
+INFO  18:06:03,989 - #47 x
+INFO  18:06:03,989 - #34 =
+INFO  18:06:03,989 - #46 ^
+INFO  18:06:03,989 - #47 niz
+INFO  18:06:03,989 - #37 ;
+INFO  18:06:03,989 - #10 print
+INFO  18:06:03,990 - #40 (
+INFO  18:06:03,990 - #47 x
+INFO  18:06:03,990 - #41 )
+INFO  18:06:03,990 - #37 ;
+INFO  18:06:03,990 - #12 return
+INFO  18:06:03,990 - #37 ;
+INFO  18:06:03,990 - #26 }
+INFO  18:06:03,990 - #26 }
+INFO  18:06:03,995 - Program(
   ProgName(
    mytest
   ) [ProgName]
@@ -233,304 +180,136 @@ INFO  14:32:09,852 - Program(
               StatementListDef(
                 StatementListDef(
                   StatementListDef(
-                    StatementListDef(
-                      NoStatementList(
-                      ) [NoStatementList]
-                      DesignatorStmt(
-                        DesignatorStmtOptAssign(
-                          DesignatorIdent(
-                           x
-                          ) [DesignatorIdent]
-                          AssignOp(
-                          ) [AssignOp]
-                          ExprTerm(
-                            TermFactor(
-                              FactorNumber(
-                               5
-                              ) [FactorNumber]
-                            ) [TermFactor]
-                          ) [ExprTerm]
-                        ) [DesignatorStmtOptAssign]
-                      ) [DesignatorStmt]
-                    ) [StatementListDef]
+                    NoStatementList(
+                    ) [NoStatementList]
                     DesignatorStmt(
                       DesignatorStmtOptAssign(
                         DesignatorIdent(
-                         z
+                         niz
                         ) [DesignatorIdent]
                         AssignOp(
                         ) [AssignOp]
                         ExprTerm(
                           TermFactor(
-                            FactorNumber(
-                             3
-                            ) [FactorNumber]
+                            FactorNewExpr(
+                              Type(
+                               int
+                              ) [Type]
+                              ExprTerm(
+                                TermFactor(
+                                  FactorNumber(
+                                   3
+                                  ) [FactorNumber]
+                                ) [TermFactor]
+                              ) [ExprTerm]
+                            ) [FactorNewExpr]
                           ) [TermFactor]
                         ) [ExprTerm]
                       ) [DesignatorStmtOptAssign]
                     ) [DesignatorStmt]
                   ) [StatementListDef]
                   DesignatorStmt(
-                    SkipStmt(
-                     3
-                    ) [SkipStmt]
+                    DesignatorStmtOptAssign(
+                      DesignatorExpr(
+                        DesignatorArrayHelp(
+                          DesignatorIdent(
+                           niz
+                          ) [DesignatorIdent]
+                        ) [DesignatorArrayHelp]
+                        ExprTerm(
+                          TermFactor(
+                            FactorNumber(
+                             0
+                            ) [FactorNumber]
+                          ) [TermFactor]
+                        ) [ExprTerm]
+                      ) [DesignatorExpr]
+                      AssignOp(
+                      ) [AssignOp]
+                      ExprTerm(
+                        TermFactor(
+                          FactorNumber(
+                           10
+                          ) [FactorNumber]
+                        ) [TermFactor]
+                      ) [ExprTerm]
+                    ) [DesignatorStmtOptAssign]
                   ) [DesignatorStmt]
                 ) [StatementListDef]
-                IfStmt(
-                  ConditionORCondTerm(
-                    ConditionCondTerm(
-                      CondTermFact(
-                        CondFactExprRelOpExpr(
-                          ExprTerm(
-                            TermFactor(
-                              FactorDesignator(
-                                DesignatorIdent(
-                                 x
-                                ) [DesignatorIdent]
-                              ) [FactorDesignator]
-                            ) [TermFactor]
-                          ) [ExprTerm]
-                          RelGT(
-                          ) [RelGT]
-                          ExprTerm(
-                            TermFactor(
-                              FactorDesignator(
-                                DesignatorIdent(
-                                 z
-                                ) [DesignatorIdent]
-                              ) [FactorDesignator]
-                            ) [TermFactor]
-                          ) [ExprTerm]
-                        ) [CondFactExprRelOpExpr]
-                      ) [CondTermFact]
-                    ) [ConditionCondTerm]
-                    CondTermFact(
-                      CondFactExprRelOpExpr(
-                        ExprTerm(
-                          TermFactor(
-                            FactorDesignator(
-                              DesignatorIdent(
-                               x
-                              ) [DesignatorIdent]
-                            ) [FactorDesignator]
-                          ) [TermFactor]
-                        ) [ExprTerm]
-                        RelGT(
-                        ) [RelGT]
-                        ExprTerm(
-                          TermFactor(
-                            FactorNumber(
-                             5
-                            ) [FactorNumber]
-                          ) [TermFactor]
-                        ) [ExprTerm]
-                      ) [CondFactExprRelOpExpr]
-                    ) [CondTermFact]
-                  ) [ConditionORCondTerm]
-                  StmtList(
-                    StatementListDef(
-                      StatementListDef(
-                        NoStatementList(
-                        ) [NoStatementList]
-                        PrintStmtNoNum(
-                          ExprTerm(
-                            TermFactor(
-                              FactorNumber(
-                               1
-                              ) [FactorNumber]
-                            ) [TermFactor]
-                          ) [ExprTerm]
-                        ) [PrintStmtNoNum]
-                      ) [StatementListDef]
-                      PrintStmtNoNum(
-                        ExprTerm(
-                          TermFactor(
-                            FactorNumber(
-                             2
-                            ) [FactorNumber]
-                          ) [TermFactor]
-                        ) [ExprTerm]
-                      ) [PrintStmtNoNum]
-                    ) [StatementListDef]
-                  ) [StmtList]
-                  ElseStmtOpt(
-                    StmtList(
-                      StatementListDef(
-                        NoStatementList(
-                        ) [NoStatementList]
-                        PrintStmtNoNum(
-                          ExprTerm(
-                            TermFactor(
-                              FactorNumber(
-                               3
-                              ) [FactorNumber]
-                            ) [TermFactor]
-                          ) [ExprTerm]
-                        ) [PrintStmtNoNum]
-                      ) [StatementListDef]
-                    ) [StmtList]
-                  ) [ElseStmtOpt]
-                ) [IfStmt]
+                DesignatorStmt(
+                  DesignatorStmtOptAssign(
+                    DesignatorExpr(
+                      DesignatorArrayHelp(
+                        DesignatorIdent(
+                         niz
+                        ) [DesignatorIdent]
+                      ) [DesignatorArrayHelp]
+                      ExprTerm(
+                        TermFactor(
+                          FactorNumber(
+                           1
+                          ) [FactorNumber]
+                        ) [TermFactor]
+                      ) [ExprTerm]
+                    ) [DesignatorExpr]
+                    AssignOp(
+                    ) [AssignOp]
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         30
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                  ) [DesignatorStmtOptAssign]
+                ) [DesignatorStmt]
               ) [StatementListDef]
               DesignatorStmt(
                 DesignatorStmtOptAssign(
-                  DesignatorIdent(
-                   i
-                  ) [DesignatorIdent]
+                  DesignatorExpr(
+                    DesignatorArrayHelp(
+                      DesignatorIdent(
+                       niz
+                      ) [DesignatorIdent]
+                    ) [DesignatorArrayHelp]
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         2
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                  ) [DesignatorExpr]
                   AssignOp(
                   ) [AssignOp]
                   ExprTerm(
                     TermFactor(
                       FactorNumber(
-                       0
+                       3
                       ) [FactorNumber]
                     ) [TermFactor]
                   ) [ExprTerm]
                 ) [DesignatorStmtOptAssign]
               ) [DesignatorStmt]
             ) [StatementListDef]
-            WhileStmt(
-              EnteredLoop(
-              ) [EnteredLoop]
-              ConditionCondTerm(
-                CondTermFact(
-                  CondFactExprRelOpExpr(
-                    ExprTerm(
-                      TermFactor(
-                        FactorDesignator(
-                          DesignatorIdent(
-                           i
-                          ) [DesignatorIdent]
-                        ) [FactorDesignator]
-                      ) [TermFactor]
-                    ) [ExprTerm]
-                    RelLT(
-                    ) [RelLT]
-                    ExprTerm(
-                      TermFactor(
-                        FactorNumber(
-                         5
-                        ) [FactorNumber]
-                      ) [TermFactor]
-                    ) [ExprTerm]
-                  ) [CondFactExprRelOpExpr]
-                ) [CondTermFact]
-              ) [ConditionCondTerm]
-              StmtList(
-                StatementListDef(
-                  StatementListDef(
-                    StatementListDef(
-                      StatementListDef(
-                        NoStatementList(
-                        ) [NoStatementList]
-                        IfStmt(
-                          ConditionCondTerm(
-                            CondTermFact(
-                              CondFactExprRelOpExpr(
-                                ExprTerm(
-                                  TermFactor(
-                                    FactorDesignator(
-                                      DesignatorIdent(
-                                       i
-                                      ) [DesignatorIdent]
-                                    ) [FactorDesignator]
-                                  ) [TermFactor]
-                                ) [ExprTerm]
-                                RelEQ(
-                                ) [RelEQ]
-                                ExprTerm(
-                                  TermFactor(
-                                    FactorNumber(
-                                     3
-                                    ) [FactorNumber]
-                                  ) [TermFactor]
-                                ) [ExprTerm]
-                              ) [CondFactExprRelOpExpr]
-                            ) [CondTermFact]
-                          ) [ConditionCondTerm]
-                          StmtList(
-                            StatementListDef(
-                              StatementListDef(
-                                StatementListDef(
-                                  NoStatementList(
-                                  ) [NoStatementList]
-                                  PrintStmtNoNum(
-                                    ExprTerm(
-                                      TermFactor(
-                                        FactorChar(
-                                         a
-                                        ) [FactorChar]
-                                      ) [TermFactor]
-                                    ) [ExprTerm]
-                                  ) [PrintStmtNoNum]
-                                ) [StatementListDef]
-                                DesignatorStmt(
-                                  DesignatorStmtOptINC(
-                                    DesignatorIdent(
-                                     i
-                                    ) [DesignatorIdent]
-                                  ) [DesignatorStmtOptINC]
-                                ) [DesignatorStmt]
-                              ) [StatementListDef]
-                              ContinueStmt(
-                              ) [ContinueStmt]
-                            ) [StatementListDef]
-                          ) [StmtList]
-                          ElseStmtEpsilon(
-                          ) [ElseStmtEpsilon]
-                        ) [IfStmt]
-                      ) [StatementListDef]
-                      IfStmt(
-                        ConditionCondTerm(
-                          CondTermFact(
-                            CondFactExprRelOpExpr(
-                              ExprTerm(
-                                TermFactor(
-                                  FactorDesignator(
-                                    DesignatorIdent(
-                                     i
-                                    ) [DesignatorIdent]
-                                  ) [FactorDesignator]
-                                ) [TermFactor]
-                              ) [ExprTerm]
-                              RelEQ(
-                              ) [RelEQ]
-                              ExprTerm(
-                                TermFactor(
-                                  FactorNumber(
-                                   4
-                                  ) [FactorNumber]
-                                ) [TermFactor]
-                              ) [ExprTerm]
-                            ) [CondFactExprRelOpExpr]
-                          ) [CondTermFact]
-                        ) [ConditionCondTerm]
-                        BreakStmt(
-                        ) [BreakStmt]
-                        ElseStmtEpsilon(
-                        ) [ElseStmtEpsilon]
-                      ) [IfStmt]
-                    ) [StatementListDef]
-                    PrintStmtNoNum(
-                      ExprTerm(
-                        TermFactor(
-                          FactorChar(
-                           c
-                          ) [FactorChar]
-                        ) [TermFactor]
-                      ) [ExprTerm]
-                    ) [PrintStmtNoNum]
-                  ) [StatementListDef]
-                  DesignatorStmt(
-                    DesignatorStmtOptINC(
+            DesignatorStmt(
+              DesignatorStmtOptAssign(
+                DesignatorIdent(
+                 x
+                ) [DesignatorIdent]
+                AssignOp(
+                ) [AssignOp]
+                ExprTerm(
+                  TermFactor(
+                    KapaDesignator(
                       DesignatorIdent(
-                       i
+                       niz
                       ) [DesignatorIdent]
-                    ) [DesignatorStmtOptINC]
-                  ) [DesignatorStmt]
-                ) [StatementListDef]
-              ) [StmtList]
-            ) [WhileStmt]
+                    ) [KapaDesignator]
+                  ) [TermFactor]
+                ) [ExprTerm]
+              ) [DesignatorStmtOptAssign]
+            ) [DesignatorStmt]
           ) [StatementListDef]
           PrintStmtNoNum(
             ExprTerm(
@@ -550,28 +329,26 @@ INFO  14:32:09,852 - Program(
     ) [MethodDecl]
   ) [MethodDeclLists]
 ) [Program]
-INFO  14:32:09,852 - ===================================
-INFO  14:32:09,856 - Obradjuje se funkcija main na liniji 9
-INFO  14:32:09,856 - Pronadjena lokalna varijabla! - x na liniji 12
-INFO  14:32:09,856 - Pronadjena lokalna varijabla! - z na liniji 13
-INFO  14:32:09,856 - Pronadjena lokalna varijabla! - x na liniji 15
-INFO  14:32:09,856 - Pronadjena lokalna varijabla! - z na liniji 15
-INFO  14:32:09,856 - Pronadjena lokalna varijabla! - x na liniji 15
-INFO  14:32:09,856 - Pronadjena globalna varijabla! - i na liniji 24
-INFO  14:32:09,856 - Pronadjena globalna varijabla! - i na liniji 25
-INFO  14:32:09,857 - Pronadjena globalna varijabla! - i na liniji 27
-INFO  14:32:09,857 - Pronadjena globalna varijabla! - i na liniji 30
-INFO  14:32:09,857 - Pronadjena globalna varijabla! - i na liniji 33
-INFO  14:32:09,857 - Pronadjena globalna varijabla! - i na liniji 35
-INFO  14:32:09,857 - Pronadjena lokalna varijabla! - x na liniji 37
-INFO  14:32:09,857 - 
-INFO  14:32:09,857 - ==============SUMMARY==============
-INFO  14:32:09,857 -  Print count calls = 6
-INFO  14:32:09,857 -  Deklarisanih kostanti ima = 1
-INFO  14:32:09,857 -  Lokalno deklarisanih promenljivih ima = 2
-INFO  14:32:09,857 -  Globalno deklarisanih promenljivih ima = 3
-INFO  14:32:09,857 -  Deklarisanih metoda ima = 1
-INFO  14:32:09,857 -  Deklarisanih klasa ima = 0
-INFO  14:32:09,857 -  Deklarisanih nizova ima = 1
-INFO  14:32:09,857 -  Deklarisanih statementa ima = 16
-INFO  14:32:09,862 - Parisanje uspesno zavrseno!
+INFO  18:06:03,995 - ===================================
+INFO  18:06:03,998 - Obradjuje se funkcija main na liniji 9
+INFO  18:06:03,998 - Pronadjena globalna varijabla! - niz na liniji 13
+INFO  18:06:03,998 - Pronadjena globalna varijabla! - niz na liniji 14
+INFO  18:06:03,998 - Pristup elementu niza - niz na liniji 14
+INFO  18:06:03,998 - Pronadjena globalna varijabla! - niz na liniji 15
+INFO  18:06:03,998 - Pristup elementu niza - niz na liniji 15
+INFO  18:06:03,998 - Pronadjena globalna varijabla! - niz na liniji 16
+INFO  18:06:03,998 - Pristup elementu niza - niz na liniji 16
+INFO  18:06:03,998 - Pronadjena lokalna varijabla! - x na liniji 17
+INFO  18:06:03,998 - Pronadjena globalna varijabla! - niz na liniji 17
+INFO  18:06:03,998 - Pronadjena lokalna varijabla! - x na liniji 19
+INFO  18:06:03,998 - 
+INFO  18:06:03,998 - ==============SUMMARY==============
+INFO  18:06:03,998 -  Print count calls = 1
+INFO  18:06:03,998 -  Deklarisanih kostanti ima = 1
+INFO  18:06:03,998 -  Lokalno deklarisanih promenljivih ima = 2
+INFO  18:06:03,998 -  Globalno deklarisanih promenljivih ima = 3
+INFO  18:06:03,999 -  Deklarisanih metoda ima = 1
+INFO  18:06:03,999 -  Deklarisanih klasa ima = 0
+INFO  18:06:03,999 -  Deklarisanih nizova ima = 1
+INFO  18:06:03,999 -  Deklarisanih statementa ima = 7
+INFO  18:06:04,002 - Parisanje uspesno zavrseno!

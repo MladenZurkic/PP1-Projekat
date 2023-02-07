@@ -1,0 +1,335 @@
+INFO  17:32:10,595 - Compiling source file: D:\GitHub repos\PP1-Projekat\MJCompiler\test\program.mj
+INFO  17:32:10,630 - #2 program
+INFO  17:32:10,630 - #47 mytest
+INFO  17:32:10,630 - #6 const
+INFO  17:32:10,631 - #47 int
+INFO  17:32:10,631 - #47 y
+INFO  17:32:10,631 - #34 =
+INFO  17:32:10,631 - #48 5
+INFO  17:32:10,632 - #37 ;
+INFO  17:32:10,632 - #47 int
+INFO  17:32:10,633 - #47 i
+INFO  17:32:10,633 - #38 ,
+INFO  17:32:10,634 - #47 curr
+INFO  17:32:10,635 - #37 ;
+INFO  17:32:10,635 - #47 int
+INFO  17:32:10,636 - #47 niz
+INFO  17:32:10,636 - #42 [
+INFO  17:32:10,636 - #24 ]
+INFO  17:32:10,636 - #37 ;
+INFO  17:32:10,636 - #25 {
+INFO  17:32:10,636 - #13 void
+INFO  17:32:10,637 - #47 main
+INFO  17:32:10,637 - #40 (
+INFO  17:32:10,638 - #41 )
+INFO  17:32:10,638 - #47 int
+INFO  17:32:10,638 - #47 x
+INFO  17:32:10,639 - #38 ,
+INFO  17:32:10,639 - #47 z
+INFO  17:32:10,640 - #37 ;
+INFO  17:32:10,640 - #25 {
+INFO  17:32:10,640 - #47 niz
+INFO  17:32:10,640 - #34 =
+INFO  17:32:10,641 - #9 new
+INFO  17:32:10,641 - #47 int
+INFO  17:32:10,641 - #42 [
+INFO  17:32:10,641 - #48 3
+INFO  17:32:10,641 - #24 ]
+INFO  17:32:10,642 - #37 ;
+INFO  17:32:10,642 - #47 niz
+INFO  17:32:10,642 - #42 [
+INFO  17:32:10,643 - #48 0
+INFO  17:32:10,643 - #24 ]
+INFO  17:32:10,643 - #34 =
+INFO  17:32:10,643 - #48 1
+INFO  17:32:10,643 - #37 ;
+INFO  17:32:10,643 - #47 niz
+INFO  17:32:10,643 - #42 [
+INFO  17:32:10,643 - #48 1
+INFO  17:32:10,643 - #24 ]
+INFO  17:32:10,644 - #34 =
+INFO  17:32:10,644 - #48 2
+INFO  17:32:10,644 - #37 ;
+INFO  17:32:10,644 - #47 niz
+INFO  17:32:10,644 - #42 [
+INFO  17:32:10,644 - #48 2
+INFO  17:32:10,644 - #24 ]
+INFO  17:32:10,644 - #34 =
+INFO  17:32:10,644 - #48 3
+INFO  17:32:10,644 - #37 ;
+INFO  17:32:10,644 - #47 x
+INFO  17:32:10,644 - #34 =
+INFO  17:32:10,645 - #47 niz
+INFO  17:32:10,645 - #37 ;
+INFO  17:32:10,645 - #12 return
+INFO  17:32:10,645 - #37 ;
+INFO  17:32:10,645 - #26 }
+INFO  17:32:10,646 - #26 }
+INFO  17:32:10,652 - Program(
+  ProgName(
+   mytest
+  ) [ProgName]
+  Declarations(
+    Declarations(
+      Declarations(
+        NoDeclarations(
+        ) [NoDeclarations]
+        DeclsConstDecl(
+          ConstDecl(
+            Type(
+             int
+            ) [Type]
+            ConstsListSingle(
+              ConstsListElem(
+               y
+                NumberConst(
+                 5
+                ) [NumberConst]
+              ) [ConstsListElem]
+            ) [ConstsListSingle]
+          ) [ConstDecl]
+        ) [DeclsConstDecl]
+      ) [Declarations]
+      DeclsVarDecl(
+        GlobalVarDecl(
+          Type(
+           int
+          ) [Type]
+          GlobalVarDeclLists(
+            VarDeclCommaDef(
+              GlobalVarDeclIdent(
+               i
+                NoAngleBrackets(
+                ) [NoAngleBrackets]
+              ) [GlobalVarDeclIdent]
+            ) [VarDeclCommaDef]
+            GlobalVarDeclListEnd(
+              VarDeclEndDef(
+                GlobalVarDeclIdent(
+                 curr
+                  NoAngleBrackets(
+                  ) [NoAngleBrackets]
+                ) [GlobalVarDeclIdent]
+              ) [VarDeclEndDef]
+            ) [GlobalVarDeclListEnd]
+          ) [GlobalVarDeclLists]
+        ) [GlobalVarDecl]
+      ) [DeclsVarDecl]
+    ) [Declarations]
+    DeclsVarDecl(
+      GlobalVarDecl(
+        Type(
+         int
+        ) [Type]
+        GlobalVarDeclListEnd(
+          VarDeclEndDef(
+            GlobalVarDeclIdent(
+             niz
+              AngleBrackets(
+              ) [AngleBrackets]
+            ) [GlobalVarDeclIdent]
+          ) [VarDeclEndDef]
+        ) [GlobalVarDeclListEnd]
+      ) [GlobalVarDecl]
+    ) [DeclsVarDecl]
+  ) [Declarations]
+  MethodDeclLists(
+    NoMethodDeclList(
+    ) [NoMethodDeclList]
+    MethodDecl(
+      MethodTypeName(
+        TypeOrVoidVoid(
+        ) [TypeOrVoidVoid]
+       main
+      ) [MethodTypeName]
+      FormParsOptionalRPAREN(
+      ) [FormParsOptionalRPAREN]
+      VarDeclLists(
+        NoVarDeclList(
+        ) [NoVarDeclList]
+        VarDecl(
+          Type(
+           int
+          ) [Type]
+          VarDeclIdent(
+           x
+            NoAngleBrackets(
+            ) [NoAngleBrackets]
+          ) [VarDeclIdent]
+          MoreVarDeclsDef(
+            NoMoreVarDecls(
+            ) [NoMoreVarDecls]
+            VarDeclIdent(
+             z
+              NoAngleBrackets(
+              ) [NoAngleBrackets]
+            ) [VarDeclIdent]
+          ) [MoreVarDeclsDef]
+        ) [VarDecl]
+      ) [VarDeclLists]
+      StatementListDef(
+        StatementListDef(
+          StatementListDef(
+            StatementListDef(
+              StatementListDef(
+                StatementListDef(
+                  NoStatementList(
+                  ) [NoStatementList]
+                  DesignatorStmt(
+                    DesignatorStmtOptAssign(
+                      DesignatorIdent(
+                       niz
+                      ) [DesignatorIdent]
+                      AssignOp(
+                      ) [AssignOp]
+                      ExprTerm(
+                        TermFactor(
+                          FactorNewExpr(
+                            Type(
+                             int
+                            ) [Type]
+                            ExprTerm(
+                              TermFactor(
+                                FactorNumber(
+                                 3
+                                ) [FactorNumber]
+                              ) [TermFactor]
+                            ) [ExprTerm]
+                          ) [FactorNewExpr]
+                        ) [TermFactor]
+                      ) [ExprTerm]
+                    ) [DesignatorStmtOptAssign]
+                  ) [DesignatorStmt]
+                ) [StatementListDef]
+                DesignatorStmt(
+                  DesignatorStmtOptAssign(
+                    DesignatorExpr(
+                      DesignatorArrayHelp(
+                        DesignatorIdent(
+                         niz
+                        ) [DesignatorIdent]
+                      ) [DesignatorArrayHelp]
+                      ExprTerm(
+                        TermFactor(
+                          FactorNumber(
+                           0
+                          ) [FactorNumber]
+                        ) [TermFactor]
+                      ) [ExprTerm]
+                    ) [DesignatorExpr]
+                    AssignOp(
+                    ) [AssignOp]
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         1
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                  ) [DesignatorStmtOptAssign]
+                ) [DesignatorStmt]
+              ) [StatementListDef]
+              DesignatorStmt(
+                DesignatorStmtOptAssign(
+                  DesignatorExpr(
+                    DesignatorArrayHelp(
+                      DesignatorIdent(
+                       niz
+                      ) [DesignatorIdent]
+                    ) [DesignatorArrayHelp]
+                    ExprTerm(
+                      TermFactor(
+                        FactorNumber(
+                         1
+                        ) [FactorNumber]
+                      ) [TermFactor]
+                    ) [ExprTerm]
+                  ) [DesignatorExpr]
+                  AssignOp(
+                  ) [AssignOp]
+                  ExprTerm(
+                    TermFactor(
+                      FactorNumber(
+                       2
+                      ) [FactorNumber]
+                    ) [TermFactor]
+                  ) [ExprTerm]
+                ) [DesignatorStmtOptAssign]
+              ) [DesignatorStmt]
+            ) [StatementListDef]
+            DesignatorStmt(
+              DesignatorStmtOptAssign(
+                DesignatorExpr(
+                  DesignatorArrayHelp(
+                    DesignatorIdent(
+                     niz
+                    ) [DesignatorIdent]
+                  ) [DesignatorArrayHelp]
+                  ExprTerm(
+                    TermFactor(
+                      FactorNumber(
+                       2
+                      ) [FactorNumber]
+                    ) [TermFactor]
+                  ) [ExprTerm]
+                ) [DesignatorExpr]
+                AssignOp(
+                ) [AssignOp]
+                ExprTerm(
+                  TermFactor(
+                    FactorNumber(
+                     3
+                    ) [FactorNumber]
+                  ) [TermFactor]
+                ) [ExprTerm]
+              ) [DesignatorStmtOptAssign]
+            ) [DesignatorStmt]
+          ) [StatementListDef]
+          DesignatorStmt(
+            DesignatorStmtOptAssign(
+              DesignatorIdent(
+               x
+              ) [DesignatorIdent]
+              AssignOp(
+              ) [AssignOp]
+              ExprTerm(
+                TermFactor(
+                  FactorDesignator(
+                    DesignatorIdent(
+                     niz
+                    ) [DesignatorIdent]
+                  ) [FactorDesignator]
+                ) [TermFactor]
+              ) [ExprTerm]
+            ) [DesignatorStmtOptAssign]
+          ) [DesignatorStmt]
+        ) [StatementListDef]
+        ReturnNoExpr(
+        ) [ReturnNoExpr]
+      ) [StatementListDef]
+    ) [MethodDecl]
+  ) [MethodDeclLists]
+) [Program]
+INFO  17:32:10,652 - ===================================
+INFO  17:32:10,655 - Obradjuje se funkcija main na liniji 9
+INFO  17:32:10,655 - Pronadjena globalna varijabla! - niz na liniji 13
+INFO  17:32:10,655 - Pronadjena globalna varijabla! - niz na liniji 14
+INFO  17:32:10,656 - Pristup elementu niza - niz na liniji 14
+INFO  17:32:10,656 - Pronadjena globalna varijabla! - niz na liniji 15
+INFO  17:32:10,656 - Pristup elementu niza - niz na liniji 15
+INFO  17:32:10,656 - Pronadjena globalna varijabla! - niz na liniji 16
+INFO  17:32:10,656 - Pristup elementu niza - niz na liniji 16
+INFO  17:32:10,656 - Pronadjena lokalna varijabla! - x na liniji 17
+INFO  17:32:10,656 - Pronadjena globalna varijabla! - niz na liniji 17
+ERROR 17:32:10,656 - Greska na 17 liniji: Izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign
+INFO  17:32:10,656 - 
+INFO  17:32:10,656 - ==============SUMMARY==============
+INFO  17:32:10,656 -  Print count calls = 0
+INFO  17:32:10,656 -  Deklarisanih kostanti ima = 1
+INFO  17:32:10,656 -  Lokalno deklarisanih promenljivih ima = 2
+INFO  17:32:10,656 -  Globalno deklarisanih promenljivih ima = 3
+INFO  17:32:10,656 -  Deklarisanih metoda ima = 1
+INFO  17:32:10,656 -  Deklarisanih klasa ima = 0
+INFO  17:32:10,657 -  Deklarisanih nizova ima = 1
+INFO  17:32:10,657 -  Deklarisanih statementa ima = 6
+ERROR 17:32:10,657 - Parsiranje NIJE uspesno zavrseno.

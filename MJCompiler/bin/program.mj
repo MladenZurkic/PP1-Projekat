@@ -9,33 +9,14 @@ int niz[];
     void main()
     int x, z;
     {
-        x = 5;
-        z = 3;
-        skip 3;
-        if(x > z || x > 5)
-        {
-            print(1);
-            print(2);
-        }
-        else {
-            print(3);
-        }
-        
-        i = 0;
-        while(i < 5)
-        {
-            if(i == 3)
-            {
-                print('a');
-                i++;
-                continue;
-            }
-            if(i == 4) break;
-            print('c');
-            i++;
-        }
-        print(x);
+
+		niz = new int[3];
+		niz[0] = 10;
+		niz[1] = 30;
+		niz[2] = 3;
+		x = ^niz;
     
+    	print(x);
         return;
     }
 }

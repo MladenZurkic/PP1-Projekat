@@ -51,7 +51,7 @@ scan with {:
 terminal PROG, BREAK, CLASS, ELSE, CONST, IF, WHILE, NEW, PRINT, READ, RETURN, VOID, EXTENDS, CONTINUE;
 terminal FOREACH, PLUS, MINUS, MUL, DIV, MOD, EQ, NEQ, RANGLE, LBRACE, RBRACE, LAMBDAOP;
 terminal GT, GEQ, LT, LEQ, BITAND, BITOR, EQUAL, INC, DEC, SEMI, COMMA, DOT, LPAREN, RPAREN, LANGLE;
-terminal COLON, DO, ENUM;
+terminal COLON, DO, ENUM, KAPA;
 terminal String IDENT;
 terminal Integer NUMBER;
 terminal Character CHARCONST;
@@ -301,7 +301,8 @@ Factor ::= (FactorDesignator) Designator:designator
 		| (FactorBool) BOOLCONST:bool
 		| (FactorNewExpr) NEW Type:typeName LANGLE Expr:expr RANGLE
 		| (FactorNewActPars) NEW Type:typeName LPAREN ActParsOptional RPAREN
-		| (FactorExpr) LPAREN Expr:expr RPAREN;
+		| (FactorExpr) LPAREN Expr:expr RPAREN
+		| (KapaDesignator) KAPA Designator;
 
 
 DesignatorForActPars ::= (DesignatorForActPars) Designator;

@@ -1,0 +1,1786 @@
+
+  pos: instruction operands
+     | expressionstack
+-----------------------------
+    0: enter       0 0 
+     | 
+    3: const       116 
+     | 116 
+    8: const_1     
+     | 116 1 
+    9: bprint      t
+     | 
+   10: const       101 
+     | 101 
+   15: const_1     
+     | 101 1 
+   16: bprint      e
+     | 
+   17: const       115 
+     | 115 
+   22: const_1     
+     | 115 1 
+   23: bprint      s
+     | 
+   24: const       116 
+     | 116 
+   29: const_1     
+     | 116 1 
+   30: bprint      t
+     | 
+   31: const       32 
+     | 32 
+   36: const_1     
+     | 32 1 
+   37: bprint       
+     | 
+   38: const       105 
+     | 105 
+   43: const_1     
+     | 105 1 
+   44: bprint      i
+     | 
+   45: const       47 
+     | 47 
+   50: const_1     
+     | 47 1 
+   51: bprint      /
+     | 
+   52: const       111 
+     | 111 
+   57: const_1     
+     | 111 1 
+   58: bprint      o
+     | 
+   59: const       10 
+     | 10 
+   64: const_1     
+     | 10 1 
+   65: bprint      
+
+     | 
+   66: read        
+     | 123 
+   67: putstatic   0 
+     | 
+   70: getstatic   0 
+     | 123 
+   73: const_3     
+     | 123 3 
+   74: print       123
+     | 
+   75: const       10 
+     | 10 
+   80: newarray    1 
+     | 2 
+   82: putstatic   5 
+     | 
+   85: getstatic   5 
+     | 2 
+   88: const_2     
+     | 2 2 
+   89: read        
+     | 2 2 456 
+   90: astore      
+Arraylength = 10
+Address = 2
+Index = 2
+Value = 456
+
+     | 
+   91: const       10 
+     | 10 
+   96: const_1     
+     | 10 1 
+   97: bprint      
+
+     | 
+   98: getstatic   5 
+     | 2 
+  101: const_2     
+     | 2 2 
+  102: aload       
+     | 456 
+  103: const_5     
+     | 456 5 
+  104: print         456
+     | 
+  105: const       10 
+     | 10 
+  110: const_1     
+     | 10 1 
+  111: bprint      
+
+     | 
+  112: const       97 
+     | 97 
+  117: const       10 
+     | 97 10 
+  122: bprint               a
+     | 
+  123: const       10 
+     | 10 
+  128: const_1     
+     | 10 1 
+  129: bprint      
+
+     | 
+  130: const_0     
+     | 0 
+  131: const_5     
+     | 0 5 
+  132: print           0
+     | 
+  133: const       10 
+     | 10 
+  138: const_1     
+     | 10 1 
+  139: bprint      
+
+     | 
+  140: const       20130010 
+     | 20130010 
+  145: const_5     
+     | 20130010 5 
+  146: print       20130010
+     | 
+  147: const       10 
+     | 10 
+  152: const_1     
+     | 10 1 
+  153: bprint      
+
+     | 
+  154: const       116 
+     | 116 
+  159: const_1     
+     | 116 1 
+  160: bprint      t
+     | 
+  161: const       101 
+     | 101 
+  166: const_1     
+     | 101 1 
+  167: bprint      e
+     | 
+  168: const       115 
+     | 115 
+  173: const_1     
+     | 115 1 
+  174: bprint      s
+     | 
+  175: const       116 
+     | 116 
+  180: const_1     
+     | 116 1 
+  181: bprint      t
+     | 
+  182: const       32 
+     | 32 
+  187: const_1     
+     | 32 1 
+  188: bprint       
+     | 
+  189: const       97 
+     | 97 
+  194: const_1     
+     | 97 1 
+  195: bprint      a
+     | 
+  196: const       114 
+     | 114 
+  201: const_1     
+     | 114 1 
+  202: bprint      r
+     | 
+  203: const       114 
+     | 114 
+  208: const_1     
+     | 114 1 
+  209: bprint      r
+     | 
+  210: const       69 
+     | 69 
+  215: const_1     
+     | 69 1 
+  216: bprint      E
+     | 
+  217: const       108 
+     | 108 
+  222: const_1     
+     | 108 1 
+  223: bprint      l
+     | 
+  224: const       101 
+     | 101 
+  229: const_1     
+     | 101 1 
+  230: bprint      e
+     | 
+  231: const       109 
+     | 109 
+  236: const_1     
+     | 109 1 
+  237: bprint      m
+     | 
+  238: const       32 
+     | 32 
+  243: const_1     
+     | 32 1 
+  244: bprint       
+     | 
+  245: const       105 
+     | 105 
+  250: const_1     
+     | 105 1 
+  251: bprint      i
+     | 
+  252: const       110 
+     | 110 
+  257: const_1     
+     | 110 1 
+  258: bprint      n
+     | 
+  259: const       99 
+     | 99 
+  264: const_1     
+     | 99 1 
+  265: bprint      c
+     | 
+  266: const       47 
+     | 47 
+  271: const_1     
+     | 47 1 
+  272: bprint      /
+     | 
+  273: const       100 
+     | 100 
+  278: const_1     
+     | 100 1 
+  279: bprint      d
+     | 
+  280: const       101 
+     | 101 
+  285: const_1     
+     | 101 1 
+  286: bprint      e
+     | 
+  287: const       99 
+     | 99 
+  292: const_1     
+     | 99 1 
+  293: bprint      c
+     | 
+  294: const       10 
+     | 10 
+  299: const_1     
+     | 10 1 
+  300: bprint      
+
+     | 
+  301: const_5     
+     | 5 
+  302: newarray    1 
+     | 13 
+  304: putstatic   6 
+     | 
+  307: getstatic   6 
+     | 13 
+  310: const_0     
+     | 13 0 
+  311: dup2        
+     | 13 0 13 0 
+  312: aload       
+     | 13 0 0 
+  313: const_1     
+     | 13 0 0 1 
+  314: add         
+     | 13 0 1 
+  315: astore      
+Arraylength = 5
+Address = 13
+Index = 0
+Value = 1
+
+     | 
+  316: getstatic   6 
+     | 13 
+  319: const_4     
+     | 13 4 
+  320: dup2        
+     | 13 4 13 4 
+  321: aload       
+     | 13 4 0 
+  322: const_1     
+     | 13 4 0 1 
+  323: sub         
+     | 13 4 -1 
+  324: astore      
+Arraylength = 5
+Address = 13
+Index = 4
+Value = -1
+
+     | 
+  325: getstatic   6 
+     | 13 
+  328: getstatic   6 
+     | 13 13 
+  331: const_0     
+     | 13 13 0 
+  332: aload       
+     | 13 1 
+  333: dup2        
+     | 13 1 13 1 
+  334: aload       
+     | 13 1 0 
+  335: const_1     
+     | 13 1 0 1 
+  336: add         
+     | 13 1 1 
+  337: astore      
+Arraylength = 5
+Address = 13
+Index = 1
+Value = 1
+
+     | 
+  338: getstatic   6 
+     | 13 
+  341: getstatic   6 
+     | 13 13 
+  344: const_0     
+     | 13 13 0 
+  345: aload       
+     | 13 1 
+  346: const_2     
+     | 13 1 2 
+  347: mul         
+     | 13 2 
+  348: getstatic   6 
+     | 13 2 13 
+  351: const_1     
+     | 13 2 13 1 
+  352: aload       
+     | 13 2 1 
+  353: add         
+     | 13 3 
+  354: dup2        
+     | 13 3 13 3 
+  355: aload       
+     | 13 3 0 
+  356: const_1     
+     | 13 3 0 1 
+  357: add         
+     | 13 3 1 
+  358: astore      
+Arraylength = 5
+Address = 13
+Index = 3
+Value = 1
+
+     | 
+  359: getstatic   6 
+     | 13 
+  362: const_0     
+     | 13 0 
+  363: aload       
+     | 1 
+  364: const_5     
+     | 1 5 
+  365: print           1
+     | 
+  366: getstatic   6 
+     | 13 
+  369: const_1     
+     | 13 1 
+  370: aload       
+     | 1 
+  371: const_5     
+     | 1 5 
+  372: print           1
+     | 
+  373: getstatic   6 
+     | 13 
+  376: const_2     
+     | 13 2 
+  377: aload       
+     | 0 
+  378: const_5     
+     | 0 5 
+  379: print           0
+     | 
+  380: getstatic   6 
+     | 13 
+  383: const_3     
+     | 13 3 
+  384: aload       
+     | 1 
+  385: const_5     
+     | 1 5 
+  386: print           1
+     | 
+  387: getstatic   6 
+     | 13 
+  390: const_4     
+     | 13 4 
+  391: aload       
+     | -1 
+  392: const_5     
+     | -1 5 
+  393: print          -1
+     | 
+  394: const       10 
+     | 10 
+  399: const_1     
+     | 10 1 
+  400: bprint      
+
+     | 
+  401: const       116 
+     | 116 
+  406: const_1     
+     | 116 1 
+  407: bprint      t
+     | 
+  408: const       101 
+     | 101 
+  413: const_1     
+     | 101 1 
+  414: bprint      e
+     | 
+  415: const       115 
+     | 115 
+  420: const_1     
+     | 115 1 
+  421: bprint      s
+     | 
+  422: const       116 
+     | 116 
+  427: const_1     
+     | 116 1 
+  428: bprint      t
+     | 
+  429: const       32 
+     | 32 
+  434: const_1     
+     | 32 1 
+  435: bprint       
+     | 
+  436: const       117 
+     | 117 
+  441: const_1     
+     | 117 1 
+  442: bprint      u
+     | 
+  443: const       110 
+     | 110 
+  448: const_1     
+     | 110 1 
+  449: bprint      n
+     | 
+  450: const       112 
+     | 112 
+  455: const_1     
+     | 112 1 
+  456: bprint      p
+     | 
+  457: const       97 
+     | 97 
+  462: const_1     
+     | 97 1 
+  463: bprint      a
+     | 
+  464: const       99 
+     | 99 
+  469: const_1     
+     | 99 1 
+  470: bprint      c
+     | 
+  471: const       107 
+     | 107 
+  476: const_1     
+     | 107 1 
+  477: bprint      k
+     | 
+  478: const       10 
+     | 10 
+  483: const_1     
+     | 10 1 
+  484: bprint      
+
+     | 
+  485: getstatic   6 
+     | 13 
+  488: const_0     
+     | 13 0 
+  489: const_1     
+     | 13 0 1 
+  490: astore      
+Arraylength = 5
+Address = 13
+Index = 0
+Value = 1
+
+     | 
+  491: getstatic   6 
+     | 13 
+  494: const_1     
+     | 13 1 
+  495: const_2     
+     | 13 1 2 
+  496: astore      
+Arraylength = 5
+Address = 13
+Index = 1
+Value = 2
+
+     | 
+  497: getstatic   6 
+     | 13 
+  500: const_2     
+     | 13 2 
+  501: const_3     
+     | 13 2 3 
+  502: astore      
+Arraylength = 5
+Address = 13
+Index = 2
+Value = 3
+
+     | 
+  503: getstatic   6 
+     | 13 
+  506: const_3     
+     | 13 3 
+  507: const_4     
+     | 13 3 4 
+  508: astore      
+Arraylength = 5
+Address = 13
+Index = 3
+Value = 4
+
+     | 
+  509: getstatic   6 
+     | 13 
+  512: const_4     
+     | 13 4 
+  513: const_5     
+     | 13 4 5 
+  514: astore      
+Arraylength = 5
+Address = 13
+Index = 4
+Value = 5
+
+     | 
+  515: const_5     
+     | 5 
+  516: getstatic   6 
+     | 5 13 
+  519: arraylength 
+     | 5 5 
+  520: jle         4 
+     | 
+  524: getstatic   6 
+     | 13 
+  527: const_4     
+     | 13 4 
+  528: aload       
+     | 5 
+  529: putstatic   4 
+     | 
+  532: getstatic   6 
+     | 13 
+  535: const_3     
+     | 13 3 
+  536: aload       
+     | 4 
+  537: putstatic   3 
+     | 
+  540: getstatic   6 
+     | 13 
+  543: const_2     
+     | 13 2 
+  544: aload       
+     | 3 
+  545: putstatic   2 
+     | 
+  548: getstatic   6 
+     | 13 
+  551: const_1     
+     | 13 1 
+  552: aload       
+     | 2 
+  553: putstatic   1 
+     | 
+  556: getstatic   6 
+     | 13 
+  559: const_0     
+     | 13 0 
+  560: aload       
+     | 1 
+  561: putstatic   0 
+     | 
+  564: getstatic   0 
+     | 1 
+  567: const_5     
+     | 1 5 
+  568: print           1
+     | 
+  569: getstatic   1 
+     | 2 
+  572: const_5     
+     | 2 5 
+  573: print           2
+     | 
+  574: getstatic   2 
+     | 3 
+  577: const_5     
+     | 3 5 
+  578: print           3
+     | 
+  579: getstatic   3 
+     | 4 
+  582: const_5     
+     | 4 5 
+  583: print           4
+     | 
+  584: getstatic   4 
+     | 5 
+  587: const_5     
+     | 5 5 
+  588: print           5
+     | 
+  589: const       10 
+     | 10 
+  594: const_1     
+     | 10 1 
+  595: bprint      
+
+     | 
+  596: const_5     
+     | 5 
+  597: getstatic   6 
+     | 5 13 
+  600: arraylength 
+     | 5 5 
+  601: jle         4 
+     | 
+  605: getstatic   6 
+     | 13 
+  608: const_4     
+     | 13 4 
+  609: aload       
+     | 5 
+  610: putstatic   0 
+     | 
+  613: getstatic   6 
+     | 13 
+  616: const_3     
+     | 13 3 
+  617: aload       
+     | 4 
+  618: putstatic   1 
+     | 
+  621: getstatic   6 
+     | 13 
+  624: const_2     
+     | 13 2 
+  625: aload       
+     | 3 
+  626: putstatic   2 
+     | 
+  629: getstatic   6 
+     | 13 
+  632: const_1     
+     | 13 1 
+  633: aload       
+     | 2 
+  634: putstatic   3 
+     | 
+  637: getstatic   6 
+     | 13 
+  640: const_0     
+     | 13 0 
+  641: aload       
+     | 1 
+  642: putstatic   4 
+     | 
+  645: getstatic   0 
+     | 5 
+  648: const_5     
+     | 5 5 
+  649: print           5
+     | 
+  650: getstatic   1 
+     | 4 
+  653: const_5     
+     | 4 5 
+  654: print           4
+     | 
+  655: getstatic   2 
+     | 3 
+  658: const_5     
+     | 3 5 
+  659: print           3
+     | 
+  660: getstatic   3 
+     | 2 
+  663: const_5     
+     | 2 5 
+  664: print           2
+     | 
+  665: getstatic   4 
+     | 1 
+  668: const_5     
+     | 1 5 
+  669: print           1
+     | 
+  670: const       10 
+     | 10 
+  675: const_1     
+     | 10 1 
+  676: bprint      
+
+     | 
+  677: getstatic   6 
+     | 13 
+  680: const_0     
+     | 13 0 
+  681: const       10 
+     | 13 0 10 
+  686: astore      
+Arraylength = 5
+Address = 13
+Index = 0
+Value = 10
+
+     | 
+  687: getstatic   6 
+     | 13 
+  690: const_1     
+     | 13 1 
+  691: const       20 
+     | 13 1 20 
+  696: astore      
+Arraylength = 5
+Address = 13
+Index = 1
+Value = 20
+
+     | 
+  697: getstatic   6 
+     | 13 
+  700: const_2     
+     | 13 2 
+  701: const       30 
+     | 13 2 30 
+  706: astore      
+Arraylength = 5
+Address = 13
+Index = 2
+Value = 30
+
+     | 
+  707: getstatic   6 
+     | 13 
+  710: const_3     
+     | 13 3 
+  711: const       40 
+     | 13 3 40 
+  716: astore      
+Arraylength = 5
+Address = 13
+Index = 3
+Value = 40
+
+     | 
+  717: getstatic   6 
+     | 13 
+  720: const_4     
+     | 13 4 
+  721: const       50 
+     | 13 4 50 
+  726: astore      
+Arraylength = 5
+Address = 13
+Index = 4
+Value = 50
+
+     | 
+  727: const_1     
+     | 1 
+  728: getstatic   6 
+     | 1 13 
+  731: arraylength 
+     | 1 5 
+  732: jle         4 
+     | 
+  736: getstatic   6 
+     | 13 
+  739: const_0     
+     | 13 0 
+  740: aload       
+     | 10 
+  741: putstatic   0 
+     | 
+  744: getstatic   0 
+     | 10 
+  747: const_5     
+     | 10 5 
+  748: print          10
+     | 
+  749: getstatic   1 
+     | 4 
+  752: const_5     
+     | 4 5 
+  753: print           4
+     | 
+  754: getstatic   2 
+     | 3 
+  757: const_5     
+     | 3 5 
+  758: print           3
+     | 
+  759: getstatic   3 
+     | 2 
+  762: const_5     
+     | 2 5 
+  763: print           2
+     | 
+  764: getstatic   4 
+     | 1 
+  767: const_5     
+     | 1 5 
+  768: print           1
+     | 
+  769: const       10 
+     | 10 
+  774: const_1     
+     | 10 1 
+  775: bprint      
+
+     | 
+  776: const_3     
+     | 3 
+  777: getstatic   6 
+     | 3 13 
+  780: arraylength 
+     | 3 5 
+  781: jle         4 
+     | 
+  785: getstatic   6 
+     | 13 
+  788: const_2     
+     | 13 2 
+  789: aload       
+     | 30 
+  790: putstatic   0 
+     | 
+  793: getstatic   6 
+     | 13 
+  796: const_0     
+     | 13 0 
+  797: aload       
+     | 10 
+  798: putstatic   4 
+     | 
+  801: getstatic   0 
+     | 30 
+  804: const_5     
+     | 30 5 
+  805: print          30
+     | 
+  806: getstatic   1 
+     | 4 
+  809: const_5     
+     | 4 5 
+  810: print           4
+     | 
+  811: getstatic   2 
+     | 3 
+  814: const_5     
+     | 3 5 
+  815: print           3
+     | 
+  816: getstatic   3 
+     | 2 
+  819: const_5     
+     | 2 5 
+  820: print           2
+     | 
+  821: getstatic   4 
+     | 10 
+  824: const_5     
+     | 10 5 
+  825: print          10
+     | 
+  826: const       10 
+     | 10 
+  831: const_1     
+     | 10 1 
+  832: bprint      
+
+     | 
+  833: const_5     
+     | 5 
+  834: newarray    1 
+     | 19 
+  836: putstatic   7 
+     | 
+  839: getstatic   7 
+     | 19 
+  842: const_0     
+     | 19 0 
+  843: aload       
+     | 0 
+  844: const_5     
+     | 0 5 
+  845: print           0
+     | 
+  846: getstatic   7 
+     | 19 
+  849: const_1     
+     | 19 1 
+  850: aload       
+     | 0 
+  851: const_5     
+     | 0 5 
+  852: print           0
+     | 
+  853: getstatic   7 
+     | 19 
+  856: const_2     
+     | 19 2 
+  857: aload       
+     | 0 
+  858: const_5     
+     | 0 5 
+  859: print           0
+     | 
+  860: const       10 
+     | 10 
+  865: const_1     
+     | 10 1 
+  866: bprint      
+
+     | 
+  867: getstatic   7 
+     | 19 
+  870: const_2     
+     | 19 2 
+  871: getstatic   7 
+     | 19 2 19 
+  874: const_1     
+     | 19 2 19 1 
+  875: getstatic   7 
+     | 19 2 19 1 19 
+  878: const_0     
+     | 19 2 19 1 19 0 
+  879: const_3     
+     | 19 2 19 1 19 0 3 
+  880: getstatic   6 
+     | 19 2 19 1 19 0 3 13 
+  883: arraylength 
+     | 19 2 19 1 19 0 3 5 
+  884: jle         4 
+     | 19 2 19 1 19 0 
+  888: getstatic   6 
+     | 19 2 19 1 19 0 13 
+  891: const_2     
+     | 19 2 19 1 19 0 13 2 
+  892: aload       
+     | 19 2 19 1 19 0 30 
+  893: astore      
+Arraylength = 5
+Address = 19
+Index = 0
+Value = 30
+
+     | 19 2 19 1 
+  894: getstatic   6 
+     | 19 2 19 1 13 
+  897: const_1     
+     | 19 2 19 1 13 1 
+  898: aload       
+     | 19 2 19 1 20 
+  899: astore      
+Arraylength = 5
+Address = 19
+Index = 1
+Value = 20
+
+     | 19 2 
+  900: getstatic   6 
+     | 19 2 13 
+  903: const_0     
+     | 19 2 13 0 
+  904: aload       
+     | 19 2 10 
+  905: astore      
+Arraylength = 5
+Address = 19
+Index = 2
+Value = 10
+
+     | 
+  906: getstatic   7 
+     | 19 
+  909: const_0     
+     | 19 0 
+  910: aload       
+     | 30 
+  911: const_5     
+     | 30 5 
+  912: print          30
+     | 
+  913: getstatic   7 
+     | 19 
+  916: const_1     
+     | 19 1 
+  917: aload       
+     | 20 
+  918: const_5     
+     | 20 5 
+  919: print          20
+     | 
+  920: getstatic   7 
+     | 19 
+  923: const_2     
+     | 19 2 
+  924: aload       
+     | 10 
+  925: const_5     
+     | 10 5 
+  926: print          10
+     | 
+  927: const       10 
+     | 10 
+  932: const_1     
+     | 10 1 
+  933: bprint      
+
+     | 
+  934: getstatic   6 
+     | 13 
+  937: const_3     
+     | 13 3 
+  938: const_2     
+     | 13 3 2 
+  939: astore      
+Arraylength = 5
+Address = 13
+Index = 3
+Value = 2
+
+     | 
+  940: getstatic   7 
+     | 19 
+  943: getstatic   6 
+     | 19 13 
+  946: const_3     
+     | 19 13 3 
+  947: aload       
+     | 19 2 
+  948: const_5     
+     | 19 2 5 
+  949: getstatic   6 
+     | 19 2 5 13 
+  952: arraylength 
+     | 19 2 5 5 
+  953: jle         4 
+     | 19 2 
+  957: getstatic   6 
+     | 19 2 13 
+  960: const_4     
+     | 19 2 13 4 
+  961: aload       
+     | 19 2 50 
+  962: astore      
+Arraylength = 5
+Address = 19
+Index = 2
+Value = 50
+
+     | 
+  963: getstatic   7 
+     | 19 
+  966: const_0     
+     | 19 0 
+  967: aload       
+     | 30 
+  968: const_5     
+     | 30 5 
+  969: print          30
+     | 
+  970: getstatic   7 
+     | 19 
+  973: const_1     
+     | 19 1 
+  974: aload       
+     | 20 
+  975: const_5     
+     | 20 5 
+  976: print          20
+     | 
+  977: getstatic   7 
+     | 19 
+  980: const_2     
+     | 19 2 
+  981: aload       
+     | 50 
+  982: const_5     
+     | 50 5 
+  983: print          50
+     | 
+  984: const       10 
+     | 10 
+  989: const_1     
+     | 10 1 
+  990: bprint      
+
+     | 
+  991: const_5     
+     | 5 
+  992: newarray    1 
+     | 25 
+  994: putstatic   8 
+     | 
+  997: getstatic   8 
+     | 25 
+ 1000: const_0     
+     | 25 0 
+ 1001: const_1     
+     | 25 0 1 
+ 1002: astore      
+Arraylength = 5
+Address = 25
+Index = 0
+Value = 1
+
+     | 
+ 1003: getstatic   8 
+     | 25 
+ 1006: const_1     
+     | 25 1 
+ 1007: const_2     
+     | 25 1 2 
+ 1008: astore      
+Arraylength = 5
+Address = 25
+Index = 1
+Value = 2
+
+     | 
+ 1009: getstatic   8 
+     | 25 
+ 1012: const_2     
+     | 25 2 
+ 1013: const_3     
+     | 25 2 3 
+ 1014: astore      
+Arraylength = 5
+Address = 25
+Index = 2
+Value = 3
+
+     | 
+ 1015: getstatic   8 
+     | 25 
+ 1018: const_3     
+     | 25 3 
+ 1019: const_4     
+     | 25 3 4 
+ 1020: astore      
+Arraylength = 5
+Address = 25
+Index = 3
+Value = 4
+
+     | 
+ 1021: getstatic   8 
+     | 25 
+ 1024: const_4     
+     | 25 4 
+ 1025: const_5     
+     | 25 4 5 
+ 1026: astore      
+Arraylength = 5
+Address = 25
+Index = 4
+Value = 5
+
+     | 
+ 1027: getstatic   6 
+     | 13 
+ 1030: const_0     
+     | 13 0 
+ 1031: const       111 
+     | 13 0 111 
+ 1036: astore      
+Arraylength = 5
+Address = 13
+Index = 0
+Value = 111
+
+     | 
+ 1037: getstatic   6 
+     | 13 
+ 1040: const_1     
+     | 13 1 
+ 1041: const       222 
+     | 13 1 222 
+ 1046: astore      
+Arraylength = 5
+Address = 13
+Index = 1
+Value = 222
+
+     | 
+ 1047: getstatic   6 
+     | 13 
+ 1050: const_2     
+     | 13 2 
+ 1051: const       333 
+     | 13 2 333 
+ 1056: astore      
+Arraylength = 5
+Address = 13
+Index = 2
+Value = 333
+
+     | 
+ 1057: getstatic   6 
+     | 13 
+ 1060: const_3     
+     | 13 3 
+ 1061: const       444 
+     | 13 3 444 
+ 1066: astore      
+Arraylength = 5
+Address = 13
+Index = 3
+Value = 444
+
+     | 
+ 1067: getstatic   6 
+     | 13 
+ 1070: const_4     
+     | 13 4 
+ 1071: const       555 
+     | 13 4 555 
+ 1076: astore      
+Arraylength = 5
+Address = 13
+Index = 4
+Value = 555
+
+     | 
+ 1077: getstatic   8 
+     | 25 
+ 1080: getstatic   8 
+     | 25 25 
+ 1083: getstatic   8 
+     | 25 25 25 
+ 1086: getstatic   8 
+     | 25 25 25 25 
+ 1089: getstatic   8 
+     | 25 25 25 25 25 
+ 1092: const_0     
+     | 25 25 25 25 25 0 
+ 1093: aload       
+     | 25 25 25 25 1 
+ 1094: aload       
+     | 25 25 25 2 
+ 1095: aload       
+     | 25 25 3 
+ 1096: aload       
+     | 25 4 
+ 1097: aload       
+     | 5 
+ 1098: const_1     
+     | 5 1 
+ 1099: sub         
+     | 4 
+ 1100: const_5     
+     | 4 5 
+ 1101: print           4
+     | 
+ 1102: getstatic   8 
+     | 25 
+ 1105: getstatic   8 
+     | 25 25 
+ 1108: getstatic   8 
+     | 25 25 25 
+ 1111: getstatic   8 
+     | 25 25 25 25 
+ 1114: const_0     
+     | 25 25 25 25 0 
+ 1115: aload       
+     | 25 25 25 1 
+ 1116: aload       
+     | 25 25 2 
+ 1117: aload       
+     | 25 3 
+ 1118: aload       
+     | 4 
+ 1119: const_1     
+     | 4 1 
+ 1120: sub         
+     | 3 
+ 1121: const_5     
+     | 3 5 
+ 1122: print           3
+     | 
+ 1123: getstatic   8 
+     | 25 
+ 1126: getstatic   8 
+     | 25 25 
+ 1129: getstatic   8 
+     | 25 25 25 
+ 1132: const_0     
+     | 25 25 25 0 
+ 1133: aload       
+     | 25 25 1 
+ 1134: aload       
+     | 25 2 
+ 1135: aload       
+     | 3 
+ 1136: const_1     
+     | 3 1 
+ 1137: sub         
+     | 2 
+ 1138: const_5     
+     | 2 5 
+ 1139: print           2
+     | 
+ 1140: getstatic   8 
+     | 25 
+ 1143: getstatic   8 
+     | 25 25 
+ 1146: const_0     
+     | 25 25 0 
+ 1147: aload       
+     | 25 1 
+ 1148: aload       
+     | 2 
+ 1149: const_1     
+     | 2 1 
+ 1150: sub         
+     | 1 
+ 1151: const_5     
+     | 1 5 
+ 1152: print           1
+     | 
+ 1153: getstatic   8 
+     | 25 
+ 1156: const_0     
+     | 25 0 
+ 1157: aload       
+     | 1 
+ 1158: const_1     
+     | 1 1 
+ 1159: sub         
+     | 0 
+ 1160: const_5     
+     | 0 5 
+ 1161: print           0
+     | 
+ 1162: const       10 
+     | 10 
+ 1167: const_1     
+     | 10 1 
+ 1168: bprint      
+
+     | 
+ 1169: getstatic   7 
+     | 19 
+ 1172: getstatic   8 
+     | 19 25 
+ 1175: getstatic   8 
+     | 19 25 25 
+ 1178: getstatic   8 
+     | 19 25 25 25 
+ 1181: getstatic   8 
+     | 19 25 25 25 25 
+ 1184: getstatic   8 
+     | 19 25 25 25 25 25 
+ 1187: const_0     
+     | 19 25 25 25 25 25 0 
+ 1188: aload       
+     | 19 25 25 25 25 1 
+ 1189: aload       
+     | 19 25 25 25 2 
+ 1190: aload       
+     | 19 25 25 3 
+ 1191: aload       
+     | 19 25 4 
+ 1192: aload       
+     | 19 5 
+ 1193: const_1     
+     | 19 5 1 
+ 1194: sub         
+     | 19 4 
+ 1195: getstatic   7 
+     | 19 4 19 
+ 1198: getstatic   8 
+     | 19 4 19 25 
+ 1201: getstatic   8 
+     | 19 4 19 25 25 
+ 1204: getstatic   8 
+     | 19 4 19 25 25 25 
+ 1207: getstatic   8 
+     | 19 4 19 25 25 25 25 
+ 1210: const_0     
+     | 19 4 19 25 25 25 25 0 
+ 1211: aload       
+     | 19 4 19 25 25 25 1 
+ 1212: aload       
+     | 19 4 19 25 25 2 
+ 1213: aload       
+     | 19 4 19 25 3 
+ 1214: aload       
+     | 19 4 19 4 
+ 1215: const_1     
+     | 19 4 19 4 1 
+ 1216: sub         
+     | 19 4 19 3 
+ 1217: getstatic   7 
+     | 19 4 19 3 19 
+ 1220: getstatic   8 
+     | 19 4 19 3 19 25 
+ 1223: getstatic   8 
+     | 19 4 19 3 19 25 25 
+ 1226: getstatic   8 
+     | 19 4 19 3 19 25 25 25 
+ 1229: const_0     
+     | 19 4 19 3 19 25 25 25 0 
+ 1230: aload       
+     | 19 4 19 3 19 25 25 1 
+ 1231: aload       
+     | 19 4 19 3 19 25 2 
+ 1232: aload       
+     | 19 4 19 3 19 3 
+ 1233: const_1     
+     | 19 4 19 3 19 3 1 
+ 1234: sub         
+     | 19 4 19 3 19 2 
+ 1235: getstatic   7 
+     | 19 4 19 3 19 2 19 
+ 1238: getstatic   8 
+     | 19 4 19 3 19 2 19 25 
+ 1241: getstatic   8 
+     | 19 4 19 3 19 2 19 25 25 
+ 1244: const_0     
+     | 19 4 19 3 19 2 19 25 25 0 
+ 1245: aload       
+     | 19 4 19 3 19 2 19 25 1 
+ 1246: aload       
+     | 19 4 19 3 19 2 19 2 
+ 1247: const_1     
+     | 19 4 19 3 19 2 19 2 1 
+ 1248: sub         
+     | 19 4 19 3 19 2 19 1 
+ 1249: getstatic   7 
+     | 19 4 19 3 19 2 19 1 19 
+ 1252: getstatic   8 
+     | 19 4 19 3 19 2 19 1 19 25 
+ 1255: const_0     
+     | 19 4 19 3 19 2 19 1 19 25 0 
+ 1256: aload       
+     | 19 4 19 3 19 2 19 1 19 1 
+ 1257: const_1     
+     | 19 4 19 3 19 2 19 1 19 1 1 
+ 1258: sub         
+     | 19 4 19 3 19 2 19 1 19 0 
+ 1259: const_5     
+     | 19 4 19 3 19 2 19 1 19 0 5 
+ 1260: getstatic   6 
+     | 19 4 19 3 19 2 19 1 19 0 5 13 
+ 1263: arraylength 
+     | 19 4 19 3 19 2 19 1 19 0 5 5 
+ 1264: jle         4 
+     | 19 4 19 3 19 2 19 1 19 0 
+ 1268: getstatic   6 
+     | 19 4 19 3 19 2 19 1 19 0 13 
+ 1271: const_4     
+     | 19 4 19 3 19 2 19 1 19 0 13 4 
+ 1272: aload       
+     | 19 4 19 3 19 2 19 1 19 0 555 
+ 1273: astore      
+Arraylength = 5
+Address = 19
+Index = 0
+Value = 555
+
+     | 19 4 19 3 19 2 19 1 
+ 1274: getstatic   6 
+     | 19 4 19 3 19 2 19 1 13 
+ 1277: const_3     
+     | 19 4 19 3 19 2 19 1 13 3 
+ 1278: aload       
+     | 19 4 19 3 19 2 19 1 444 
+ 1279: astore      
+Arraylength = 5
+Address = 19
+Index = 1
+Value = 444
+
+     | 19 4 19 3 19 2 
+ 1280: getstatic   6 
+     | 19 4 19 3 19 2 13 
+ 1283: const_2     
+     | 19 4 19 3 19 2 13 2 
+ 1284: aload       
+     | 19 4 19 3 19 2 333 
+ 1285: astore      
+Arraylength = 5
+Address = 19
+Index = 2
+Value = 333
+
+     | 19 4 19 3 
+ 1286: getstatic   6 
+     | 19 4 19 3 13 
+ 1289: const_1     
+     | 19 4 19 3 13 1 
+ 1290: aload       
+     | 19 4 19 3 222 
+ 1291: astore      
+Arraylength = 5
+Address = 19
+Index = 3
+Value = 222
+
+     | 19 4 
+ 1292: getstatic   6 
+     | 19 4 13 
+ 1295: const_0     
+     | 19 4 13 0 
+ 1296: aload       
+     | 19 4 111 
+ 1297: astore      
+Arraylength = 5
+Address = 19
+Index = 4
+Value = 111
+
+     | 
+ 1298: getstatic   7 
+     | 19 
+ 1301: const_0     
+     | 19 0 
+ 1302: aload       
+     | 555 
+ 1303: const_5     
+     | 555 5 
+ 1304: print         555
+     | 
+ 1305: getstatic   7 
+     | 19 
+ 1308: const_1     
+     | 19 1 
+ 1309: aload       
+     | 444 
+ 1310: const_5     
+     | 444 5 
+ 1311: print         444
+     | 
+ 1312: getstatic   7 
+     | 19 
+ 1315: const_2     
+     | 19 2 
+ 1316: aload       
+     | 333 
+ 1317: const_5     
+     | 333 5 
+ 1318: print         333
+     | 
+ 1319: getstatic   7 
+     | 19 
+ 1322: const_3     
+     | 19 3 
+ 1323: aload       
+     | 222 
+ 1324: const_5     
+     | 222 5 
+ 1325: print         222
+     | 
+ 1326: getstatic   7 
+     | 19 
+ 1329: const_4     
+     | 19 4 
+ 1330: aload       
+     | 111 
+ 1331: const_5     
+     | 111 5 
+ 1332: print         111
+     | 
+ 1333: const       10 
+     | 10 
+ 1338: const_1     
+     | 10 1 
+ 1339: bprint      
+
+     | 
+ 1340: const       116 
+     | 116 
+ 1345: const_1     
+     | 116 1 
+ 1346: bprint      t
+     | 
+ 1347: const       101 
+     | 101 
+ 1352: const_1     
+     | 101 1 
+ 1353: bprint      e
+     | 
+ 1354: const       115 
+     | 115 
+ 1359: const_1     
+     | 115 1 
+ 1360: bprint      s
+     | 
+ 1361: const       116 
+     | 116 
+ 1366: const_1     
+     | 116 1 
+ 1367: bprint      t
+     | 
+ 1368: const       32 
+     | 32 
+ 1373: const_1     
+     | 32 1 
+ 1374: bprint       
+     | 
+ 1375: const       114 
+     | 114 
+ 1380: const_1     
+     | 114 1 
+ 1381: bprint      r
+     | 
+ 1382: const       101 
+     | 101 
+ 1387: const_1     
+     | 101 1 
+ 1388: bprint      e
+     | 
+ 1389: const       97 
+     | 97 
+ 1394: const_1     
+     | 97 1 
+ 1395: bprint      a
+     | 
+ 1396: const       100 
+     | 100 
+ 1401: const_1     
+     | 100 1 
+ 1402: bprint      d
+     | 
+ 1403: const       10 
+     | 10 
+ 1408: const_1     
+     | 10 1 
+ 1409: bprint      
+
+     | 
+ 1410: getstatic   7 
+     | 19 
+ 1413: getstatic   8 
+     | 19 25 
+ 1416: getstatic   8 
+     | 19 25 25 
+ 1419: getstatic   8 
+     | 19 25 25 25 
+ 1422: getstatic   8 
+     | 19 25 25 25 25 
+ 1425: getstatic   8 
+     | 19 25 25 25 25 25 
+ 1428: const_0     
+     | 19 25 25 25 25 25 0 
+ 1429: aload       
+     | 19 25 25 25 25 1 
+ 1430: aload       
+     | 19 25 25 25 2 
+ 1431: aload       
+     | 19 25 25 3 
+ 1432: aload       
+     | 19 25 4 
+ 1433: aload       
+     | 19 5 
+ 1434: const_1     
+     | 19 5 1 
+ 1435: sub         
+     | 19 4 
+ 1436: read        
+     | 19 4 455 
+ 1437: astore      
+Arraylength = 5
+Address = 19
+Index = 4
+Value = 455
+
+     | 
+ 1438: getstatic   7 
+     | 19 
+ 1441: const_0     
+     | 19 0 
+ 1442: aload       
+     | 555 
+ 1443: const_5     
+     | 555 5 
+ 1444: print         555
+     | 
+ 1445: getstatic   7 
+     | 19 
+ 1448: const_1     
+     | 19 1 
+ 1449: aload       
+     | 444 
+ 1450: const_5     
+     | 444 5 
+ 1451: print         444
+     | 
+ 1452: getstatic   7 
+     | 19 
+ 1455: const_2     
+     | 19 2 
+ 1456: aload       
+     | 333 
+ 1457: const_5     
+     | 333 5 
+ 1458: print         333
+     | 
+ 1459: getstatic   7 
+     | 19 
+ 1462: const_3     
+     | 19 3 
+ 1463: aload       
+     | 222 
+ 1464: const_5     
+     | 222 5 
+ 1465: print         222
+     | 
+ 1466: getstatic   7 
+     | 19 
+ 1469: const_4     
+     | 19 4 
+ 1470: aload       
+     | 455 
+ 1471: const_5     
+     | 455 5 
+ 1472: print         455
+     | 
+ 1473: const       10 
+     | 10 
+ 1478: const_1     
+     | 10 1 
+ 1479: bprint      
+
+     | 
+ 1480: exit        
+     | 
+ 1481: return      
+Completion took 23 ms

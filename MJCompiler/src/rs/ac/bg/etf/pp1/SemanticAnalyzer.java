@@ -101,10 +101,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	printCallCount++;
 		int kind = print.getExpr().struct.getKind();
 		
-		//System.out.println("PRINT EXPR: "+ print.getExpr());
-		//System.out.println("TIP: " + kind);
-		//System.out.println("Struct.Char je: " + Struct.Char);
-		
 		if(!((kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool))) {
 			report_error("Greska na " + print.getLine() + "liniji: Expr u printu mora da bude tipa int, char ili bool!", null);
 		}
@@ -115,9 +111,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	printCallCount++;
 		int kind = print.getExpr().struct.getKind();
 		
-		//System.out.println("PRINT EXPR: "+ print.getExpr());
-		//System.out.println("TIP: " + kind);
-		//System.out.println("Struct.Char je: " + Struct.Char);
 		
 		if(!((kind == Struct.Int) || (kind == Struct.Char) || (kind == Struct.Bool))) {
 			report_error("Greska na " + print.getLine() + " liniji: Expr u printu mora da bude tipa int, char ili bool!", null);
@@ -179,7 +172,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	else {
     		currentMethod = ExTab.insert(Obj.Meth, methodTypeName.getMethName(), methodTypeName.getTypeOrVoid().struct);
         	methodTypeName.obj = currentMethod;
-        	//System.out.println("IMEEE" + methodTypeName.getMethName());
         	if(methodTypeName.getMethName().equals("main")) {
         		mainExists = true;
         		if(methodTypeName.getTypeOrVoid().struct.getKind() != Struct.None)
@@ -192,7 +184,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	}*/
     	
     	if(currentClass != null) {
-    		//System.out.println("DESILO SE, IMA KLASE!");
     		Obj temp = ExTab.insert(Obj.Var, "this", currentClass.getType());
     		temp.setFpPos(fPposLocal++);
     		
@@ -223,7 +214,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     		report_error("Greska na " + returnExpr.getLine() + " liniji: Return moze da se pozove samo iz metode!", null);
     	}
     	else {
-    		//System.out.println(returnExpr.getExpr().struct.getKind());
     		if(!currentMethod.getType().equals(returnExpr.getExpr().struct)) {
     			report_error("Greska na " + returnExpr.getLine() + " liniji: " + 
     					"tip izraza u return naredbi ne slaze se sa tipom povratne vrednosti funkcije " + 
@@ -264,10 +254,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     
     public void visit(ClassDecl classDecl) {
     	ExTab.chainLocalSymbols(currentClass.getType());
-    	//currentClass.getType().setMembers(ExTab.currentScope.getLocals());
     	ExTab.closeScope();
     	currentClass = null;
-    	/*provera neka?*/
     }
     
     
@@ -548,10 +536,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	fe.struct = fe.getExpr().struct;
     }
     
-    /*edit! DA LI TREBA PROVERA FORMALNIH/STVARNIH PARAMETARA? edit:da*/ 
+    /*DA LI TREBA PROVERA FORMALNIH/STVARNIH PARAMETARA? edit:da*/ 
     public void visit(FactorDesignatorWithParen factorDesignatorWithParen) {
-    	//Provera parametara posle!
-    	//designatorForActPars = factorDesignatorWithParen.getDesignator().obj;
     	
     	if(factorDesignatorWithParen.getDesignatorForActPars().getDesignator().obj.getKind() != Obj.Meth) {
     		report_error("Greska na " + factorDesignatorWithParen.getLine() + " liniji: " 
@@ -597,23 +583,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     public void visit(ActParsExprOnly actParsExprOnly) {
     	numOfActPars += 1;
     	actPars.add(actParsExprOnly.getExpr());
-    	/*System.out.println("DODATO U ACTPARS EXPR ONLY: " + actParsExprOnly.getExpr());
-    	System.out.println("LINIJA: " + actParsExprOnly.getLine());
-    	System.out.println("TIP: " + actParsExprOnly.getExpr().struct.getKind());*/
     }
     
     public void visit(ActParsExprList actParsExprList) {
     	numOfActPars += 1;
     	actPars.add(actParsExprList.getExpr());
-    	/*System.out.println("DODATO U ACTPARS: " + actParsExprList.getExpr());
-    	System.out.println("LINIJA: " + actParsExprList.getLine());
-    	System.out.println("TIP: " + actParsExprList.getExpr().struct.getKind());*/
     }
     
     public void visit(ActParsOpt actParsOpt) {
     	//System.out.println("NIVO: " + designatorForActPars.getLevel());
     	//System.out.println("DESIGNATOR: " + designatorForActPars.getName());
-    	//System.out.println("NUMBER:" + numOfActPars);
+    	//System.out.println("NUMBER: " + numOfActPars);
     	//if(designatorForActPars.getLevel() != numOfActPars) {
     	if(designatorsListForActpars.get(designatorsListForActpars.size() - 1).getLevel() != numOfActPars) {
     		report_error("Greska na " + actParsOpt.getLine() + " liniji: Broj stvarnih i formalnih parametara nije isti! - actParsOpt", null);
@@ -621,8 +601,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	else {
     		Collection<Obj> formPars = designatorsListForActpars.get(designatorsListForActpars.size() - 1).getLocalSymbols();
     		
-    		//System.out.println("ACTPARS: " + actPars);
-    		//System.out.println("FORMPARS: " + formPars);
     		int counter = 0;
     		
     		for(Obj formPar : formPars) {
@@ -630,13 +608,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     				formPars.remove(formPar);
     		}
     		for(Obj formPar : formPars) {
-    			//System.out.println("FORM PAR: " + formPar.getName());
-    			//System.out.println("FPOS: " + formPar.getFpPos());
-    			//PROVERE
-    			//System.out.println("formPar.getType().getKind(): " + formPar.getType().getKind());
-    			//System.out.println("actPars.get(counter).struct.getKind(): " + actPars.get(counter).struct.getKind());
-    			//System.out.println("Counter" + counter);
-
     			if(formPar.getType().getKind() != actPars.get(counter).struct.getKind()) {
     				report_error("Greska na " + actParsOpt.getLine() + " liniji: Stvarni argument nije istog tipa kao formalni! - actParsOpt", null);
     				break;
@@ -654,8 +625,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     	statementCount++;
     	Obj designator = designatorStmtOptAssign.getDesignator().obj;
     	if(designator.getKind() == Obj.Var || designator.getKind() == Obj.Elem || designator.getKind() == Obj.Fld) {
-    		//System.out.println(designatorStmtOptAssign.getExpr().struct.getKind());
-    		//System.out.println(designator.getType().getKind());
     		if(!designatorStmtOptAssign.getExpr().struct.assignableTo(designator.getType())) {
     			report_error("Greska na " + designatorStmtOptAssign.getLine() + " liniji: Izraz ne moze da se dodeli zbog nepoklapanja tipova! - desigAssign", null);
     		}
@@ -731,10 +700,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
         	designators.add(0, designatorsListForActpars.get(designatorsListForActpars.size() - 1));
         	designatorsListForActpars.remove(designatorsListForActpars.size() - 1);
     	}
-    	
-    	//System.out.println("DUZINA: " + designators.size());
-    	//System.err.println("DUZINA REAL:" + numDesArray);
-    	
 
     	designatorForActPars = null;
     	boolean firstError = false;
@@ -756,7 +721,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
     			for (Obj designator : designators) {
     				if(!rightDesignator.getType().getElemType().assignableTo(designator.getType())) {
     					//System.out.println("Right - " + rightDesignator.getType().getKind());
-    					//System.out.println("left? - " + designator.getType().getKind());
     					secondError = true;
     					report_error("Greska na " + desigStmtAngleBrack.getLine() + " liniji: Niz sa desne strane nije moguce dodeliti vrednostima sa leve strane!", null);
     					break;

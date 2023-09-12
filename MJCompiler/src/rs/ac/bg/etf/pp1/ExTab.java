@@ -13,9 +13,8 @@ public class ExTab extends Tab {
 	private static int currentLevel; // nivo ugnezdavanja tekuceg opsega
 	
 	
-	//?????
 	public static void init() {
-		Tab.init(); // Check da li moze ovako?
+		Tab.init();
 		currentScope.addToLocals(new Obj(Obj.Type, "bool", boolType));
 	}
 }

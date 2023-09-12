@@ -146,12 +146,9 @@ public class CodeGenerator extends VisitorAdaptor {
 		String functionName = designator.getName();
 		
 		
-		if(functionName == "ord" ) {
+		if(functionName == "ord" || functionName == "chr") {
 			return;
-		}
-		else if(functionName == "chr") {
-			return;
-		}
+		} 
 		else if(functionName == "len") {
 			Code.put(Code.arraylength);
 			return;
@@ -220,10 +217,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		Obj designator = funcMethCallDesStmt.getDesignatorForActPars().getDesignator().obj;
 		String functionName = designator.getName();
 		
-		if(functionName == "ord") {
-			return;
-		}
-		else if(functionName == "chr") {
+		if(functionName == "ord" || functionName == "chr") {
 			return;
 		}
 		else if(functionName == "len") {
@@ -287,24 +281,6 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.load(arrayHelp.getDesignator().obj);
 	}
 	
-	/* not using, for level C
-	public void visit(DesignatorDotIdent classField) {
-		Code.load(classField.getDesignator().obj);
-	}
-	*/
-	
-	//also DesignatorIdent?
-	
-	//Designator FOR LIST!
-	
-	/*
-	public void visit(DesignatorCommaListDef designatorCommaList) {
-		
-	}
-	*/
-	
-	
-	
 	public void visit(DesignatorCommaListSingle singleOrFirstDesignator) {
 		designatorsForArrayAssign.add(singleOrFirstDesignator.getDesignator().obj);
 	}
@@ -353,7 +329,7 @@ public class CodeGenerator extends VisitorAdaptor {
 		//nizTmp[0] gets first value, but it should be last?
 		//reverse for?
 		
-		//Yes, mora reverse da ide
+		//Da, mora reverse da ide
 		for(int i = numOfItems - 1; i >= 0 ; i--) {
 			if(designatorsForArrayAssign.get(i).getName() == "noDesignator") {
 				continue;

@@ -64,7 +64,11 @@ public class symOld {
 	public static final int RBRACE = 49;
 	public static final int LAMBDAOP = 50;
 }
+
+
 /*
+ * 
+ * Tekstualno opisana ideja iteriranja niza na steku, vezba za modifikacije
  * 
 load array - loadujemo niz - STACK: array
 loadujemo konstantu 0 - STACK: array, 0
